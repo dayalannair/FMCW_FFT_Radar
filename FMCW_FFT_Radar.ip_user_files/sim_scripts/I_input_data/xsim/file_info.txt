@@ -1,0 +1,2 @@
+I_input_data.v,verilog,xil_defaultlib,../../../../FMCW_FFT_Radar.gen/sources_1/ip/I_input_data/sim/I_input_data.v,
+glbl.v,Verilog,xil_defaultlib,glbl.v

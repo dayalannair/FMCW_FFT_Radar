@@ -1,0 +1,4 @@
+vhdl xil_defaultlib  \
+"../../../../FMCW_FFT_Radar.gen/sources_1/ip/xfft_0/sim/xfft_0.vhd" \
+
+nosort
