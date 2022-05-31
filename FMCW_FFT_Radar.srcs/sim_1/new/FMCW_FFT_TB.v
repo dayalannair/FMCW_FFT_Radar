@@ -35,8 +35,10 @@ end
 reg ipEnable;
 wire opValid;
 wire[31:0] opData;
-
-
+reg[11:0] Re_out;
+reg[11:0] Im_out;
+reg[3:0] pad_upper;
+reg[3:0] pad_lower;
 FMCW_FFT DUT(
     .ipClk (ipClk),
     .ipReset (ipReset),
@@ -63,6 +65,13 @@ always@(posedge ipClk) begin
     $fwrite(fd_Re,opData[11:0]);
     $fwrite(fd_Re, "\n");
     $fwrite(fd_Im, "\n");
+    // For testbench viewing
+    Re_out <= opData[27:16];
+    Im_out <= opData[11:0];
+    // confirm padding is all same value
+    pad_upper <= opData[31:28];
+    pad_lower <= opData[15:12];
+
   end
   if (count == 512) begin
     $display("end");
@@ -71,7 +80,5 @@ always@(posedge ipClk) begin
   end
 
 end
-
-
 endmodule
 
