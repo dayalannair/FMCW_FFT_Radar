@@ -12,15 +12,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="208,934.772 ns"></ZoomStartTime>
-      <ZoomEndTime time="210,666.773 ns"></ZoomEndTime>
-      <Cursor1Time time="210,024.772 ns"></Cursor1Time>
+      <ZoomStartTime time="65.202600 us"></ZoomStartTime>
+      <ZoomEndTime time="143.102601 us"></ZoomEndTime>
+      <Cursor1Time time="70.502600 us"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="143"></NameColumnWidth>
-      <ValueColumnWidth column_width="96"></ValueColumnWidth>
+      <NameColumnWidth column_width="177"></NameColumnWidth>
+      <ValueColumnWidth column_width="92"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="4" />
+   <WVObjectSize size="6" />
    <wave_markers>
       <marker time="2601100" label="" />
    </wave_markers>
@@ -77,6 +77,7 @@
    <wvobject fp_name="group27" type="group">
       <obj_property name="label">Output Data</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
       <wvobject fp_name="/FMCW_FFT_TB/DUT/s_axis_data_tdata" type="array">
          <obj_property name="ElementShortName">s_axis_data_tdata[31:0]</obj_property>
          <obj_property name="ObjectShortName">s_axis_data_tdata[31:0]</obj_property>
@@ -158,5 +159,17 @@
          <obj_property name="ElementShortName">event_data_out_channel_halt</obj_property>
          <obj_property name="ObjectShortName">event_data_out_channel_halt</obj_property>
       </wvobject>
+      <wvobject fp_name="/FMCW_FFT_TB/DUT/event_fft_overflow" type="logic">
+         <obj_property name="ElementShortName">event_fft_overflow</obj_property>
+         <obj_property name="ObjectShortName">event_fft_overflow</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/FMCW_FFT_TB/DUT/m_axis_status_tdata" type="array">
+      <obj_property name="ElementShortName">m_axis_status_tdata[7:0]</obj_property>
+      <obj_property name="ObjectShortName">m_axis_status_tdata[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/FMCW_FFT_TB/DUT/m_axis_data_tuser" type="array">
+      <obj_property name="ElementShortName">m_axis_data_tuser[15:0]</obj_property>
+      <obj_property name="ObjectShortName">m_axis_data_tuser[15:0]</obj_property>
    </wvobject>
 </wave_config>

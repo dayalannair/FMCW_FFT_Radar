@@ -67,12 +67,17 @@ ENTITY xfft_0 IS
     s_axis_data_tready : OUT STD_LOGIC;
     s_axis_data_tlast : IN STD_LOGIC;
     m_axis_data_tdata : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+    m_axis_data_tuser : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
     m_axis_data_tvalid : OUT STD_LOGIC;
     m_axis_data_tready : IN STD_LOGIC;
     m_axis_data_tlast : OUT STD_LOGIC;
+    m_axis_status_tdata : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
+    m_axis_status_tvalid : OUT STD_LOGIC;
+    m_axis_status_tready : IN STD_LOGIC;
     event_frame_started : OUT STD_LOGIC;
     event_tlast_unexpected : OUT STD_LOGIC;
     event_tlast_missing : OUT STD_LOGIC;
+    event_fft_overflow : OUT STD_LOGIC;
     event_status_channel_halt : OUT STD_LOGIC;
     event_data_in_channel_halt : OUT STD_LOGIC;
     event_data_out_channel_halt : OUT STD_LOGIC
@@ -131,11 +136,11 @@ ARCHITECTURE xfft_0_arch OF xfft_0 IS
       s_axis_data_tready : OUT STD_LOGIC;
       s_axis_data_tlast : IN STD_LOGIC;
       m_axis_data_tdata : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
-      m_axis_data_tuser : OUT STD_LOGIC_VECTOR(0 DOWNTO 0);
+      m_axis_data_tuser : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
       m_axis_data_tvalid : OUT STD_LOGIC;
       m_axis_data_tready : IN STD_LOGIC;
       m_axis_data_tlast : OUT STD_LOGIC;
-      m_axis_status_tdata : OUT STD_LOGIC_VECTOR(0 DOWNTO 0);
+      m_axis_status_tdata : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
       m_axis_status_tvalid : OUT STD_LOGIC;
       m_axis_status_tready : IN STD_LOGIC;
       event_frame_started : OUT STD_LOGIC;
@@ -155,16 +160,23 @@ ARCHITECTURE xfft_0_arch OF xfft_0 IS
   ATTRIBUTE X_INTERFACE_INFO OF event_data_in_channel_halt: SIGNAL IS "xilinx.com:signal:interrupt:1.0 event_data_in_channel_halt_intf INTERRUPT";
   ATTRIBUTE X_INTERFACE_PARAMETER OF event_status_channel_halt: SIGNAL IS "XIL_INTERFACENAME event_status_channel_halt_intf, SENSITIVITY EDGE_RISING, PortWidth 1";
   ATTRIBUTE X_INTERFACE_INFO OF event_status_channel_halt: SIGNAL IS "xilinx.com:signal:interrupt:1.0 event_status_channel_halt_intf INTERRUPT";
+  ATTRIBUTE X_INTERFACE_PARAMETER OF event_fft_overflow: SIGNAL IS "XIL_INTERFACENAME event_fft_overflow_intf, SENSITIVITY EDGE_RISING, PortWidth 1";
+  ATTRIBUTE X_INTERFACE_INFO OF event_fft_overflow: SIGNAL IS "xilinx.com:signal:interrupt:1.0 event_fft_overflow_intf INTERRUPT";
   ATTRIBUTE X_INTERFACE_PARAMETER OF event_tlast_missing: SIGNAL IS "XIL_INTERFACENAME event_tlast_missing_intf, SENSITIVITY EDGE_RISING, PortWidth 1";
   ATTRIBUTE X_INTERFACE_INFO OF event_tlast_missing: SIGNAL IS "xilinx.com:signal:interrupt:1.0 event_tlast_missing_intf INTERRUPT";
   ATTRIBUTE X_INTERFACE_PARAMETER OF event_tlast_unexpected: SIGNAL IS "XIL_INTERFACENAME event_tlast_unexpected_intf, SENSITIVITY EDGE_RISING, PortWidth 1";
   ATTRIBUTE X_INTERFACE_INFO OF event_tlast_unexpected: SIGNAL IS "xilinx.com:signal:interrupt:1.0 event_tlast_unexpected_intf INTERRUPT";
   ATTRIBUTE X_INTERFACE_PARAMETER OF event_frame_started: SIGNAL IS "XIL_INTERFACENAME event_frame_started_intf, SENSITIVITY EDGE_RISING, PortWidth 1";
   ATTRIBUTE X_INTERFACE_INFO OF event_frame_started: SIGNAL IS "xilinx.com:signal:interrupt:1.0 event_frame_started_intf INTERRUPT";
+  ATTRIBUTE X_INTERFACE_INFO OF m_axis_status_tready: SIGNAL IS "xilinx.com:interface:axis:1.0 M_AXIS_STATUS TREADY";
+  ATTRIBUTE X_INTERFACE_INFO OF m_axis_status_tvalid: SIGNAL IS "xilinx.com:interface:axis:1.0 M_AXIS_STATUS TVALID";
+  ATTRIBUTE X_INTERFACE_PARAMETER OF m_axis_status_tdata: SIGNAL IS "XIL_INTERFACENAME M_AXIS_STATUS, TDATA_NUM_BYTES 1, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 0, FREQ_HZ 100000000, PHASE 0.0, LAYERED_METADATA undef, INSERT_VIP 0";
+  ATTRIBUTE X_INTERFACE_INFO OF m_axis_status_tdata: SIGNAL IS "xilinx.com:interface:axis:1.0 M_AXIS_STATUS TDATA";
   ATTRIBUTE X_INTERFACE_INFO OF m_axis_data_tlast: SIGNAL IS "xilinx.com:interface:axis:1.0 M_AXIS_DATA TLAST";
   ATTRIBUTE X_INTERFACE_INFO OF m_axis_data_tready: SIGNAL IS "xilinx.com:interface:axis:1.0 M_AXIS_DATA TREADY";
   ATTRIBUTE X_INTERFACE_INFO OF m_axis_data_tvalid: SIGNAL IS "xilinx.com:interface:axis:1.0 M_AXIS_DATA TVALID";
-  ATTRIBUTE X_INTERFACE_PARAMETER OF m_axis_data_tdata: SIGNAL IS "XIL_INTERFACENAME M_AXIS_DATA, TDATA_NUM_BYTES 4, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 1, FREQ_HZ 100000000, PHASE 0.0, LAYERED_METADATA undef, INSERT_VIP 0";
+  ATTRIBUTE X_INTERFACE_INFO OF m_axis_data_tuser: SIGNAL IS "xilinx.com:interface:axis:1.0 M_AXIS_DATA TUSER";
+  ATTRIBUTE X_INTERFACE_PARAMETER OF m_axis_data_tdata: SIGNAL IS "XIL_INTERFACENAME M_AXIS_DATA, TDATA_NUM_BYTES 4, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 16, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 1, FREQ_HZ 100000000, PHASE 0.0, LAYERED_METADATA undef, INSERT_VIP 0";
   ATTRIBUTE X_INTERFACE_INFO OF m_axis_data_tdata: SIGNAL IS "xilinx.com:interface:axis:1.0 M_AXIS_DATA TDATA";
   ATTRIBUTE X_INTERFACE_INFO OF s_axis_data_tlast: SIGNAL IS "xilinx.com:interface:axis:1.0 S_AXIS_DATA TLAST";
   ATTRIBUTE X_INTERFACE_INFO OF s_axis_data_tready: SIGNAL IS "xilinx.com:interface:axis:1.0 S_AXIS_DATA TREADY";
@@ -185,8 +197,8 @@ BEGIN
       C_S_AXIS_CONFIG_TDATA_WIDTH => 24,
       C_S_AXIS_DATA_TDATA_WIDTH => 32,
       C_M_AXIS_DATA_TDATA_WIDTH => 32,
-      C_M_AXIS_DATA_TUSER_WIDTH => 1,
-      C_M_AXIS_STATUS_TDATA_WIDTH => 1,
+      C_M_AXIS_DATA_TUSER_WIDTH => 16,
+      C_M_AXIS_STATUS_TDATA_WIDTH => 8,
       C_THROTTLE_SCHEME => 1,
       C_CHANNELS => 1,
       C_NFFT_MAX => 8,
@@ -201,18 +213,18 @@ BEGIN
       C_HAS_ROUNDING => 1,
       C_HAS_ACLKEN => 0,
       C_HAS_ARESETN => 0,
-      C_HAS_OVFLO => 0,
+      C_HAS_OVFLO => 1,
       C_HAS_NATURAL_INPUT => 1,
       C_HAS_NATURAL_OUTPUT => 1,
       C_HAS_CYCLIC_PREFIX => 0,
-      C_HAS_XK_INDEX => 0,
+      C_HAS_XK_INDEX => 1,
       C_DATA_MEM_TYPE => 1,
       C_TWIDDLE_MEM_TYPE => 1,
       C_BRAM_STAGES => 0,
       C_REORDER_MEM_TYPE => 1,
       C_USE_HYBRID_RAM => 0,
       C_OPTIMIZE_GOAL => 0,
-      C_CMPY_TYPE => 1,
+      C_CMPY_TYPE => 2,
       C_BFLY_TYPE => 0
     )
     PORT MAP (
@@ -227,13 +239,17 @@ BEGIN
       s_axis_data_tready => s_axis_data_tready,
       s_axis_data_tlast => s_axis_data_tlast,
       m_axis_data_tdata => m_axis_data_tdata,
+      m_axis_data_tuser => m_axis_data_tuser,
       m_axis_data_tvalid => m_axis_data_tvalid,
       m_axis_data_tready => m_axis_data_tready,
       m_axis_data_tlast => m_axis_data_tlast,
-      m_axis_status_tready => '1',
+      m_axis_status_tdata => m_axis_status_tdata,
+      m_axis_status_tvalid => m_axis_status_tvalid,
+      m_axis_status_tready => m_axis_status_tready,
       event_frame_started => event_frame_started,
       event_tlast_unexpected => event_tlast_unexpected,
       event_tlast_missing => event_tlast_missing,
+      event_fft_overflow => event_fft_overflow,
       event_status_channel_halt => event_status_channel_halt,
       event_data_in_channel_halt => event_data_in_channel_halt,
       event_data_out_channel_halt => event_data_out_channel_halt

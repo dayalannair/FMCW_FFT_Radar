@@ -1,0 +1,15 @@
+#-----------------------------------------------------------
+# Vivado v2021.1 (64-bit)
+# SW Build 3247384 on Thu Jun 10 19:36:33 MDT 2021
+# IP Build 3246043 on Fri Jun 11 00:30:35 MDT 2021
+# Start of session at: Tue May 31 16:48:54 2022
+# Process ID: 16972
+# Current directory: C:/Users/Dayalan/Desktop/FMCW_FFT_Radar
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent7444 C:\Users\Dayalan\Desktop\FMCW_FFT_Radar\FMCW_FFT_Radar.xpr
+# Log file: C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/vivado.log
+# Journal file: C:/Users/Dayalan/Desktop/FMCW_FFT_Radar\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.xpr
+update_compile_order -fileset sources_1
+set_property -dict [list CONFIG.ovflo {true} CONFIG.xk_index {true} CONFIG.complex_mult_type {use_mults_performance}] [get_ips xfft_0]

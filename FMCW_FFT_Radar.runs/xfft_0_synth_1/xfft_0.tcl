@@ -90,7 +90,7 @@ set_property ip_output_repo c:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Rad
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
-read_ip -quiet c:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.srcs/sources_1/ip/xfft_0/xfft_0.xci
+read_ip -quiet C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.srcs/sources_1/ip/xfft_0/xfft_0.xci
 set_property used_in_implementation false [get_files -all c:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.gen/sources_1/ip/xfft_0/xfft_0_ooc.xdc]
 
 OPTRACE "Adding files" END { }

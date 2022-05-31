@@ -73,7 +73,7 @@ always@(posedge ipClk) begin
     pad_lower <= opData[15:12];
 
   end
-  if (count == 512) begin
+  if (count == 256) begin
     $display("end");
     $fclose(fd_Re);
     $fclose(fd_Im);
