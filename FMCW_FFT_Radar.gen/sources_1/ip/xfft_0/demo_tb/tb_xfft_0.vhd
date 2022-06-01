@@ -89,6 +89,7 @@ architecture tb of tb_xfft_0 is
 
   -- General signals
   signal aclk                        : std_logic := '0';  -- the master clock
+  signal aresetn                     : std_logic := '1';  -- synchronous active low reset
 
   -- Config slave channel signals
   signal s_axis_config_tvalid        : std_logic := '0';  -- payload is valid
@@ -220,6 +221,7 @@ begin
   dut : entity work.xfft_0
     port map (
       aclk                        => aclk,
+      aresetn                     => aresetn,
       s_axis_config_tvalid        => s_axis_config_tvalid,
       s_axis_config_tready        => s_axis_config_tready,
       s_axis_config_tdata         => s_axis_config_tdata,
@@ -338,7 +340,7 @@ begin
   begin
 
     -- Drive inputs T_HOLD time after rising edge of clock
-    wait until rising_edge(aclk);
+    wait until rising_edge(aclk) and aresetn = '1';
     wait for T_HOLD;
 
     -- Drive a frame of input data
@@ -359,7 +361,7 @@ begin
     cfg_fwd_inv <= INV;
     do_config := IMMEDIATE;
     while do_config /= DONE loop
-      wait until rising_edge(aclk);
+      wait until rising_edge(aclk) and aresetn = '1';
     end loop;
     wait for T_HOLD;
 
@@ -400,6 +402,15 @@ begin
     m_axis_data_tready <= '1';
     wait for CLOCK_PERIOD;
 
+    -- Demonstrate use of aresetn to reset the core: start another frame but reset the core before it completes
+    ip_frame <= 4;
+    drive_frame(IP_DATA);
+    wait for CLOCK_PERIOD * 5;
+    aresetn <= '0';  -- assert reset (active low)
+    wait for CLOCK_PERIOD * 2;  -- hold reset active for 2 cycles, as stated in the FFT Datasheet
+    aresetn <= '1';  -- deassert reset
+    wait for CLOCK_PERIOD * 5;
+
     -- Now run 4 back-to-back transforms, as quickly as possible.
     -- First queue up 2 configurations: these will be applied successively over the next 2 transforms.
     -- 1st configuration
@@ -408,7 +419,7 @@ begin
     cfg_scale_sch <= DEFAULT;  -- default scaling schedule
     do_config := IMMEDIATE;
     while do_config /= DONE loop
-      wait until rising_edge(aclk);
+      wait until rising_edge(aclk) and aresetn = '1';
     end loop;
     wait for T_HOLD;
 
@@ -418,7 +429,7 @@ begin
     cfg_scale_sch <= ZERO;  -- no scaling
     do_config := IMMEDIATE;
     while do_config /= DONE loop
-      wait until rising_edge(aclk);
+      wait until rising_edge(aclk) and aresetn = '1';
     end loop;
     wait for T_HOLD;
 
@@ -465,15 +476,15 @@ begin
   begin
 
     -- Drive a configuration when requested by data_stimuli process
-    wait until rising_edge(aclk);
+    wait until rising_edge(aclk) and aresetn = '1';
     while do_config = NONE or do_config = DONE loop
-      wait until rising_edge(aclk);
+      wait until rising_edge(aclk) and aresetn = '1';
     end loop;
 
     -- If the configuration is requested to occur after the next frame starts, wait for that event
     if do_config = AFTER_START then
       wait until event_frame_started = '1';
-      wait until rising_edge(aclk);
+      wait until rising_edge(aclk) and aresetn = '1';
     end if;
 
     -- Drive inputs T_HOLD time after rising edge of clock
@@ -521,7 +532,9 @@ begin
 
   begin
     if rising_edge(aclk) then
-      if m_axis_data_tvalid = '1' and m_axis_data_tready = '1' then
+      if aresetn = '0' then  -- aresetn is active low
+        op_data         <= IP_TABLE_CLEAR;
+      elsif m_axis_data_tvalid = '1' and m_axis_data_tready = '1' then
         -- Record output data such that it can be used as input data
         -- Output sample index is given by xk_index field of m_axis_data_tuser
         index := to_integer(unsigned(m_axis_data_tuser(7 downto 0)));
@@ -562,7 +575,7 @@ begin
     -- check that the payload is valid (not X) when TVALID is high
     -- and check that the payload does not change while TVALID is high until TREADY goes high
 
-    if m_axis_data_tvalid = '1' then
+    if m_axis_data_tvalid = '1' and aresetn = '1' then
       if is_x(m_axis_data_tdata) then
         report "ERROR: m_axis_data_tdata is invalid when m_axis_data_tvalid is high" severity error;
         check_ok := false;
@@ -585,7 +598,7 @@ begin
 
     end if;
 
-    if m_axis_status_tvalid = '1' then
+    if m_axis_status_tvalid = '1' and aresetn = '1' then
       if is_x(m_axis_status_tdata) then
         report "ERROR: m_axis_status_tdata is invalid when m_axis_status_tvalid is high" severity error;
         check_ok := false;

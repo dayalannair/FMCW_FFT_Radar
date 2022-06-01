@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="FMCW_FFT_TB_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="FMCW_FFT_TB" />
+            <top_module name="glbl" />
+            <top_module name="vcomponents" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0.000 ns"></ZoomStartTime>
+      <ZoomEndTime time="1,352.001 ns"></ZoomEndTime>
+      <Cursor1Time time="755.000 ns"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="240"></NameColumnWidth>
+      <ValueColumnWidth column_width="112"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="8" />
+   <wave_markers>
+      <marker time="28645000" label="" />
+      <marker time="2785000" label="" />
+      <marker time="5000" label="" />
+      <marker time="26065000" label="" />
+   </wave_markers>
+   <wvobject fp_name="/FMCW_FFT_TB/DUT/I_sample" type="array">
+      <obj_property name="ElementShortName">I_sample[11:0]</obj_property>
+      <obj_property name="ObjectShortName">I_sample[11:0]</obj_property>
+      <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
+      <obj_property name="CellHeight">100</obj_property>
+   </wvobject>
+   <wvobject fp_name="/FMCW_FFT_TB/DUT/Q_sample" type="array">
+      <obj_property name="ElementShortName">Q_sample[11:0]</obj_property>
+      <obj_property name="ObjectShortName">Q_sample[11:0]</obj_property>
+      <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
+      <obj_property name="CellHeight">100</obj_property>
+   </wvobject>
+   <wvobject fp_name="/FMCW_FFT_TB/DUT/s_axis_data_tdata" type="array">
+      <obj_property name="ElementShortName">s_axis_data_tdata[31:0]</obj_property>
+      <obj_property name="ObjectShortName">s_axis_data_tdata[31:0]</obj_property>
+      <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
+      <obj_property name="CellHeight">100</obj_property>
+   </wvobject>
+   <wvobject fp_name="/FMCW_FFT_TB/DUT/s_axis_data_tready" type="logic">
+      <obj_property name="ElementShortName">s_axis_data_tready</obj_property>
+      <obj_property name="ObjectShortName">s_axis_data_tready</obj_property>
+   </wvobject>
+   <wvobject fp_name="/FMCW_FFT_TB/Im_out" type="array">
+      <obj_property name="ElementShortName">Im_out[11:0]</obj_property>
+      <obj_property name="ObjectShortName">Im_out[11:0]</obj_property>
+      <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
+      <obj_property name="CellHeight">100</obj_property>
+   </wvobject>
+   <wvobject fp_name="/FMCW_FFT_TB/Re_out" type="array">
+      <obj_property name="ElementShortName">Re_out[11:0]</obj_property>
+      <obj_property name="ObjectShortName">Re_out[11:0]</obj_property>
+      <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
+      <obj_property name="CellHeight">100</obj_property>
+   </wvobject>
+   <wvobject fp_name="/FMCW_FFT_TB/FFT_mag" type="array">
+      <obj_property name="ElementShortName">FFT_mag[31:0]</obj_property>
+      <obj_property name="ObjectShortName">FFT_mag[31:0]</obj_property>
+      <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
+      <obj_property name="CellHeight">100</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/FMCW_FFT_TB/FFT_Re_data" type="array">
+      <obj_property name="ElementShortName">FFT_Re_data[255:0][11:0]</obj_property>
+      <obj_property name="ObjectShortName">FFT_Re_data[255:0][11:0]</obj_property>
+   </wvobject>
+</wave_config>

@@ -33,7 +33,7 @@ reg s_axis_data_tlast; // not needed?
 wire s_axis_data_tready;
 reg s_axis_data_tvalid; // tell FFT data is valid
 
-reg[23:0] s_axis_config_tdata;
+reg[15:0] s_axis_config_tdata;
 wire s_axis_config_tready;
 reg s_axis_config_tvalid;
 
@@ -90,7 +90,8 @@ xfft_0 FFT(
     .m_axis_status_tready (m_axis_status_tready),
     .m_axis_status_tvalid (m_axis_status_tvalid),
     .m_axis_status_tdata (m_axis_status_tdata),
-    .m_axis_data_tuser (m_axis_data_tuser)
+    .m_axis_data_tuser (m_axis_data_tuser),
+    .aresetn (!ipReset)
 );
 
 reg[7:0] I_addr;
@@ -182,14 +183,22 @@ always@ (posedge ipClk) begin
                 // if at final sample and FFT still ready, feed zeros
                 if ((I_addr == 8'd255) && (s_axis_data_tready)) begin
                     s_axis_data_tdata <= 0;//{PAD, Q_sample, PAD, I_sample};
-                    //s_axis_data_tlast <= 1'b1;
+                    // s_axis_data_tlast <= 1'b1;
+                    // s_axis_data_tvalid <= 1'b0;
                     //state <= 0;
                     //tready_cnt <= 8'd17;
                 end
                 // if FFT ready and not at the final sample
                 else if (s_axis_data_tready) begin
                     // FFT engine ready, provide input data
-                    s_axis_data_tdata <= {PAD, Q_sample, PAD, I_sample};
+                    //s_axis_data_tdata <= {PAD, Q_sample, PAD, I_sample};
+                    
+                    // TEST: feed zeros to FFT
+                    //s_axis_data_tdata <= 0;
+
+                    //TEST: feed purely real signal to FFT
+                    s_axis_data_tdata <= {PAD, 12'b0, PAD, I_sample};
+                    
                     // increment sample address
                     I_addr <= I_addr + 1'b1;
                     Q_addr <= Q_addr + 1'b1;
