@@ -33,7 +33,7 @@ reg s_axis_data_tlast; // not needed?
 wire s_axis_data_tready;
 reg s_axis_data_tvalid; // tell FFT data is valid
 
-reg[15:0] s_axis_config_tdata;
+reg[7:0] s_axis_config_tdata;
 wire s_axis_config_tready;
 reg s_axis_config_tvalid;
 
@@ -50,11 +50,11 @@ wire event_status_channel_halt;
 wire event_data_in_channel_halt;
 wire event_data_out_channel_halt;
 // optional
-wire event_fft_overflow;
-reg m_axis_status_tready;
-wire m_axis_status_tvalid;
-wire[7:0] m_axis_status_tdata;
-wire[15:0] m_axis_data_tuser;
+//wire event_fft_overflow;
+// reg m_axis_status_tready;
+// wire m_axis_status_tvalid;
+// wire[7:0] m_axis_status_tdata;
+// wire[15:0] m_axis_data_tuser;
 
 
 xfft_0 FFT(
@@ -86,11 +86,11 @@ xfft_0 FFT(
     .event_data_out_channel_halt (event_data_out_channel_halt),
 
     // optional
-    .event_fft_overflow (event_fft_overflow),
-    .m_axis_status_tready (m_axis_status_tready),
-    .m_axis_status_tvalid (m_axis_status_tvalid),
-    .m_axis_status_tdata (m_axis_status_tdata),
-    .m_axis_data_tuser (m_axis_data_tuser),
+    //.event_fft_overflow (event_fft_overflow),
+    // .m_axis_status_tready (m_axis_status_tready),
+    // .m_axis_status_tvalid (m_axis_status_tvalid),
+    // .m_axis_status_tdata (m_axis_status_tdata),
+    // .m_axis_data_tuser (m_axis_data_tuser),
     .aresetn (!ipReset)
 );
 
