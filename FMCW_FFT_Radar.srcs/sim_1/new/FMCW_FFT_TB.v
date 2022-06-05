@@ -90,16 +90,16 @@ always@(posedge ipClk) begin
     pad_upper <= opData[31:28];
     pad_lower <= opData[15:12];
   end
-  if (count == 256) begin
+  if (count == 255) begin
     $display("end");
     $fclose(fd_Re);
     $fclose(fd_Im);
     // in testbench, display FFT magnitude post data capture
-    for (i = 0;i<255;i=i+1) begin
-      @(posedge ipClk);
-      FFT_mag <= FFT_Re_data[i]**2 + FFT_Im_data[i]**2;
-      //FFT_mag <= FFT_Re_data[i]*FFT_Re_data[i] + FFT_Im_data[i]*FFT_Im_data[i];
-    end
+    // for (i = 0;i<255;i=i+1) begin
+    //   @(posedge ipClk);
+    //   FFT_mag <= FFT_Re_data[i]**2 + FFT_Im_data[i]**2;
+    //   //FFT_mag <= FFT_Re_data[i]*FFT_Re_data[i] + FFT_Im_data[i]*FFT_Im_data[i];
+    // end
   end
 
 end

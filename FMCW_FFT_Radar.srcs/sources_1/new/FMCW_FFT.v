@@ -183,7 +183,8 @@ always@ (posedge ipClk) begin
                 // if at final sample and FFT still ready, feed zeros
                 if ((I_addr == 8'd255) && (s_axis_data_tready)) begin
                     s_axis_data_tdata <= 0;//{PAD, Q_sample, PAD, I_sample};
-                    // s_axis_data_tlast <= 1'b1;
+                    // NOTE: tlast not used by the CORE!
+                    //s_axis_data_tlast <= 1'b1;
                     // s_axis_data_tvalid <= 1'b0;
                     //state <= 0;
                     //tready_cnt <= 8'd17;
@@ -191,13 +192,13 @@ always@ (posedge ipClk) begin
                 // if FFT ready and not at the final sample
                 else if (s_axis_data_tready) begin
                     // FFT engine ready, provide input data
-                    //s_axis_data_tdata <= {PAD, Q_sample, PAD, I_sample};
+                    s_axis_data_tdata <= {PAD, Q_sample, PAD, I_sample};
                     
                     // TEST: feed zeros to FFT
                     //s_axis_data_tdata <= 0;
 
                     //TEST: feed purely real signal to FFT
-                    s_axis_data_tdata <= {PAD, 12'b0, PAD, I_sample};
+                    //s_axis_data_tdata <= {PAD, 12'b0, PAD, I_sample};
                     
                     // increment sample address
                     I_addr <= I_addr + 1'b1;

@@ -118,3 +118,4 @@ relaunch_sim
 restart
 run 30 us
 save_wave_config {C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FFT_magnitude.wcfg}
+close_sim
