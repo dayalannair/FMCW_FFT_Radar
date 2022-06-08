@@ -19,6 +19,8 @@
 !*.v
 !*.bd
 !*.edif
+# do not ignore matlab
+!*.m
 #########
 #IP files
 #########
