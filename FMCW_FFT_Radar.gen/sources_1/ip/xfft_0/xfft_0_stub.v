@@ -1,10 +1,10 @@
 // Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2021.1 (win64) Build 3247384 Thu Jun 10 19:36:33 MDT 2021
-// Date        : Sun Jun  5 17:03:47 2022
+// Date        : Sun Jun  5 17:03:45 2022
 // Host        : TRISERVERi7 running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode synth_stub
-//               c:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.gen/sources_1/ip/xfft_0/xfft_0_stub.v
+// Command     : write_verilog -force -mode synth_stub -rename_top xfft_0 -prefix
+//               xfft_0_ xfft_0_stub.v
 // Design      : xfft_0
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xc7a100tcsg324-1

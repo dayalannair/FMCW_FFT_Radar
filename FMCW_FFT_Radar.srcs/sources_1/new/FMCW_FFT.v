@@ -22,7 +22,7 @@ module FMCW_FFT(
     input ipClk,
     input ipReset,
     input ipEnable,
-    output reg[31:0] opData,
+    output reg[47:0] opData,
     output reg opValid
 );
 
@@ -157,7 +157,7 @@ always@ (posedge ipClk) begin
         m_axis_data_tready <= 0;
         state <= 0;
         tready_cnt <= 8'd17;
-        m_axis_status_tready <= 1'b1;
+        //m_axis_status_tready <= 1'b1;
     end
     else begin
         case(state)
@@ -207,7 +207,7 @@ always@ (posedge ipClk) begin
                 // if FFT no longer ready to receive data, switch states
                 if (m_axis_data_tvalid) begin
                     // Output FFT data
-                    opData <= m_axis_data_tdata[31:0];
+                    opData <= m_axis_data_tdata;
                     opValid <= 1;
                     // write data to RAM
                     // wr_data <= m_axis_data_tdata;

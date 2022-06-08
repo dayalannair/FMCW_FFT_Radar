@@ -42,11 +42,11 @@ end
 
 reg ipEnable;
 wire opValid;
-wire[31:0] opData;
+wire[47:0] opData;
 // reg[11:0] Re_out;
 // reg[11:0] Im_out;
-reg[15:0] Re_out;
-reg[15:0] Im_out;
+reg[23:0] Re_out;
+reg[23:0] Im_out;
 reg[3:0] pad_upper;
 reg[3:0] pad_lower;
 FMCW_FFT DUT(
@@ -81,15 +81,16 @@ always@(posedge ipClk) begin
     // Real time FFT magnitude
     FFT_mag <= opData[11:0]**2 + opData[27:16]**2;
 	// 12 bit data
-    $fwrite(fd_Im,opData[27:16]);
-    $fwrite(fd_Re,opData[11:0]);
+  // sign extended data, 24 bits Re and Im
+    $fwrite(fd_Im,$signed(opData[47:24]));
+    $fwrite(fd_Re,$signed(opData[23:0]));
     $fwrite(fd_Re, "\n");
     $fwrite(fd_Im, "\n");
     // For testbench viewing
     // Re_out <= opData[27:16];
     // Im_out <= opData[11:0];
-    Re_out <= opData[31:16];
-    Im_out <= opData[15:0];
+    Re_out <= opData[23:0];
+    Im_out <= opData[47:24];
     // confirm padding is all same value
     // pad_upper <= opData[31:28];
     // pad_lower <= opData[15:12];
