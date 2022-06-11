@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="Q_input_data_synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1653936239">
+<GenRun Id="Q_input_data_synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1654932115">
   <File Type="PA-TCL" Name="Q_input_data.tcl"/>
+  <File Type="RDS-PROPCONSTRS" Name="Q_input_data_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="Q_input_data_reports.tcl"/>
   <File Type="RDS-RDS" Name="Q_input_data.vds"/>
   <File Type="RDS-UTIL" Name="Q_input_data_utilization_synth.rpt"/>
   <File Type="RDS-UTIL-PB" Name="Q_input_data_utilization_synth.pb"/>
   <File Type="RDS-DCP" Name="Q_input_data.dcp"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="Q_input_data_timing_summary_synth.rpt"/>
+  <File Type="VDS-TIMING-PB" Name="Q_input_data_timing_summary_synth.pb"/>
   <FileSet Name="sources" Type="BlockSrcs" RelSrcDir="$PSRCDIR/Q_input_data">
     <File Path="$PSRCDIR/sources_1/ip/Q_input_data/Q_input_data.xci">
       <FileInfo>

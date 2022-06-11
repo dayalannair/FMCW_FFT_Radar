@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="I_input_data_synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1653936191">
+<GenRun Id="I_input_data_synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1654932001">
   <File Type="PA-TCL" Name="I_input_data.tcl"/>
+  <File Type="RDS-PROPCONSTRS" Name="I_input_data_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="I_input_data_reports.tcl"/>
   <File Type="RDS-RDS" Name="I_input_data.vds"/>
   <File Type="RDS-UTIL" Name="I_input_data_utilization_synth.rpt"/>
   <File Type="RDS-UTIL-PB" Name="I_input_data_utilization_synth.pb"/>
   <File Type="RDS-DCP" Name="I_input_data.dcp"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="I_input_data_timing_summary_synth.rpt"/>
+  <File Type="VDS-TIMING-PB" Name="I_input_data_timing_summary_synth.pb"/>
   <FileSet Name="sources" Type="BlockSrcs" RelSrcDir="$PSRCDIR/I_input_data">
     <File Path="$PSRCDIR/sources_1/ip/I_input_data/I_input_data.xci">
       <FileInfo>

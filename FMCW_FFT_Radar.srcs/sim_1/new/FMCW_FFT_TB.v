@@ -72,7 +72,7 @@ end
 
 always@(posedge ipClk) begin
 
-  if (opValid) begin
+  if ((opValid)&&(count<256)) begin
     count <= count + 1;
     // Store data for post capture processing
     FFT_Re_data[array_index] <= opData[11:0];
@@ -95,7 +95,7 @@ always@(posedge ipClk) begin
     // pad_upper <= opData[31:28];
     // pad_lower <= opData[15:12];
   end
-  if (count == 255) begin
+  if (count == 256) begin
     $display("end");
     $fclose(fd_Re);
     $fclose(fd_Im);
