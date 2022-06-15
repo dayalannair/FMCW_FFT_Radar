@@ -12,15 +12,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="23,283.333 ns"></ZoomStartTime>
-      <ZoomEndTime time="26,843.334 ns"></ZoomEndTime>
-      <Cursor1Time time="30,000.000 ns"></Cursor1Time>
+      <ZoomStartTime time="0.000 ns"></ZoomStartTime>
+      <ZoomEndTime time="1,608.001 ns"></ZoomEndTime>
+      <Cursor1Time time="10,200.000 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="213"></NameColumnWidth>
-      <ValueColumnWidth column_width="103"></ValueColumnWidth>
+      <NameColumnWidth column_width="228"></NameColumnWidth>
+      <ValueColumnWidth column_width="111"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="8" />
+   <WVObjectSize size="9" />
    <wave_markers>
       <marker time="28645000" label="" />
       <marker time="2785000" label="" />
@@ -32,12 +32,14 @@
       <obj_property name="ObjectShortName">I_sample[11:0]</obj_property>
       <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
       <obj_property name="CellHeight">100</obj_property>
+      <obj_property name="Radix">BINARYRADIX</obj_property>
    </wvobject>
    <wvobject fp_name="/FMCW_FFT_TB/DUT/Q_sample" type="array">
       <obj_property name="ElementShortName">Q_sample[11:0]</obj_property>
       <obj_property name="ObjectShortName">Q_sample[11:0]</obj_property>
       <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
       <obj_property name="CellHeight">100</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject fp_name="/FMCW_FFT_TB/DUT/s_axis_data_tdata" type="array">
       <obj_property name="ElementShortName">s_axis_data_tdata[31:0]</obj_property>
@@ -49,23 +51,9 @@
       <obj_property name="ElementShortName">s_axis_data_tready</obj_property>
       <obj_property name="ObjectShortName">s_axis_data_tready</obj_property>
    </wvobject>
-   <wvobject fp_name="/FMCW_FFT_TB/Re_out" type="array">
-      <obj_property name="ElementShortName">Re_out[23:0]</obj_property>
-      <obj_property name="ObjectShortName">Re_out[23:0]</obj_property>
-      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-      <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
-      <obj_property name="CellHeight">100</obj_property>
-   </wvobject>
-   <wvobject fp_name="/FMCW_FFT_TB/Im_out" type="array">
-      <obj_property name="ElementShortName">Im_out[23:0]</obj_property>
-      <obj_property name="ObjectShortName">Im_out[23:0]</obj_property>
-      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-      <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
-      <obj_property name="CellHeight">100</obj_property>
-   </wvobject>
    <wvobject fp_name="/FMCW_FFT_TB/DUT/m_axis_data_tdata" type="array">
-      <obj_property name="ElementShortName">m_axis_data_tdata[47:0]</obj_property>
-      <obj_property name="ObjectShortName">m_axis_data_tdata[47:0]</obj_property>
+      <obj_property name="ElementShortName">m_axis_data_tdata[63:0]</obj_property>
+      <obj_property name="ObjectShortName">m_axis_data_tdata[63:0]</obj_property>
       <obj_property name="Radix">BINARYRADIX</obj_property>
    </wvobject>
    <wvobject fp_name="/FMCW_FFT_TB/FFT_mag" type="array">
@@ -73,6 +61,18 @@
       <obj_property name="ObjectShortName">FFT_mag[31:0]</obj_property>
       <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
       <obj_property name="CellHeight">100</obj_property>
-      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/FMCW_FFT_TB/FFT_Re_data" type="array">
+      <obj_property name="ElementShortName">FFT_Re_data[255:0][31:0]</obj_property>
+      <obj_property name="ObjectShortName">FFT_Re_data[255:0][31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/FMCW_FFT_TB/FFT_Im_data" type="array">
+      <obj_property name="ElementShortName">FFT_Im_data[255:0][31:0]</obj_property>
+      <obj_property name="ObjectShortName">FFT_Im_data[255:0][31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/FMCW_FFT_TB/DUT/state" type="logic">
+      <obj_property name="ElementShortName">state</obj_property>
+      <obj_property name="ObjectShortName">state</obj_property>
    </wvobject>
 </wave_config>
