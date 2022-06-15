@@ -1,71 +1,82 @@
 format longg
-Re_tab = readtable('..\FMCW_FFT_Radar.sim\sim_1\behav\xsim\FFT_out_Re.txt','Delimiter' ,'\n');
-Im_tab = readtable('..\FMCW_FFT_Radar.sim\sim_1\behav\xsim\FFT_out_Im.txt','Delimiter' ,'\n');
+FPGA_Re_FFT_tab = readtable('..\FMCW_FFT_Radar.sim\sim_1\behav\xsim\FFT_out_Re.txt','Delimiter' ,'\n');
+FPGA_Im_FFT_tab = readtable('..\FMCW_FFT_Radar.sim\sim_1\behav\xsim\FFT_out_Im.txt','Delimiter' ,'\n');
 
 raw_Re_tab = readtable('IQ_data_previous/I_trolley_test.txt','Delimiter' ,' ');
 raw_Im_tab = readtable('IQ_data_previous/Q_trolley_test.txt','Delimiter' ,' ');
-i_dat = table2array(raw_Re_tab(120,1:200));
-q_dat = table2array(raw_Im_tab(120,1:200));
-% write coe file with matlab function
-% --> coewrite and read only works for filter objects
-%coewrite(i_dat, 'I_mt')
-%coewrite(q_dat, 'Q_mt')
-% I_coe = readtable('I.coe','Delimiter' ,',');
-% Q_coe = readtable('Q.coe','Delimiter' ,',');
 
-% Read coe files
-% re_coe_array = zeros(256);
-% im_coe_array = zeros(256);
-% fid_I = fopen('I.coe', 'r');
-% fid_Q = fopen('Q.coe', 'r');
-% for i = 1:258
-%     for j = 1:3
-%         tline1 = fgetl(fid_I);
-%         tline2 = fgetl(fid_Q);
-%     end
-%     re_coe_array = 
-% end
-i_dat_hex = dec2hex(i_dat);
-q_dat_hex = dec2hex(q_dat);
-%%
-% Note that I and Q data contains triangle modulation
-% only up sweep is taken
-Re = table2array(Re_tab);
-Im = table2array(Im_tab);
-% NOTE: Last sample is the same as the previous
-FFT_result = Re + 1i*Im;
-% Matlab FFT for comparison
+i_dat = zeros(1, 256);
+q_dat = zeros(1, 256);
+
 desired_sweep = 120; % sweep passed to FPGA
-i_dat = table2array(raw_Re_tab(120,1:200));
-q_dat = table2array(raw_Im_tab(120,1:200));
 
+% only up sweep is taken
+i_dat(1:200) = table2array(raw_Re_tab(desired_sweep,1:200));
+q_dat(1:200) = table2array(raw_Im_tab(desired_sweep,1:200));
+%%
+i_dat_signed = int16(i_dat);
+%% 
+Re = table2array(FPGA_Re_FFT_tab);
+Im = table2array(FPGA_Im_FFT_tab);
+% NOTE: Last sample is the same as the previous
+FPGA_FFT = Re + 1i*Im;
+% Matlab FFT for comparison
 iq = i_dat + 1i*q_dat;
-IQ = fft(iq, [], 2);
+MATLAB_FFT = fft(iq, [], 2);
 %% Plots
 fs = 200e3;
 N = 256;
-f1=f_ax(N,fs);
-f2=f_ax(200,fs);
+f=f_ax(N,fs);
 close all
 
 figure
-tiledlayout(4,1)
+tiledlayout(6,1)
 nexttile
-plot(Re)
-title("FFT Real component")
+plot(fftshift(Re))
+title("FPGA FFT Real component (fftshift)")
 nexttile
-plot(Im)
-title("FFT Imaginary component")
+plot(fftshift(Im))
+title("FPGA FFT Imaginary component (fftshift)")
 nexttile
-%plot(FFT_mag(1:end-1));
-%plot(Im)
-plot(f1/1000, fftshift(abs(FFT_result)))
+plot(fftshift(real(MATLAB_FFT)))
+title("MATLAB FFT Real component (fftshift)")
+nexttile
+plot(fftshift(imag(MATLAB_FFT)))
+title("MATLAB FFT Imaginary component (fftshift)")
+% nexttile
+% %plot(FFT_mag(1:end-1));
+% %plot(Im)
+% plot(f/1000, 20*log10(fftshift(abs(FPGA_FFT)))-105)
+% title("FPGA FFT Magnitude (fftshifted)")
+% xlabel("Frequency (kHz)")
+% nexttile
+% % plot(angle(FPGA_FFT))
+% % title("FFT Phase")
+% plot(f/1000, 20*log10(fftshift(abs(MATLAB_FFT)))-115)
+% title("MATLAB FFT Magnitude (fftshifted)")
+% xlabel("Frequency (kHz)")
+nexttile
+plot(f/1000, fftshift(abs(FPGA_FFT)))
 title("FPGA FFT Magnitude (fftshifted)")
 xlabel("Frequency (kHz)")
 nexttile
-% plot(angle(FFT_result))
+% plot(angle(FPGA_FFT))
 % title("FFT Phase")
-plot(f2/1000, fftshift(abs(IQ)))
+plot(f/1000,fftshift(abs(MATLAB_FFT)))
 title("MATLAB FFT Magnitude (fftshifted)")
 xlabel("Frequency (kHz)")
 
+
+%% Does not work in log scale
+% nexttile
+% plot(20*log10(Re))
+% title("FFT Real component")
+% nexttile
+% plot(20*log10(Im))
+% title("FFT Imaginary component")
+% nexttile
+% plot(20*log10(real(MATLAB_FFT)))
+% title("FFT Real component")
+% nexttile
+% plot(20*log10(imag(MATLAB_FFT)))
+% title("FFT Imaginary component")

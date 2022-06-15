@@ -25,8 +25,8 @@ reg ipClk = 0;
 always #5 ipClk <= ~ipClk;
 reg ipReset = 1;
 
-reg[11:0] FFT_Re_data [255:0];
-reg[11:0] FFT_Im_data [255:0];
+integer FFT_Re_data [255:0];
+integer FFT_Im_data [255:0];
 integer array_index;
 
 initial begin
@@ -73,13 +73,14 @@ end
 always@(posedge ipClk) begin
 
   if ((opValid)&&(count<256)) begin
+     FFT_mag <= 0;
     count <= count + 1;
     // Store data for post capture processing
-    FFT_Re_data[array_index] <= opData[11:0];
-    FFT_Im_data[array_index] <= opData[27:16];
+    FFT_Re_data[array_index] <= $signed(opData[23:0]);
+    FFT_Im_data[array_index] <= $signed(opData[47:24]);
     array_index <= array_index + 1'b1;
     // Real time FFT magnitude
-    FFT_mag <= opData[11:0]**2 + opData[27:16]**2;
+    //FFT_mag <= $signed(opData[47:24])**2 + $signed(opData[23:0])**2;
 	// 12 bit data
   // sign extended data, 24 bits Re and Im
     $fwrite(fd_Im,$signed(opData[47:24]));
@@ -89,8 +90,8 @@ always@(posedge ipClk) begin
     // For testbench viewing
     // Re_out <= opData[27:16];
     // Im_out <= opData[11:0];
-    Re_out <= opData[23:0];
-    Im_out <= opData[47:24];
+    // Re_out <= opData[23:0];
+    // Im_out <= opData[47:24];
     // confirm padding is all same value
     // pad_upper <= opData[31:28];
     // pad_lower <= opData[15:12];
@@ -100,11 +101,19 @@ always@(posedge ipClk) begin
     $fclose(fd_Re);
     $fclose(fd_Im);
     // in testbench, display FFT magnitude post data capture
-    // for (i = 0;i<255;i=i+1) begin
-    //   @(posedge ipClk);
-    //   FFT_mag <= FFT_Re_data[i]**2 + FFT_Im_data[i]**2;
-    //   //FFT_mag <= FFT_Re_data[i]*FFT_Re_data[i] + FFT_Im_data[i]*FFT_Im_data[i];
-    // end
+    // and perform FFT shift
+    for (i = 0;i<127;i=i+1) begin
+      @(posedge ipClk);
+      // display second half first
+      FFT_mag <= FFT_Re_data[i+127]**2 + FFT_Im_data[i+127]**2;
+      //FFT_mag <= FFT_Re_data[i]*FFT_Re_data[i] + FFT_Im_data[i]*FFT_Im_data[i];
+    end
+    for (i = 0;i<127;i=i+1) begin
+      @(posedge ipClk);
+      // Display first half second
+      FFT_mag <= FFT_Re_data[i]**2 + FFT_Im_data[i]**2;
+      //FFT_mag <= FFT_Re_data[i]*FFT_Re_data[i] + FFT_Im_data[i]*FFT_Im_data[i];
+    end
   end
 
 end
