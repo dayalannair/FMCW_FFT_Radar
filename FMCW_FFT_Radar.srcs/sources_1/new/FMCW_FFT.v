@@ -23,7 +23,7 @@ module FMCW_FFT(
     input ipReset,
     input ipEnable,
     input ipReady,
-    output reg[63:0] opData,
+    output reg[31:0] opData,
     output reg opValid
 );
 
@@ -175,7 +175,7 @@ always@ (posedge ipClk) begin
     else begin
         case(state)
         // OFF
-            2'b00: begin
+            2'd0: begin
             // FFT module waits for data N = 256 data points
                 // Reset input BRAM addresses
                 I_addr <= 0;
@@ -192,10 +192,10 @@ always@ (posedge ipClk) begin
                 m_axis_data_tready <= 0;
                 opValid <= 0;
                 // wait for FFT to be ready
-                if(ipEnable&&s_axis_data_tready) state <= 2'b01;
+                if(ipEnable&&s_axis_data_tready) state <= 2'd1;
             end
         // ON
-            2'b01: begin
+            2'd1: begin
                 s_axis_data_tvalid <= 1'b1;
                 // Ready to receive data from FFT - either connect
                 // to PC ready line or use buffer
@@ -224,8 +224,9 @@ always@ (posedge ipClk) begin
                 // and repeats transmission 
                 if (m_axis_data_tvalid && (Im_wr_addr != 9'd511)) begin
                     // Output FFT data
-                    opData <= m_axis_data_tdata;
-                    // check if this causes an issue!!!!!!!
+                    // ***Method 1: this is done in the next state***
+                    //opData <= m_axis_data_tdata;
+                    // check if this causes an issue! - does not seem so
                     // when enabling and writing in the same clk cycle
                     wr_en <= 1;
                     // write data to RAM
@@ -239,7 +240,7 @@ always@ (posedge ipClk) begin
                 // for now, if FFT output no longer valid, set state to idle
                 // need condition
                 else if (Im_wr_addr == 9'd511) begin
-                    state <= 2'd3;
+                    state <= 2'd2;
                     // reset addresses for reading
                     Re_wr_addr <= 0;
                     Im_wr_addr <= 9'd256;
@@ -247,7 +248,7 @@ always@ (posedge ipClk) begin
                 end
             end
 
-        2'b11: begin
+        2'd2: begin
             // Send Real FFT output
             if ((Re_wr_addr < 9'd256)&&(ipReady)) begin
                 opValid <= 1;
@@ -259,12 +260,15 @@ always@ (posedge ipClk) begin
                 opData <= Im_rd_data;   
                 Im_wr_addr <= Im_wr_addr + 1'b1;
             end
-            // Return to idle state
-            else begin
+            // Return to idle state. Need to gate so that
+            // we remain in state in case ipReady was not high
+            // for the entire transmit sequence
+            else if (Im_wr_addr == 9'd511) begin
                 opValid <= 0;
                 state <= 0;
             end
         end
+        default: state <= 0;
 
         endcase  
     end
