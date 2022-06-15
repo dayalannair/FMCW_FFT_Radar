@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="FMCW_FFT_TB_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="FMCW_FFT_TB" />
+            <top_module name="glbl" />
+            <top_module name="vcomponents" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="1.206000 us"></ZoomStartTime>
+      <ZoomEndTime time="33.906001 us"></ZoomEndTime>
+      <Cursor1Time time="6.255000 us"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="165"></NameColumnWidth>
+      <ValueColumnWidth column_width="107"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="12" />
+   <wave_markers>
+      <marker time="28645000" label="" />
+      <marker time="5000" label="" />
+      <marker time="26065000" label="" />
+      <marker time="2785000" label="" />
+   </wave_markers>
+   <wvobject fp_name="group1206" type="group">
+      <obj_property name="label">BRAM output data</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/FMCW_FFT_TB/DUT/FFT_output/dina" type="array">
+         <obj_property name="ElementShortName">dina[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dina[31:0]</obj_property>
+         <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
+         <obj_property name="CellHeight">100</obj_property>
+      </wvobject>
+      <wvobject fp_name="/FMCW_FFT_TB/DUT/FFT_output/douta" type="array">
+         <obj_property name="ElementShortName">douta[31:0]</obj_property>
+         <obj_property name="ObjectShortName">douta[31:0]</obj_property>
+         <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
+         <obj_property name="CellHeight">100</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/FMCW_FFT_TB/DUT/FFT_output/dinb" type="array">
+         <obj_property name="ElementShortName">dinb[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dinb[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+         <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
+         <obj_property name="CellHeight">100</obj_property>
+      </wvobject>
+      <wvobject fp_name="/FMCW_FFT_TB/DUT/FFT_output/doutb" type="array">
+         <obj_property name="ElementShortName">doutb[31:0]</obj_property>
+         <obj_property name="ObjectShortName">doutb[31:0]</obj_property>
+         <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
+         <obj_property name="CellHeight">100</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/FMCW_FFT_TB/DUT/FFT/m_axis_data_tdata" type="array">
+      <obj_property name="ElementShortName">m_axis_data_tdata[63:0]</obj_property>
+      <obj_property name="ObjectShortName">m_axis_data_tdata[63:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/FMCW_FFT_TB/DUT/ipEnable" type="logic">
+      <obj_property name="ElementShortName">ipEnable</obj_property>
+      <obj_property name="ObjectShortName">ipEnable</obj_property>
+   </wvobject>
+   <wvobject fp_name="/FMCW_FFT_TB/DUT/FFT/s_axis_data_tready" type="logic">
+      <obj_property name="ElementShortName">s_axis_data_tready</obj_property>
+      <obj_property name="ObjectShortName">s_axis_data_tready</obj_property>
+   </wvobject>
+   <wvobject fp_name="/FMCW_FFT_TB/ipReset" type="logic">
+      <obj_property name="ElementShortName">ipReset</obj_property>
+      <obj_property name="ObjectShortName">ipReset</obj_property>
+   </wvobject>
+   <wvobject fp_name="/FMCW_FFT_TB/FFT_mag" type="array">
+      <obj_property name="ElementShortName">FFT_mag[31:0]</obj_property>
+      <obj_property name="ObjectShortName">FFT_mag[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/FMCW_FFT_TB/DUT/FFT_output/addrb" type="array">
+      <obj_property name="ElementShortName">addrb[8:0]</obj_property>
+      <obj_property name="ObjectShortName">addrb[8:0]</obj_property>
+      <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
+      <obj_property name="CellHeight">100</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/FMCW_FFT_TB/DUT/FFT_output/addra" type="array">
+      <obj_property name="ElementShortName">addra[8:0]</obj_property>
+      <obj_property name="ObjectShortName">addra[8:0]</obj_property>
+      <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
+      <obj_property name="CellHeight">100</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/FMCW_FFT_TB/DUT/state" type="array">
+      <obj_property name="ElementShortName">state[1:0]</obj_property>
+      <obj_property name="ObjectShortName">state[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/FMCW_FFT_TB/DUT/Re_wr_addr" type="array">
+      <obj_property name="ElementShortName">Re_wr_addr[8:0]</obj_property>
+      <obj_property name="ObjectShortName">Re_wr_addr[8:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/FMCW_FFT_TB/DUT/Im_wr_addr" type="array">
+      <obj_property name="ElementShortName">Im_wr_addr[8:0]</obj_property>
+      <obj_property name="ObjectShortName">Im_wr_addr[8:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/FMCW_FFT_TB/DUT/FFT/m_axis_data_tvalid" type="logic">
+      <obj_property name="ElementShortName">m_axis_data_tvalid</obj_property>
+      <obj_property name="ObjectShortName">m_axis_data_tvalid</obj_property>
+   </wvobject>
+</wave_config>

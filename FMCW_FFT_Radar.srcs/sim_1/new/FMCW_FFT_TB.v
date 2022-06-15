@@ -70,7 +70,10 @@ initial begin
   fd_Re = $fopen("FFT_out_Re.txt", "w");  
   fd_Im = $fopen("FFT_out_Im.txt", "w");  
   #100
-  ipEnable = 1;
+  ipEnable <= 1;
+  ipReady <= 1;
+  #50
+   ipEnable = 0;
 end
 
 always@(posedge ipClk) begin
@@ -101,7 +104,6 @@ always@(posedge ipClk) begin
     // pad_lower <= opData[15:12];
   end
   //Wait for one loop then disable
-  ipEnable = 0;
   if (count == 256) begin
     $display("end");
     $fclose(fd_Re);
