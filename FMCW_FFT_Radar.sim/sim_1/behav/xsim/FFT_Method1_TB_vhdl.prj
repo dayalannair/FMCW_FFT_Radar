@@ -1,6 +1,7 @@
 # compile vhdl design source files
 vhdl xil_defaultlib  \
 "../../../../FMCW_FFT_Radar.gen/sources_1/ip/xfft_0/sim/xfft_0.vhd" \
+"../../../../FMCW_FFT_Radar.gen/sources_1/ip/xfft_0/demo_tb/tb_xfft_0.vhd" \
 
 # Do not sort compile order
 nosort

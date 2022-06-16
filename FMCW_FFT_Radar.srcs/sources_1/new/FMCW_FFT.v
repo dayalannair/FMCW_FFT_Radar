@@ -21,7 +21,7 @@
 module FMCW_FFT(
     input ipClk,
     input ipReset,
-    input ipEnable,
+    input ipRunFFT,
     input ipReady,
     output reg[31:0] opData,
     output reg opValid
@@ -192,7 +192,7 @@ always@ (posedge ipClk) begin
                 m_axis_data_tready <= 0;
                 opValid <= 0;
                 // wait for FFT to be ready
-                if(ipEnable&&s_axis_data_tready) state <= 2'd1;
+                if(ipRunFFT&&s_axis_data_tready) state <= 2'd1;
             end
         // ON
             2'd1: begin

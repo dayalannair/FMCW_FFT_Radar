@@ -63,7 +63,7 @@
     <Option Name="IPStaticSourceDir" Val="$PIPUSERFILESDIR/ipstatic"/>
     <Option Name="EnableBDX" Val="FALSE"/>
     <Option Name="DSABoardId" Val="nexys-a7-100t"/>
-    <Option Name="WTXSimLaunchSim" Val="135"/>
+    <Option Name="WTXSimLaunchSim" Val="154"/>
     <Option Name="WTModelSimLaunchSim" Val="0"/>
     <Option Name="WTQuestaLaunchSim" Val="0"/>
     <Option Name="WTIesLaunchSim" Val="0"/>
@@ -226,6 +226,11 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
+      <File Path="$PPRDIR/FFT_Method1_TB_behav.wcfg">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
       <Config>
         <Option Name="DesignMode" Val="RTL"/>
         <Option Name="TopModule" Val="FFT_Method1_TB"/>
@@ -241,6 +246,7 @@
         <Option Name="XSimWcfgFile" Val="$PPRDIR/FMCW_FFT_TB_behav1.wcfg"/>
         <Option Name="XSimWcfgFile" Val="$PPRDIR/FFT_magnitude.wcfg"/>
         <Option Name="XSimWcfgFile" Val="$PPRDIR/BRAM_FFT_out.wcfg"/>
+        <Option Name="XSimWcfgFile" Val="$PPRDIR/FFT_Method1_TB_behav.wcfg"/>
       </Config>
     </FileSet>
     <FileSet Name="utils_1" Type="Utils" RelSrcDir="$PSRCDIR/utils_1" RelGenDir="$PGENDIR/utils_1">

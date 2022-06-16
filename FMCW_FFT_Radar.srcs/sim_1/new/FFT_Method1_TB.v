@@ -26,13 +26,6 @@ reg ipClk = 0;
 always #5 ipClk <= ~ipClk;
 reg ipReset = 1;
 
-initial begin
-  @(posedge ipClk);
-  @(posedge ipClk);
-  @(posedge ipClk);
-  ipReset <= 0;
-end
-
 reg ipUART_Rx;
 reg opUART_Tx;
 reg[15:0] opLED;
@@ -47,15 +40,27 @@ UART_FFT_wrapper_meth1 FFT_Stream(
   .opLED (opLED)
 );
 
-always @(posedge ipClk) begin
-    if (ipnReset) begin
-        opLED <= 0;
-        ipButtons <= 0;
-    end
-    #100
-    // Initiate FFT
+initial begin
+  @(posedge ipClk);
+  @(posedge ipClk);
+  @(posedge ipClk);
+  ipReset <= 0;
+  //Initiate FFT
     ipButtons <= 5'b1;
+    #50
+    ipButtons <= 5'b0;
 end
+
+// always @(posedge ipClk) begin
+//     if (ipReset) begin
+//         ipButtons <= 0;
+//     end
+//     #100
+//     // Initiate FFT
+//     ipButtons <= 5'b1;
+//     #50
+//    ipButtons <= 5'b0;
+// end
 
 
 endmodule
