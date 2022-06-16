@@ -80,37 +80,38 @@ always @(posedge ipClk) begin
     TxPacket.EoP <= 0;
   end
 
-  else if (opValid && PacketiserReady && !transfer_complete) begin
+  else if (opValid && PacketiserReady && !transfer_complete&&(wr_byte_cnt == 0)) begin
     TxPacket.SoP <= 1;
+    TxPacket.Valid <= 1'b1;
     opLED <= 16'h5555;
-    if (wr_byte_cnt == 0) begin
-      FFT_get_next_sample <= 0;
-      current_sample <= opData>>8; // current sample without LSB byte
-      TxPacket.Data <= opData[7:0]; // send LSB byte
-      wr_byte_cnt <= wr_byte_cnt + 1'b1;
-    end
+    FFT_get_next_sample <= 0;
+    current_sample <= opData>>8; // current sample without LSB byte
+    TxPacket.Data <= opData[7:0]; // send LSB byte
+    wr_byte_cnt <= wr_byte_cnt + 1'b1;
   end
-  else if ((wr_byte_cnt < 4'd4) && !transfer_complete) begin
+  else if(PacketiserReady &&(wr_byte_cnt > 4'd0)&&(wr_byte_cnt < 4'd4) && !transfer_complete) begin
     // move to next byte in sample
     wr_byte_cnt <= wr_byte_cnt + 1'b1;
     TxPacket.Data <= current_sample[7:0];
     //shift out the 4 bytes in a sample
     // Take the 8 LSBs, then shift right
     current_sample <= current_sample>>8;
-    TxPacket.Valid <= 1'b1;
   end
+
   // if last byte of sample has been sent
-  else if (!transfer_complete) begin
-    // SoP should be pulsed
-    TxPacket.SoP <= 0;
-    TxPacket.EoP <= 1;
+  else if (!transfer_complete&&(wr_byte_cnt)==4'd4) begin
     TxPacket.Valid <= 0;
     wr_byte_cnt <= 0;
     // when FFT_get_next_sample high, opData should update to 
     // the next sample
     FFT_get_next_sample <= 1;
     if (transfer_count < 8'd256) transfer_count <= transfer_count + 1'b1;
-    else transfer_complete <= 1'b1;  
+    else begin
+      transfer_complete <= 1'b1;
+      // SoP should be pulsed
+      TxPacket.SoP <= 0;
+      TxPacket.EoP <= 1;  
+    end
   end
   else opLED <= 16'hffff;
 end

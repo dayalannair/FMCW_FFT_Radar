@@ -23,7 +23,7 @@ module FMCW_FFT(
     input ipReset,
     input ipRunFFT,
     input ipReady,
-    output reg[31:0] opData,
+    output reg[63:0] opData,
     output reg opValid
 );
 
@@ -112,40 +112,8 @@ Q_input_data Q_input(
     .ena (Q_en)
 );
 
-// METHOD 1: Output data BRAM
-// Method 2 will be to use a FIFO buffer
-// True Dual Port BRAM
-// ---------------------------------------------------
-// Common enable lines for both ports
-reg bram_out_en;
-reg wr_en;
-reg[8:0] Re_wr_addr;
-reg[8:0] Im_wr_addr;
-reg[31:0] Re_wr_data;
-reg[31:0] Im_wr_data;
-wire[31:0] Re_rd_data;
-wire[31:0] Im_rd_data;
-
-blk_mem_FFT_out FFT_output(
-    // Real component
-    .clka(ipClk),  
-    .ena(bram_out_en),    
-    .wea(wr_en),    
-    .addra(Re_wr_addr),  
-    .dina(Re_wr_data),
-    .douta(Re_rd_data), 
-    
-    // Imaginary component
-    .clkb(ipClk),
-    .enb(bram_out_en), 
-    .web(wr_en),
-    .addrb(Im_wr_addr),
-    .dinb(Im_wr_data),
-    .doutb(Im_rd_data)
-);
-
-// tri state machine
-reg[1:0] state; 
+reg[31:0] send_count;
+reg state; 
 always@ (posedge ipClk) begin
     if(ipReset) begin
         
@@ -154,12 +122,6 @@ always@ (posedge ipClk) begin
         Q_en <= 1'b1;
         I_addr <= 0;
         Q_addr <= 0;
-
-        // Initialise output BRAM
-        bram_out_en <= 1'b1;
-        wr_en <= 0;
-        Re_wr_addr <= 0;
-        Im_wr_addr <= 9'd256;
 
         // Initialise FFT
         s_axis_config_tvalid <= 0;
@@ -180,37 +142,26 @@ always@ (posedge ipClk) begin
                 // Reset input BRAM addresses
                 I_addr <= 0;
                 Q_addr <= 0;
-                // Reset output BRAM addresses
-                // Real portion is from 0 to 255. Im is from 256 to 511
-                Re_wr_addr <= 0;
-                Im_wr_addr <= 9'd256;
-                wr_en <= 0;
                 // Reset FFT
                 s_axis_data_tvalid <= 0;
                 s_axis_data_tdata <= 0;
                 s_axis_data_tlast <= 1'b0;
                 m_axis_data_tready <= 0;
                 opValid <= 0;
+                send_count <= 0;
                 // wait for FFT to be ready
                 if(ipRunFFT&&s_axis_data_tready) state <= 2'd1;
             end
         // ON
             2'd1: begin
+                
                 s_axis_data_tvalid <= 1'b1;
-                // Ready to receive data from FFT - either connect
-                // to PC ready line or use buffer
                 m_axis_data_tready <= 1'b1;
 
-                // if at final sample and FFT still ready, feed zeros
+                // Send iput data to FFT
                 if ((I_addr == 8'd255) && (s_axis_data_tready)) begin
-                    s_axis_data_tdata <= 0;//{PAD, Q_sample, PAD, I_sample};
-                    // NOTE: tlast not used by the CORE!
-                    //s_axis_data_tlast <= 1'b1;
-                    // s_axis_data_tvalid <= 1'b0;
-                    //state <= 0;
-                    //tready_cnt <= 8'd17;
+                    s_axis_data_tdata <= 0;
                 end
-                // if FFT ready and not at the final sample
                 else if (s_axis_data_tready) begin
                     // FFT engine ready, provide input data
                     s_axis_data_tdata <= {PAD, Q_sample, PAD, I_sample};
@@ -219,55 +170,18 @@ always@ (posedge ipClk) begin
                     Q_addr <= Q_addr + 1'b1;
                 end
 
-                // Store data
-                // Cannot gate with master valid line only as it remains high
-                // and repeats transmission 
-                if (m_axis_data_tvalid && (Im_wr_addr != 9'd511)) begin
-                    // Output FFT data
-                    // ***Method 1: this is done in the next state***
-                    //opData <= m_axis_data_tdata;
-                    // check if this causes an issue! - does not seem so
-                    // when enabling and writing in the same clk cycle
-                    wr_en <= 1;
-                    // write data to RAM
-                    Re_wr_data <= m_axis_data_tdata[31:0];
-                    Im_wr_data <= m_axis_data_tdata[63:32];
-                    // Increment address
-                    Re_wr_addr <= Re_wr_addr + 1'b1;
-                    Im_wr_addr <= Im_wr_addr + 1'b1;
+                // Send FFT output
+                if (m_axis_data_tvalid && (send_count<9'd512)) begin
+                    opValid <= 1;
+                    opData <= m_axis_data_tdata;
+                    send_count <= send_count + 1'b1;
+                end 
+                else if (send_count == 9'd512) begin
+                    state <= 0;
+                    opValid <= 0;
                 end
 
-                // for now, if FFT output no longer valid, set state to idle
-                // need condition
-                else if (Im_wr_addr == 9'd511) begin
-                    state <= 2'd2;
-                    // reset addresses for reading
-                    Re_wr_addr <= 0;
-                    Im_wr_addr <= 9'd256;
-                    wr_en <= 0;
-                end
             end
-
-        2'd2: begin
-            // Send Real FFT output
-            if ((Re_wr_addr < 9'd256)&&(ipReady)) begin
-                opValid <= 1;
-                opData <= Re_rd_data;
-                Re_wr_addr <= Re_wr_addr + 1'b1;
-            end
-            // Send Imaginary FFT output
-            else if((Im_wr_addr != 9'd511)&&(ipReady)) begin
-                opData <= Im_rd_data;   
-                Im_wr_addr <= Im_wr_addr + 1'b1;
-            end
-            // Return to idle state. Need to gate so that
-            // we remain in state in case ipReady was not high
-            // for the entire transmit sequence
-            else if (Im_wr_addr == 9'd511) begin
-                opValid <= 0;
-                state <= 0;
-            end
-        end
         default: state <= 0;
 
         endcase  
