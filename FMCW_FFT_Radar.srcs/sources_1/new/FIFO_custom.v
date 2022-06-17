@@ -28,7 +28,6 @@ module FIFO_custom(
     output reg write_ready,
     input [63:0] write_data,
     
-    
     input read_ready,
     output reg read_valid,
     output wire [63:0] read_data,
@@ -78,7 +77,7 @@ always @(posedge ipClk) begin
             // valid data can be read from FIFO
             read_valid <= 1;
         end
-        else begin
+        else if (wr_addr_ptr == 9'd511) begin
             wr_en <= 0;
             write_ready <= 0;
             //wr_addr_ptr <=

@@ -68,8 +68,7 @@ FIFO_custom FIFO(
     .write_ready (FIFO_write_ready),
     .write_data (FFT_output_sample),
     
-    
-    .read_ready (FIFO_read_ready),
+    .read_ready (FIFO_read_ready&packetiser_ready),
     .read_valid (FIFO_output_valid),
     .read_data (FIFO_output_data),
 
@@ -83,11 +82,12 @@ UART_Packetiser packetiser(
   .opTxReady(packetiser_ready), 
   .opTx (opUART_Tx)
 );
-reg[3:0] wr_byte_cnt; 
+reg[4:0] wr_byte_cnt; 
 // reg[31:0] FFT_Re;
 // reg[31:0] FFT_Im;
 reg[63:0] current_sample;
 // reg one_clk_delay;
+
 always@ (posedge ipClk) begin
     if (~ipnReset) begin
         // arbitrary header
@@ -126,6 +126,8 @@ always@ (posedge ipClk) begin
             current_sample <= current_sample>>8;
             wr_byte_cnt <= wr_byte_cnt + 1'b1;
         end
+        //one clock delay
+        //else if (wr_byte_cnt == 4'd8) wr_byte_cnt <= wr_byte_cnt + 1'b1;
         // move to next sample
         else if (wr_byte_cnt == 4'd8) begin
             // ready for next sample
