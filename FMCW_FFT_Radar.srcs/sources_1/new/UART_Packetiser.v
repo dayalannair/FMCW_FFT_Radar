@@ -121,7 +121,6 @@ always @(posedge ipClk) begin
 
   case(tx_state) 
         idle: begin
-                opTxReady <= 1'b1;
                 if (ipTxStream.SoP && ipTxStream.Valid) begin
                   // not ready to receive another packet
                   opTxReady <= 1'b0;
@@ -141,7 +140,10 @@ always @(posedge ipClk) begin
                 //   tx_state <= on;
                 //   tx_packet <= data; // go straight to data state
                 // end
-                else UART_TxSend <= 1'b0;
+                else begin
+                  UART_TxSend <= 1'b0;
+                  opTxReady <= 1'b1;
+                end
               end
 //------------------------------------------------------------------------------
         on: begin

@@ -72,22 +72,25 @@ always @(posedge ipClk) begin
         // write first
         FIFO_Length <= wr_addr_ptr>rd_addr_ptr ? wr_addr_ptr - rd_addr_ptr:wr_addr_ptr+N - rd_addr_ptr;
         // expect ipWrEnable = packetValid
-        if (write_valid && wr_addr_ptr <= 9'd511) begin
+        if (write_valid && wr_addr_ptr < 9'd511) begin
             wr_en <= 1;
             wr_addr_ptr <= wr_addr_ptr + 1'b1;
+            // valid data can be read from FIFO
+            read_valid <= 1;
         end
         else begin
             wr_en <= 0;
             write_ready <= 0;
+            //wr_addr_ptr <=
         end
         
-        if ((wr_addr_ptr != 0) && read_ready) begin
-            read_valid <= 1;
-            rd_addr_ptr <= rd_addr_ptr + 1'b1;
-        end
-        else begin
+        
+        if (rd_addr_ptr == 9'd511) begin
             read_valid <= 0;
             //rd_addr_ptr <= 0;
+        end
+        else if ((wr_addr_ptr != 0) && read_ready) begin
+            rd_addr_ptr <= rd_addr_ptr + 1'b1;
         end
 
     end

@@ -69,7 +69,7 @@ FIFO_custom FIFO(
     .write_data (FFT_output_sample),
     
     
-    .read_ready (packetiser_ready),
+    .read_ready (FIFO_read_ready),
     .read_valid (FIFO_output_valid),
     .read_data (FIFO_output_data),
 
@@ -87,6 +87,7 @@ reg[3:0] wr_byte_cnt;
 // reg[31:0] FFT_Re;
 // reg[31:0] FFT_Im;
 reg[63:0] current_sample;
+// reg one_clk_delay;
 always@ (posedge ipClk) begin
     if (~ipnReset) begin
         // arbitrary header
@@ -101,29 +102,42 @@ always@ (posedge ipClk) begin
         FIFO_read_ready <= 1;
         current_sample <= 0;
         wr_byte_cnt <= 0;
+        // one_clk_delay <= 1;
     end
-    else if (FIFO_output_valid && packetiser_ready) begin
+    // one clk delay removes the delay by the packetiser in setting
+    // its ready line to low
+    else if (FIFO_output_valid && packetiser_ready) begin//&& !one_clk_delay
+        // one_clk_delay <= 1;
         //opLED <= 16'h5555;
+        // Send FIRST byte
         if (wr_byte_cnt == 0) begin
         //pause FIFO from outputting more samples
             TxPacket.SoP <= 1'b1;
+            TxPacket.Valid <= 1'b1;
             FIFO_read_ready <= 0;
             TxPacket.Data <= FIFO_output_data[7:0];
             current_sample <= FIFO_output_data>>8;
             wr_byte_cnt <= wr_byte_cnt + 1'b1;
         end
-        else if ((wr_byte_cnt > 0) && (wr_byte_cnt < 4'd8) && packetiser_ready) begin
+        // Send LAST bytes
+        else if ((wr_byte_cnt > 0) && (wr_byte_cnt < 4'd8)) begin
             TxPacket.SoP <= 1'b0;
             TxPacket.Data <= current_sample[7:0];
-            current_sample <= FIFO_output_data>>8;
+            current_sample <= current_sample>>8;
             wr_byte_cnt <= wr_byte_cnt + 1'b1;
         end
-        else begin
+        // move to next sample
+        else if (wr_byte_cnt == 4'd8) begin
             // ready for next sample
             FIFO_read_ready <= 1;
+            TxPacket.Valid <= 1'b0;
             wr_byte_cnt <= 0;
         end
     end
+
+    // if packetiser was valid for this clock cycle, remove clk delay
+    // else if (packetiser_ready) one_clk_delay <= 0;
+    // else one_clk_delay <= 1;
     //else opLED <= 16'hffff;
 end
 
