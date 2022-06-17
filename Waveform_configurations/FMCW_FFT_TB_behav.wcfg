@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="FMCW_FFT_TB_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="FMCW_FFT_TB" />
+            <top_module name="glbl" />
+            <top_module name="vcomponents" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="65.202600 us"></ZoomStartTime>
+      <ZoomEndTime time="143.102601 us"></ZoomEndTime>
+      <Cursor1Time time="70.502600 us"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="177"></NameColumnWidth>
+      <ValueColumnWidth column_width="92"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="6" />
+   <wave_markers>
+      <marker time="2601100" label="" />
+   </wave_markers>
+   <wvobject fp_name="/FMCW_FFT_TB/DUT/state" type="logic">
+      <obj_property name="ElementShortName">state</obj_property>
+      <obj_property name="ObjectShortName">state</obj_property>
+   </wvobject>
+   <wvobject fp_name="group26" type="group">
+      <obj_property name="label">Input Data</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject type="divider" fp_name="divider35">
+         <obj_property name="label">I Data</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+      </wvobject>
+      <wvobject fp_name="/FMCW_FFT_TB/DUT/s_axis_data_tready" type="logic">
+         <obj_property name="ElementShortName">s_axis_data_tready</obj_property>
+         <obj_property name="ObjectShortName">s_axis_data_tready</obj_property>
+      </wvobject>
+      <wvobject fp_name="/FMCW_FFT_TB/DUT/I_input/addra" type="array">
+         <obj_property name="ElementShortName">addra[7:0]</obj_property>
+         <obj_property name="ObjectShortName">addra[7:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/FMCW_FFT_TB/DUT/I_input/douta" type="array">
+         <obj_property name="ElementShortName">douta[11:0]</obj_property>
+         <obj_property name="ObjectShortName">douta[11:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+         <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
+         <obj_property name="CellHeight">100</obj_property>
+      </wvobject>
+      <wvobject type="divider" fp_name="divider34">
+         <obj_property name="label">Q data</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+      </wvobject>
+      <wvobject fp_name="/FMCW_FFT_TB/DUT/Q_input/addra" type="array">
+         <obj_property name="ElementShortName">addra[7:0]</obj_property>
+         <obj_property name="ObjectShortName">addra[7:0]</obj_property>
+         <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/FMCW_FFT_TB/DUT/Q_input/douta" type="array">
+         <obj_property name="ElementShortName">douta[11:0]</obj_property>
+         <obj_property name="ObjectShortName">douta[11:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+         <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
+         <obj_property name="CellHeight">100</obj_property>
+      </wvobject>
+      <wvobject fp_name="/FMCW_FFT_TB/DUT/s_axis_data_tlast" type="logic">
+         <obj_property name="ElementShortName">s_axis_data_tlast</obj_property>
+         <obj_property name="ObjectShortName">s_axis_data_tlast</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group27" type="group">
+      <obj_property name="label">Output Data</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/FMCW_FFT_TB/DUT/s_axis_data_tdata" type="array">
+         <obj_property name="ElementShortName">s_axis_data_tdata[31:0]</obj_property>
+         <obj_property name="ObjectShortName">s_axis_data_tdata[31:0]</obj_property>
+         <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+         <obj_property name="Radix">BINARYRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/FMCW_FFT_TB/DUT/Q_sample" type="array">
+         <obj_property name="ElementShortName">Q_sample[11:0]</obj_property>
+         <obj_property name="ObjectShortName">Q_sample[11:0]</obj_property>
+         <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
+         <obj_property name="CellHeight">100</obj_property>
+      </wvobject>
+      <wvobject fp_name="/FMCW_FFT_TB/DUT/I_sample" type="array">
+         <obj_property name="ElementShortName">I_sample[11:0]</obj_property>
+         <obj_property name="ObjectShortName">I_sample[11:0]</obj_property>
+         <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
+         <obj_property name="CellHeight">100</obj_property>
+      </wvobject>
+      <wvobject fp_name="/FMCW_FFT_TB/Re_out" type="array">
+         <obj_property name="ElementShortName">Re_out[11:0]</obj_property>
+         <obj_property name="ObjectShortName">Re_out[11:0]</obj_property>
+         <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
+         <obj_property name="CellHeight">100</obj_property>
+      </wvobject>
+      <wvobject fp_name="/FMCW_FFT_TB/Im_out" type="array">
+         <obj_property name="ElementShortName">Im_out[11:0]</obj_property>
+         <obj_property name="ObjectShortName">Im_out[11:0]</obj_property>
+         <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
+         <obj_property name="CellHeight">100</obj_property>
+      </wvobject>
+      <wvobject fp_name="/FMCW_FFT_TB/DUT/FFT/m_axis_data_tvalid" type="logic">
+         <obj_property name="ElementShortName">m_axis_data_tvalid</obj_property>
+         <obj_property name="ObjectShortName">m_axis_data_tvalid</obj_property>
+      </wvobject>
+      <wvobject fp_name="/FMCW_FFT_TB/pad_upper" type="array">
+         <obj_property name="ElementShortName">pad_upper[3:0]</obj_property>
+         <obj_property name="ObjectShortName">pad_upper[3:0]</obj_property>
+         <obj_property name="Radix">BINARYRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/FMCW_FFT_TB/pad_lower" type="array">
+         <obj_property name="ElementShortName">pad_lower[3:0]</obj_property>
+         <obj_property name="ObjectShortName">pad_lower[3:0]</obj_property>
+         <obj_property name="Radix">BINARYRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/FMCW_FFT_TB/DUT/FFT/m_axis_data_tready" type="logic">
+         <obj_property name="ElementShortName">m_axis_data_tready</obj_property>
+         <obj_property name="ObjectShortName">m_axis_data_tready</obj_property>
+      </wvobject>
+      <wvobject fp_name="/FMCW_FFT_TB/DUT/FFT/m_axis_data_tlast" type="logic">
+         <obj_property name="ElementShortName">m_axis_data_tlast</obj_property>
+         <obj_property name="ObjectShortName">m_axis_data_tlast</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group35" type="group">
+      <obj_property name="label">Events</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/FMCW_FFT_TB/DUT/event_frame_started" type="logic">
+         <obj_property name="ElementShortName">event_frame_started</obj_property>
+         <obj_property name="ObjectShortName">event_frame_started</obj_property>
+      </wvobject>
+      <wvobject fp_name="/FMCW_FFT_TB/DUT/event_tlast_unexpected" type="logic">
+         <obj_property name="ElementShortName">event_tlast_unexpected</obj_property>
+         <obj_property name="ObjectShortName">event_tlast_unexpected</obj_property>
+      </wvobject>
+      <wvobject fp_name="/FMCW_FFT_TB/DUT/event_tlast_missing" type="logic">
+         <obj_property name="ElementShortName">event_tlast_missing</obj_property>
+         <obj_property name="ObjectShortName">event_tlast_missing</obj_property>
+      </wvobject>
+      <wvobject fp_name="/FMCW_FFT_TB/DUT/event_status_channel_halt" type="logic">
+         <obj_property name="ElementShortName">event_status_channel_halt</obj_property>
+         <obj_property name="ObjectShortName">event_status_channel_halt</obj_property>
+      </wvobject>
+      <wvobject fp_name="/FMCW_FFT_TB/DUT/event_data_in_channel_halt" type="logic">
+         <obj_property name="ElementShortName">event_data_in_channel_halt</obj_property>
+         <obj_property name="ObjectShortName">event_data_in_channel_halt</obj_property>
+      </wvobject>
+      <wvobject fp_name="/FMCW_FFT_TB/DUT/event_data_out_channel_halt" type="logic">
+         <obj_property name="ElementShortName">event_data_out_channel_halt</obj_property>
+         <obj_property name="ObjectShortName">event_data_out_channel_halt</obj_property>
+      </wvobject>
+      <wvobject fp_name="/FMCW_FFT_TB/DUT/event_fft_overflow" type="logic">
+         <obj_property name="ElementShortName">event_fft_overflow</obj_property>
+         <obj_property name="ObjectShortName">event_fft_overflow</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/FMCW_FFT_TB/DUT/m_axis_status_tdata" type="array">
+      <obj_property name="ElementShortName">m_axis_status_tdata[7:0]</obj_property>
+      <obj_property name="ObjectShortName">m_axis_status_tdata[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/FMCW_FFT_TB/DUT/m_axis_data_tuser" type="array">
+      <obj_property name="ElementShortName">m_axis_data_tuser[15:0]</obj_property>
+      <obj_property name="ObjectShortName">m_axis_data_tuser[15:0]</obj_property>
+   </wvobject>
+</wave_config>

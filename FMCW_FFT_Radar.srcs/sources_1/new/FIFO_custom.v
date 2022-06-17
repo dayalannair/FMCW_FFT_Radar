@@ -44,7 +44,7 @@ reg wr_en = 0;
 reg[15:0] din_a;
 reg[15:0] bd_cnt;
 reg[8:0] N;
-
+reg web;
 FIFO_BRAM_gen BRAM(
   .clka(ipClk),  
   .ena(en),    
@@ -54,6 +54,7 @@ FIFO_BRAM_gen BRAM(
   
   .clkb(ipClk),
   .enb(en), 
+  .web(web),
   .addrb(rd_addr_ptr),
   .doutb(read_data)
 );
@@ -65,6 +66,7 @@ always @(posedge ipClk) begin
         wr_en <= 0;
         write_ready <= 1;
         N <= 9'd511;
+        web <= 0;   
     end
 
     else begin

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="FIFO_BRAM_gen_synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1655446488">
+<GenRun Id="FIFO_BRAM_gen_synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1655480005">
   <File Type="PA-TCL" Name="FIFO_BRAM_gen.tcl"/>
   <File Type="RDS-PROPCONSTRS" Name="FIFO_BRAM_gen_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="FIFO_BRAM_gen_reports.tcl"/>
