@@ -1,7 +1,7 @@
 Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2021.1 (win64) Build 3247384 Thu Jun 10 19:36:33 MDT 2021
-| Date         : Thu Jun 16 13:40:23 2022
+| Date         : Fri Jun 17 07:43:24 2022
 | Host         : TRISERVERi7 running 64-bit major release  (build 9200)
 | Command      : report_utilization -file fifo_generator_0_utilization_synth.rpt -pb fifo_generator_0_utilization_synth.pb
 | Design       : fifo_generator_0
@@ -35,8 +35,8 @@ Table of Contents
 |   LUT as Memory            |    1 |     0 |          0 |     19000 | <0.01 |
 |     LUT as Distributed RAM |    0 |     0 |            |           |       |
 |     LUT as Shift Register  |    1 |     0 |            |           |       |
-| Slice Registers            |  132 |     0 |          0 |    126800 |  0.10 |
-|   Register as Flip Flop    |  132 |     0 |          0 |    126800 |  0.10 |
+| Slice Registers            |  136 |     0 |          0 |    126800 |  0.11 |
+|   Register as Flip Flop    |  136 |     0 |          0 |    126800 |  0.11 |
 |   Register as Latch        |    0 |     0 |          0 |    126800 |  0.00 |
 | F7 Muxes                   |    0 |     0 |          0 |     31700 |  0.00 |
 | F8 Muxes                   |    0 |     0 |          0 |     15850 |  0.00 |
@@ -59,7 +59,7 @@ Table of Contents
 | 0     |          Yes |           - |          Set |
 | 0     |          Yes |           - |        Reset |
 | 12    |          Yes |         Set |            - |
-| 120   |          Yes |       Reset |            - |
+| 124   |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
 
 
@@ -69,9 +69,9 @@ Table of Contents
 +-------------------+------+-------+------------+-----------+-------+
 |     Site Type     | Used | Fixed | Prohibited | Available | Util% |
 +-------------------+------+-------+------------+-----------+-------+
-| Block RAM Tile    |    1 |     0 |          0 |       135 |  0.74 |
-|   RAMB36/FIFO*    |    1 |     0 |          0 |       135 |  0.74 |
-|     RAMB36E1 only |    1 |       |            |           |       |
+| Block RAM Tile    |    2 |     0 |          0 |       135 |  1.48 |
+|   RAMB36/FIFO*    |    2 |     0 |          0 |       135 |  1.48 |
+|     RAMB36E1 only |    2 |       |            |           |       |
 |   RAMB18          |    0 |     0 |          0 |       270 |  0.00 |
 +-------------------+------+-------+------------+-----------+-------+
 * Note: Each Block RAM Tile only has one FIFO logic available and therefore can accommodate only one FIFO36E1 or one FIFO18E1. However, if a FIFO18E1 occupies a Block RAM Tile, that tile can still accommodate a RAMB18E1
@@ -149,17 +149,17 @@ Table of Contents
 +----------+------+---------------------+
 | Ref Name | Used | Functional Category |
 +----------+------+---------------------+
-| FDRE     |  120 |        Flop & Latch |
-| LUT4     |   26 |                 LUT |
+| FDRE     |  124 |        Flop & Latch |
+| LUT4     |   30 |                 LUT |
 | LUT1     |   20 |                 LUT |
 | FDSE     |   12 |        Flop & Latch |
-| LUT2     |   11 |                 LUT |
 | LUT3     |    8 |                 LUT |
 | CARRY4   |    8 |          CarryLogic |
 | LUT6     |    7 |                 LUT |
-| LUT5     |    4 |                 LUT |
+| LUT2     |    7 |                 LUT |
+| LUT5     |    6 |                 LUT |
+| RAMB36E1 |    2 |        Block Memory |
 | SRL16E   |    1 |  Distributed Memory |
-| RAMB36E1 |    1 |        Block Memory |
 +----------+------+---------------------+
 
 

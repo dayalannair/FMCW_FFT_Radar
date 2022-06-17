@@ -106,7 +106,7 @@ always@ (posedge ipClk) begin
         wr_byte_cnt <= 0;
     end
     else if (FIFO_output_valid && packetiser_ready) begin
-        opLED <= 16'h5555;
+        //opLED <= 16'h5555;
         if (wr_byte_cnt == 0) begin
         //pause FIFO from outputting more samples
             TxPacket.SoP <= 1'b1;
@@ -127,7 +127,7 @@ always@ (posedge ipClk) begin
             wr_byte_cnt <= 0;
         end
     end
-    else opLED <= 16'hffff;
+    //else opLED <= 16'hffff;
 end
 
 endmodule

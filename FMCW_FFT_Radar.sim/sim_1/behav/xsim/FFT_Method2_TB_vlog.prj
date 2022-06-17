@@ -1,6 +1,6 @@
 # compile verilog/system verilog design source files
 verilog xil_defaultlib  \
-"../../../../FMCW_FFT_Radar.gen/sources_1/ip/fifo_generator_0/sim/fifo_generator_0.v" \
+"../../../../FMCW_FFT_Radar.gen/sources_1/ip/FIFO_BRAM_gen/sim/FIFO_BRAM_gen.v" \
 "../../../../FMCW_FFT_Radar.gen/sources_1/ip/Q_input_data/sim/Q_input_data.v" \
 "../../../../FMCW_FFT_Radar.gen/sources_1/ip/I_input_data/sim/I_input_data.v" \
 
@@ -8,10 +8,15 @@ sv xil_defaultlib  \
 "../../../../FMCW_FFT_Radar.srcs/sources_1/new/Structures.v" \
 "../../../../FMCW_FFT_Radar.srcs/sources_1/new/UART.v" \
 "../../../../FMCW_FFT_Radar.srcs/sources_1/new/UART_Packetiser.v" \
-"../../../../FMCW_FFT_Radar.srcs/sources_1/new/FFT_FIFO_wrapper.v" \
 
 verilog xil_defaultlib  \
 "../../../../FMCW_FFT_Radar.srcs/sources_1/new/FFT_FIFO.v" \
+
+sv xil_defaultlib  \
+"../../../../FMCW_FFT_Radar.srcs/sources_1/new/FIFO_stream_wrapper.v" \
+
+verilog xil_defaultlib  \
+"../../../../FMCW_FFT_Radar.srcs/sources_1/new/FIFO_custom.v" \
 "../../../../FMCW_FFT_Radar.srcs/sim_1/new/FMCW_FFT_TB.v" \
 
 sv xil_defaultlib  \

@@ -31,7 +31,7 @@ reg opUART_Tx;
 reg[15:0] opLED;
 reg[4:0] ipButtons;
 
-FFT_FIFO_wrapper FFT_Stream(
+FIFO_stream_wrapper FFT_Stream(
   .ipClk (ipClk),
   .ipnReset (~ipReset),
   .ipUART_Rx (ipUART_Rx),

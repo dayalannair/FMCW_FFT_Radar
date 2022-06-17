@@ -129,12 +129,12 @@ always@ (posedge ipClk) begin
                 end
 
                 // Send FFT output to FIFO
-                if (m_axis_data_tvalid && (send_count<9'd511)) begin
+                if (m_axis_data_tvalid && m_axis_data_tready && (send_count<9'd511)) begin
                     send_count <= send_count + 1'b1;
                 end 
-                else if (send_count == 9'd511) begin
-                    state <= 0;
-                end
+                // else if (send_count == 9'd511) begin
+                //     state <= 0;
+                // end
             end
         default:;// state <= 0;
 

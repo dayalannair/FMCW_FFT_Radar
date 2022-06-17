@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenRun Id="FIFO_BRAM_gen_synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1655446488">
+  <File Type="PA-TCL" Name="FIFO_BRAM_gen.tcl"/>
+  <File Type="RDS-PROPCONSTRS" Name="FIFO_BRAM_gen_drc_synth.rpt"/>
+  <File Type="REPORTS-TCL" Name="FIFO_BRAM_gen_reports.tcl"/>
+  <File Type="RDS-RDS" Name="FIFO_BRAM_gen.vds"/>
+  <File Type="RDS-UTIL" Name="FIFO_BRAM_gen_utilization_synth.rpt"/>
+  <File Type="RDS-UTIL-PB" Name="FIFO_BRAM_gen_utilization_synth.pb"/>
+  <File Type="RDS-DCP" Name="FIFO_BRAM_gen.dcp"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="FIFO_BRAM_gen_timing_summary_synth.rpt"/>
+  <File Type="VDS-TIMING-PB" Name="FIFO_BRAM_gen_timing_summary_synth.pb"/>
+  <FileSet Name="sources" Type="BlockSrcs" RelSrcDir="$PSRCDIR/FIFO_BRAM_gen">
+    <File Path="$PSRCDIR/sources_1/ip/FIFO_BRAM_gen/FIFO_BRAM_gen.xci">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="TopModule" Val="FIFO_BRAM_gen"/>
+      <Option Name="UseBlackboxStub" Val="1"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="constrs_in" Type="BlockSrcs" RelSrcDir="$PSRCDIR/FIFO_BRAM_gen">
+    <File Path="$PSRCDIR/sources_1/ip/FIFO_BRAM_gen/FIFO_BRAM_gen.xci">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="TopModule" Val="FIFO_BRAM_gen"/>
+      <Option Name="UseBlackboxStub" Val="1"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="utils" Type="Utils" RelSrcDir="$PSRCDIR/utils_1">
+    <Filter Type="Utils"/>
+    <Config>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <Strategy Version="1" Minor="2">
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2021">
+      <Desc>Vivado Synthesis Defaults</Desc>
+    </StratHandle>
+    <Step Id="synth_design"/>
+  </Strategy>
+</GenRun>
