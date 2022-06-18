@@ -40,7 +40,7 @@ reg[8:0] rd_addr_ptr;
 reg[8:0] address;
 
 reg en = 1;
-reg wr_en = 0;
+reg wr_disable = 0;
 reg[15:0] din_a;
 reg[15:0] bd_cnt;
 reg[8:0] N;
@@ -48,7 +48,8 @@ reg web;
 FIFO_BRAM_gen BRAM(
   .clka(ipClk),  
   .ena(en),    
-  .wea(wr_en),    
+  //either high
+  .wea(write_valid^wr_disable),    
   .addra(wr_addr_ptr),  
   .dina(write_data),  
   
@@ -63,7 +64,7 @@ always @(posedge ipClk) begin
     if (ipReset) begin
         wr_addr_ptr <= 0;
         rd_addr_ptr <= 0;
-        wr_en <= 0;
+        wr_disable <= 0;
         write_ready <= 1;
         N <= 9'd511;
         web <= 0;   
@@ -71,16 +72,15 @@ always @(posedge ipClk) begin
 
     else begin
         // write first
-        FIFO_Length <= wr_addr_ptr>rd_addr_ptr ? wr_addr_ptr - rd_addr_ptr:wr_addr_ptr+N - rd_addr_ptr;
+        //FIFO_Length <= wr_addr_ptr>rd_addr_ptr ? wr_addr_ptr - rd_addr_ptr:wr_addr_ptr+N - rd_addr_ptr;
         // expect ipWrEnable = packetValid
         if (write_valid && wr_addr_ptr < 9'd511) begin
-            wr_en <= 1;
             wr_addr_ptr <= wr_addr_ptr + 1'b1;
             // valid data can be read from FIFO
             read_valid <= 1;
         end
         else if (wr_addr_ptr == 9'd511) begin
-            wr_en <= 0;
+            wr_disable <= 1;
             write_ready <= 0;
             //wr_addr_ptr <=
         end
