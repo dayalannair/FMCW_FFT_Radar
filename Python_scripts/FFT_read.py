@@ -1,3 +1,17 @@
+#
+#
+# DEPRECATED!! USE FFT_store.py instead!!!
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# --------------------------------------
+
 import serial
 import struct
 import time
