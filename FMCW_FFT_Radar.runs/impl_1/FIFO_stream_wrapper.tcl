@@ -123,6 +123,7 @@ set ACTIVE_STEP init_design
 set rc [catch {
   create_msg_db init_design.pb
   set_param chipscope.maxJobs 2
+  set_param xicom.use_bs_reader 1
 OPTRACE "create in-memory project" START { }
   create_project -in_memory -part xc7a100tcsg324-1
   set_property board_part_repo_paths {C:/Users/Dayalan/Desktop/UCT-FPGA-Course-2022/dnair_project/board_file} [current_project]
@@ -142,7 +143,7 @@ OPTRACE "add files" START { }
   read_ip -quiet C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.srcs/sources_1/ip/Q_input_data/Q_input_data.xci
   read_ip -quiet C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.srcs/sources_1/ip/I_input_data/I_input_data.xci
   read_ip -quiet C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.srcs/sources_1/ip/xfft_0/xfft_0.xci
-  read_ip -quiet c:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.srcs/sources_1/ip/FIFO_BRAM_gen/FIFO_BRAM_gen.xci
+  read_ip -quiet C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.srcs/sources_1/ip/FIFO_BRAM_gen/FIFO_BRAM_gen.xci
 OPTRACE "read constraints: implementation" START { }
   read_xdc C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.srcs/constrs_1/new/NexysA7.xdc
 OPTRACE "read constraints: implementation" END { }

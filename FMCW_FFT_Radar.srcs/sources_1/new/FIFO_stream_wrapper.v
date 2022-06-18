@@ -26,11 +26,12 @@ module FIFO_stream_wrapper(
   input ipUART_Rx,
   input[4:0] ipButtons,
   output reg opUART_Tx,
-  output reg [15:0] opLED
+  output reg [15:0] opLED,
+  output reg[63:0] FFT_output_sample
 );
 
 // FFT master data connected to FIFO slave data
-reg[63:0] FFT_output_sample;
+//reg[63:0] FFT_output_sample;
 // connects FFT master valid to FIFO slave valid
 // FFT tells FIFO data is valid
 wire       FFT_output_valid;
@@ -115,15 +116,22 @@ always@ (posedge ipClk) begin
             TxPacket.SoP <= 1'b1;
             TxPacket.Valid <= 1'b1;
             FIFO_read_ready <= 0;
-            TxPacket.Data <= FIFO_output_data[7:0];
-            current_sample <= FIFO_output_data>>8;
+            // LS BYTE OUT FIRST
+            // TxPacket.Data <= FIFO_output_data[7:0];
+            // current_sample <= FIFO_output_data>>8;
+            // MS BYTE OUT FIRST
+            TxPacket.Data <= FIFO_output_data[63:56];
+            current_sample <= FIFO_output_data<<8;
             wr_byte_cnt <= wr_byte_cnt + 1'b1;
         end
         // Send LAST bytes
         else if ((wr_byte_cnt > 0) && (wr_byte_cnt < 4'd8)) begin
             TxPacket.SoP <= 1'b0;
-            TxPacket.Data <= current_sample[7:0];
-            current_sample <= current_sample>>8;
+            // LS BYTE FIRST
+            // TxPacket.Data <= current_sample[7:0];
+            // current_sample <= current_sample>>8;
+            TxPacket.Data <= current_sample[63:56];
+            current_sample <= current_sample<<8;
             wr_byte_cnt <= wr_byte_cnt + 1'b1;
         end
         //one clock delay

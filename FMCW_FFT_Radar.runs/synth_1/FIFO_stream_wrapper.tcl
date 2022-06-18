@@ -70,7 +70,7 @@ proc create_report { reportName command } {
   }
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
-set_param chipscope.maxJobs 2
+set_param xicom.use_bs_reader 1
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7a100tcsg324-1
 
@@ -91,10 +91,6 @@ OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 add_files C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/coe_files/I.coe
 add_files C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/coe_files/Q.coe
-add_files C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/coe_files/I_3bit_n.coe
-add_files C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/coe_files/Q_3bit_n.coe
-add_files C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/coe_files/I_5bit_noise.coe
-add_files C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/coe_files/Q_5bit_noise.coe
 read_verilog -library xil_defaultlib -sv {
   C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.srcs/sources_1/new/Structures.v
   C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.srcs/sources_1/new/UART.v
@@ -114,7 +110,7 @@ set_property used_in_implementation false [get_files -all c:/Users/Dayalan/Deskt
 read_ip -quiet C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.srcs/sources_1/ip/xfft_0/xfft_0.xci
 set_property used_in_implementation false [get_files -all c:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.gen/sources_1/ip/xfft_0/xfft_0_ooc.xdc]
 
-read_ip -quiet c:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.srcs/sources_1/ip/FIFO_BRAM_gen/FIFO_BRAM_gen.xci
+read_ip -quiet C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.srcs/sources_1/ip/FIFO_BRAM_gen/FIFO_BRAM_gen.xci
 set_property used_in_implementation false [get_files -all c:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.gen/sources_1/ip/FIFO_BRAM_gen/FIFO_BRAM_gen_ooc.xdc]
 
 OPTRACE "Adding files" END { }

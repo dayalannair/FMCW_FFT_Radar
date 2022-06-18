@@ -14,6 +14,9 @@ def get_Im():
 
 def getInt():
     return struct.unpack_from('<i', s.read(4) , offset=0)[0]
+    
+    # MSB - should not work as byte order incorrect, not bit order
+    #return struct.unpack_from('<i', s.read(4) , offset=0)[0]
 
 try:
     with serial.Serial(port='COM10', baudrate=3000000) as s:
@@ -23,8 +26,8 @@ try:
                 # f_Re.write(f"{get_Re()}\n")
                 # f_Im.write(f"{get_Im()}\n")
                 hd.write(f"{getInt()}\n")
-                f_Re.write(f"{getInt()}\n")
                 f_Im.write(f"{getInt()}\n")
+                f_Re.write(f"{getInt()}\n")
 
 except KeyboardInterrupt:
 	print('Hello user you have pressed ctrl-c button.')

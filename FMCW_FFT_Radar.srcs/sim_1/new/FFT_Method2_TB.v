@@ -30,6 +30,7 @@ reg ipUART_Rx;
 reg opUART_Tx;
 reg[15:0] opLED;
 reg[4:0] ipButtons;
+reg[63:0] opData;
 
 FIFO_stream_wrapper FFT_Stream(
   .ipClk (ipClk),
@@ -37,7 +38,8 @@ FIFO_stream_wrapper FFT_Stream(
   .ipUART_Rx (ipUART_Rx),
   .ipButtons (ipButtons),
   .opUART_Tx (opUART_Tx),
-  .opLED (opLED)
+  .opLED (opLED),
+  .FFT_output_sample (opData)
 );
 
 initial begin
@@ -52,9 +54,17 @@ initial begin
   ipButtons <= 5'b0;
 end
 
+reg[31:0] Re_out;
+reg[31:0] Im_out;
+
 always@ (posedge ipClk) begin
     if (ipReset) begin
         ipButtons <= 0;
+    end
+    
+    else begin
+        Re_out <= $signed(opData[31:0]);
+        Im_out <= $signed(opData[63:32]);
     end
   //   #100
   //   // Initiate FFT

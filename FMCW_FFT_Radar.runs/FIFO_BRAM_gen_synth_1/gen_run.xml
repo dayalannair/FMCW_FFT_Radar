@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GenRun Id="FIFO_BRAM_gen_synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1655480005">
   <File Type="PA-TCL" Name="FIFO_BRAM_gen.tcl"/>
-  <File Type="RDS-PROPCONSTRS" Name="FIFO_BRAM_gen_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="FIFO_BRAM_gen_reports.tcl"/>
   <File Type="RDS-RDS" Name="FIFO_BRAM_gen.vds"/>
   <File Type="RDS-UTIL" Name="FIFO_BRAM_gen_utilization_synth.rpt"/>
   <File Type="RDS-UTIL-PB" Name="FIFO_BRAM_gen_utilization_synth.pb"/>
   <File Type="RDS-DCP" Name="FIFO_BRAM_gen.dcp"/>
-  <File Type="VDS-TIMINGSUMMARY" Name="FIFO_BRAM_gen_timing_summary_synth.rpt"/>
-  <File Type="VDS-TIMING-PB" Name="FIFO_BRAM_gen_timing_summary_synth.pb"/>
   <FileSet Name="sources" Type="BlockSrcs" RelSrcDir="$PSRCDIR/FIFO_BRAM_gen">
     <File Path="$PSRCDIR/sources_1/ip/FIFO_BRAM_gen/FIFO_BRAM_gen.xci">
       <FileInfo>
@@ -42,9 +39,7 @@
     </Config>
   </FileSet>
   <Strategy Version="1" Minor="2">
-    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2021">
-      <Desc>Vivado Synthesis Defaults</Desc>
-    </StratHandle>
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2021"/>
     <Step Id="synth_design"/>
   </Strategy>
 </GenRun>
