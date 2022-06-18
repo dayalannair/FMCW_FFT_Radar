@@ -1,6 +1,18 @@
 import serial
 import struct
 
+def sign_reduce(sample, len)
+    found = False
+    i = 0
+    reduced = sample
+    while found == False:
+        if sample[len-i-1] != sample[len-i]:
+            return reduced
+        else:
+            reduced = sample[len-i]
+            i=i+1
+
+
 # get entire packet, including header
 def get_Re():
     re = s.read(8)
