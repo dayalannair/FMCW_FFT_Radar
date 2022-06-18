@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1655538915">
   <File Type="PA-TCL" Name="FIFO_stream_wrapper.tcl"/>
-  <File Type="RDS-PROPCONSTRS" Name="FIFO_stream_wrapper_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="FIFO_stream_wrapper_reports.tcl"/>
   <File Type="RDS-RDS" Name="FIFO_stream_wrapper.vds"/>
   <File Type="RDS-UTIL" Name="FIFO_stream_wrapper_utilization_synth.rpt"/>
   <File Type="RDS-UTIL-PB" Name="FIFO_stream_wrapper_utilization_synth.pb"/>
   <File Type="RDS-DCP" Name="FIFO_stream_wrapper.dcp"/>
-  <File Type="VDS-TIMINGSUMMARY" Name="FIFO_stream_wrapper_timing_summary_synth.rpt"/>
-  <File Type="VDS-TIMING-PB" Name="FIFO_stream_wrapper_timing_summary_synth.pb"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/ip/Q_input_data/Q_input_data.xci">

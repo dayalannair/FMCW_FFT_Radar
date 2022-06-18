@@ -23,6 +23,9 @@ sv xil_defaultlib  \
 "../../../../FMCW_FFT_Radar.srcs/sim_1/new/FFT_Method1_TB.v" \
 "../../../../FMCW_FFT_Radar.srcs/sim_1/new/FFT_Method2_TB.v" \
 
+verilog xil_defaultlib  \
+"../../../../FMCW_FFT_Radar.srcs/sim_1/new/FFT_FIFO_TB.v" \
+
 # compile glbl module
 verilog xil_defaultlib "glbl.v"
 

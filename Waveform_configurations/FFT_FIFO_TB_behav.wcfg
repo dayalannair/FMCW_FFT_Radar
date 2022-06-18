@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="FFT_FIFO_TB_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="FFT_FIFO_TB" />
+            <top_module name="glbl" />
+            <top_module name="vcomponents" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="6,301.250 ns"></ZoomStartTime>
+      <ZoomEndTime time="6,337.751 ns"></ZoomEndTime>
+      <Cursor1Time time="6,318.450 ns"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="204"></NameColumnWidth>
+      <ValueColumnWidth column_width="94"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="6" />
+   <wvobject fp_name="/FFT_FIFO_TB/Re_out" type="array">
+      <obj_property name="ElementShortName">Re_out[31:0]</obj_property>
+      <obj_property name="ObjectShortName">Re_out[31:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+      <obj_property name="AnalogYRangeType">ANALOG_YRANGETYPE_AUTO</obj_property>
+      <obj_property name="AnalogYRangeMin">0.000000</obj_property>
+      <obj_property name="AnalogYRRangeMax">0.000000</obj_property>
+      <obj_property name="AnalogInterpolation">ANALOG_INTERPOLATION_HOLD</obj_property>
+      <obj_property name="AnalogOffscale">ANALOG_OFFSCALE_HIDE</obj_property>
+      <obj_property name="AnalogHorizLine">0.000000</obj_property>
+   </wvobject>
+   <wvobject fp_name="/FFT_FIFO_TB/Im_out" type="array">
+      <obj_property name="ElementShortName">Im_out[31:0]</obj_property>
+      <obj_property name="ObjectShortName">Im_out[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="/FFT_FIFO_TB/FFT_output_sample" type="array">
+      <obj_property name="ElementShortName">FFT_output_sample[63:0]</obj_property>
+      <obj_property name="ObjectShortName">FFT_output_sample[63:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/FFT_FIFO_TB/Re_in" type="array">
+      <obj_property name="ElementShortName">Re_in[31:0]</obj_property>
+      <obj_property name="ObjectShortName">Re_in[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
+      <obj_property name="CellHeight">100</obj_property>
+   </wvobject>
+   <wvobject fp_name="/FFT_FIFO_TB/Im_in" type="array">
+      <obj_property name="ElementShortName">Im_in[31:0]</obj_property>
+      <obj_property name="ObjectShortName">Im_in[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
+      <obj_property name="CellHeight">100</obj_property>
+   </wvobject>
+   <wvobject fp_name="/FFT_FIFO_TB/FIFO_output_data" type="array">
+      <obj_property name="ElementShortName">FIFO_output_data[63:0]</obj_property>
+      <obj_property name="ObjectShortName">FIFO_output_data[63:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+</wave_config>
