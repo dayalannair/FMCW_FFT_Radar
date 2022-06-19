@@ -70,7 +70,7 @@ proc create_report { reportName command } {
   }
 }
 OPTRACE "FIFO_BRAM_gen_synth_1" START { ROLLUP_AUTO }
-set_param chipscope.maxJobs 2
+set_param xicom.use_bs_reader 1
 set_param project.vivado.isBlockSynthRun true
 set_msg_config -msgmgr_mode ooc_run
 OPTRACE "Creating in-memory project" START { }
@@ -91,7 +91,7 @@ set_property ip_output_repo c:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Rad
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
-read_ip -quiet c:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.srcs/sources_1/ip/FIFO_BRAM_gen/FIFO_BRAM_gen.xci
+read_ip -quiet C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.srcs/sources_1/ip/FIFO_BRAM_gen/FIFO_BRAM_gen.xci
 set_property used_in_implementation false [get_files -all c:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.gen/sources_1/ip/FIFO_BRAM_gen/FIFO_BRAM_gen_ooc.xdc]
 
 OPTRACE "Adding files" END { }

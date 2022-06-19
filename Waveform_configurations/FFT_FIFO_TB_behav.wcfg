@@ -12,15 +12,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="6,301.250 ns"></ZoomStartTime>
-      <ZoomEndTime time="6,337.751 ns"></ZoomEndTime>
-      <Cursor1Time time="6,318.450 ns"></Cursor1Time>
+      <ZoomStartTime time="4.994700 us"></ZoomStartTime>
+      <ZoomEndTime time="12.284701 us"></ZoomEndTime>
+      <Cursor1Time time="7.994700 us"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="204"></NameColumnWidth>
+      <NameColumnWidth column_width="172"></NameColumnWidth>
       <ValueColumnWidth column_width="94"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="6" />
+   <WVObjectSize size="11" />
    <wvobject fp_name="/FFT_FIFO_TB/Re_out" type="array">
       <obj_property name="ElementShortName">Re_out[31:0]</obj_property>
       <obj_property name="ObjectShortName">Re_out[31:0]</obj_property>
@@ -36,13 +36,8 @@
    <wvobject fp_name="/FFT_FIFO_TB/Im_out" type="array">
       <obj_property name="ElementShortName">Im_out[31:0]</obj_property>
       <obj_property name="ObjectShortName">Im_out[31:0]</obj_property>
-      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
-   </wvobject>
-   <wvobject fp_name="/FFT_FIFO_TB/FFT_output_sample" type="array">
-      <obj_property name="ElementShortName">FFT_output_sample[63:0]</obj_property>
-      <obj_property name="ObjectShortName">FFT_output_sample[63:0]</obj_property>
       <obj_property name="Radix">HEXRADIX</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
    </wvobject>
    <wvobject fp_name="/FFT_FIFO_TB/Re_in" type="array">
       <obj_property name="ElementShortName">Re_in[31:0]</obj_property>
@@ -62,5 +57,34 @@
       <obj_property name="ElementShortName">FIFO_output_data[63:0]</obj_property>
       <obj_property name="ObjectShortName">FIFO_output_data[63:0]</obj_property>
       <obj_property name="Radix">HEXRADIX</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="/FFT_FIFO_TB/FFT_output_sample" type="array">
+      <obj_property name="ElementShortName">FFT_output_sample[63:0]</obj_property>
+      <obj_property name="ObjectShortName">FFT_output_sample[63:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="/FFT_FIFO_TB/FIFO/wr_addr_ptr" type="array">
+      <obj_property name="ElementShortName">wr_addr_ptr[8:0]</obj_property>
+      <obj_property name="ObjectShortName">wr_addr_ptr[8:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/FFT_FIFO_TB/FIFO/rd_addr_ptr" type="array">
+      <obj_property name="ElementShortName">rd_addr_ptr[8:0]</obj_property>
+      <obj_property name="ObjectShortName">rd_addr_ptr[8:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/FFT_FIFO_TB/FFT/m_axis_data_tvalid" type="logic">
+      <obj_property name="ElementShortName">m_axis_data_tvalid</obj_property>
+      <obj_property name="ObjectShortName">m_axis_data_tvalid</obj_property>
+   </wvobject>
+   <wvobject fp_name="/FFT_FIFO_TB/ipClk" type="logic">
+      <obj_property name="ElementShortName">ipClk</obj_property>
+      <obj_property name="ObjectShortName">ipClk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/FFT_FIFO_TB/FIFO/read_ready" type="logic">
+      <obj_property name="ElementShortName">read_ready</obj_property>
+      <obj_property name="ObjectShortName">read_ready</obj_property>
    </wvobject>
 </wave_config>

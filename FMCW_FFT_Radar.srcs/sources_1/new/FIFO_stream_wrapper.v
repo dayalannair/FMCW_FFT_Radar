@@ -107,44 +107,74 @@ always@ (posedge ipClk) begin
     end
     // one clk delay removes the delay by the packetiser in setting
     // its ready line to low
-    else if (FIFO_output_valid && packetiser_ready) begin//&& !one_clk_delay
-        // one_clk_delay <= 1;
-        //opLED <= 16'h5555;
-        // Send FIRST byte
-        if (wr_byte_cnt == 0) begin
-        //pause FIFO from outputting more samples
-            TxPacket.SoP <= 1'b1;
-            TxPacket.Valid <= 1'b1;
-            FIFO_read_ready <= 0;
-            // LS BYTE OUT FIRST
-            // TxPacket.Data <= FIFO_output_data[7:0];
-            // current_sample <= FIFO_output_data>>8;
-            // MS BYTE OUT FIRST
-            TxPacket.Data <= FIFO_output_data[63:56];
-            current_sample <= FIFO_output_data<<8;
-            wr_byte_cnt <= wr_byte_cnt + 1'b1;
-        end
+    else if (FIFO_output_valid && packetiser_ready && (wr_byte_cnt == 0)) begin//&& !one_clk_delay
+        TxPacket.SoP <= 1'b1;
+        TxPacket.Valid <= 1'b1;
+        FIFO_read_ready <= 0;
+        // LS BYTE OUT FIRST
+        TxPacket.Data <= FIFO_output_data[7:0];
+        current_sample <= FIFO_output_data>>8;
+        // MS BYTE OUT FIRST
+//            TxPacket.Data <= FIFO_output_data[63:56];
+//            current_sample <= FIFO_output_data<<8;
+        wr_byte_cnt <= wr_byte_cnt + 1'b1;
+    end
         // Send LAST bytes
-        else if ((wr_byte_cnt > 0) && (wr_byte_cnt < 4'd8)) begin
-            TxPacket.SoP <= 1'b0;
-            // LS BYTE FIRST
-            // TxPacket.Data <= current_sample[7:0];
-            // current_sample <= current_sample>>8;
-            TxPacket.Data <= current_sample[63:56];
-            current_sample <= current_sample<<8;
-            wr_byte_cnt <= wr_byte_cnt + 1'b1;
-        end
+    else if (FIFO_output_valid && packetiser_ready && (wr_byte_cnt > 0) && (wr_byte_cnt < 4'd8)) begin
+        TxPacket.SoP <= 1'b0;
+        // LS BYTE FIRST
+        TxPacket.Data <= current_sample[7:0];
+        current_sample <= current_sample>>8;
+//            TxPacket.Data <= current_sample[63:56];
+//            current_sample <= current_sample<<8;
+        wr_byte_cnt <= wr_byte_cnt + 1'b1;
+    end
         //one clock delay
         //else if (wr_byte_cnt == 4'd8) wr_byte_cnt <= wr_byte_cnt + 1'b1;
-        // move to next sample
-        else if (wr_byte_cnt == 4'd8) begin
-            // ready for next sample
-            FIFO_read_ready <= 1;
-            TxPacket.Valid <= 1'b0;
-            wr_byte_cnt <= 0;
-        end
+    // move to next sample
+    else if (FIFO_output_valid && packetiser_ready &&(wr_byte_cnt == 4'd8)) begin
+        // ready for next sample
+        FIFO_read_ready <= 1;
+        TxPacket.Valid <= 1'b0;
+        wr_byte_cnt <= 0;
     end
-
+//else if (FIFO_output_valid && packetiser_ready) begin//&& !one_clk_delay
+//        // one_clk_delay <= 1;
+//        //opLED <= 16'h5555;
+//        // Send FIRST byte
+//        if (wr_byte_cnt == 0) begin
+//        //pause FIFO from outputting more samples
+//            TxPacket.SoP <= 1'b1;
+//            TxPacket.Valid <= 1'b1;
+//            FIFO_read_ready <= 0;
+//            // LS BYTE OUT FIRST
+//            TxPacket.Data <= FIFO_output_data[7:0];
+//            current_sample <= FIFO_output_data>>8;
+//            // MS BYTE OUT FIRST
+////            TxPacket.Data <= FIFO_output_data[63:56];
+////            current_sample <= FIFO_output_data<<8;
+//            wr_byte_cnt <= wr_byte_cnt + 1'b1;
+//        end
+//        // Send LAST bytes
+//        else if ((wr_byte_cnt > 0) && (wr_byte_cnt < 4'd8)) begin
+//            TxPacket.SoP <= 1'b0;
+//            // LS BYTE FIRST
+//            TxPacket.Data <= current_sample[7:0];
+//            current_sample <= current_sample>>8;
+////            TxPacket.Data <= current_sample[63:56];
+////            current_sample <= current_sample<<8;
+//            wr_byte_cnt <= wr_byte_cnt + 1'b1;
+//        end
+//        //one clock delay
+//        //else if (wr_byte_cnt == 4'd8) wr_byte_cnt <= wr_byte_cnt + 1'b1;
+//        // move to next sample
+//        else if (wr_byte_cnt == 4'd8) begin
+//            // ready for next sample
+//            FIFO_read_ready <= 1;
+//            TxPacket.Valid <= 1'b0;
+//            wr_byte_cnt <= 0;
+//        end
+//    end
     // if packetiser was valid for this clock cycle, remove clk delay
     // else if (packetiser_ready) one_clk_delay <= 0;
     // else one_clk_delay <= 1;

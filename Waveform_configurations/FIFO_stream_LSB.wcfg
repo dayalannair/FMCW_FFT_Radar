@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="FFT_Method2_TB_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="FFT_Method2_TB" />
+            <top_module name="Structures" />
+            <top_module name="glbl" />
+            <top_module name="vcomponents" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="6,271.500 ns"></ZoomStartTime>
+      <ZoomEndTime time="6,347.701 ns"></ZoomEndTime>
+      <Cursor1Time time="6,305.000 ns"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="172"></NameColumnWidth>
+      <ValueColumnWidth column_width="94"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="17" />
+   <wvobject fp_name="/FFT_Method2_TB/ipReset" type="logic">
+      <obj_property name="ElementShortName">ipReset</obj_property>
+      <obj_property name="ObjectShortName">ipReset</obj_property>
+   </wvobject>
+   <wvobject fp_name="/FFT_Method2_TB/ipUART_Rx" type="logic">
+      <obj_property name="ElementShortName">ipUART_Rx</obj_property>
+      <obj_property name="ObjectShortName">ipUART_Rx</obj_property>
+   </wvobject>
+   <wvobject fp_name="/FFT_Method2_TB/opUART_Tx" type="logic">
+      <obj_property name="ElementShortName">opUART_Tx</obj_property>
+      <obj_property name="ObjectShortName">opUART_Tx</obj_property>
+   </wvobject>
+   <wvobject fp_name="/FFT_Method2_TB/FFT_Stream/TxPacket.Data" type="array">
+      <obj_property name="ElementShortName">.Data[7:0]</obj_property>
+      <obj_property name="ObjectShortName">.Data[7:0]</obj_property>
+      <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
+      <obj_property name="CellHeight">100</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <obj_property name="AnalogYRangeType">ANALOG_YRANGETYPE_AUTO</obj_property>
+      <obj_property name="AnalogYRangeMin">0.000000</obj_property>
+      <obj_property name="AnalogYRRangeMax">0.000000</obj_property>
+      <obj_property name="AnalogInterpolation">ANALOG_INTERPOLATION_HOLD</obj_property>
+      <obj_property name="AnalogOffscale">ANALOG_OFFSCALE_HIDE</obj_property>
+      <obj_property name="AnalogHorizLine">0.000000</obj_property>
+   </wvobject>
+   <wvobject fp_name="/FFT_Method2_TB/FFT_Stream/TxPacket" type="array">
+      <obj_property name="ElementShortName">TxPacket</obj_property>
+      <obj_property name="ObjectShortName">TxPacket</obj_property>
+   </wvobject>
+   <wvobject fp_name="/FFT_Method2_TB/FFT_Stream/wr_byte_cnt" type="array">
+      <obj_property name="ElementShortName">wr_byte_cnt[4:0]</obj_property>
+      <obj_property name="ObjectShortName">wr_byte_cnt[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/FFT_Method2_TB/FFT_Stream/FIFO/write_data" type="array">
+      <obj_property name="ElementShortName">write_data[63:0]</obj_property>
+      <obj_property name="ObjectShortName">write_data[63:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/FFT_Method2_TB/FFT_Stream/FIFO/BRAM/wea" type="array">
+      <obj_property name="ElementShortName">wea[0:0]</obj_property>
+      <obj_property name="ObjectShortName">wea[0:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/FFT_Method2_TB/FFT_Stream/FIFO/write_valid" type="logic">
+      <obj_property name="ElementShortName">write_valid</obj_property>
+      <obj_property name="ObjectShortName">write_valid</obj_property>
+   </wvobject>
+   <wvobject fp_name="/FFT_Method2_TB/FFT_Stream/FIFO/read_data" type="array">
+      <obj_property name="ElementShortName">read_data[63:0]</obj_property>
+      <obj_property name="ObjectShortName">read_data[63:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/FFT_Method2_TB/FFT_Stream/FIFO/read_valid" type="logic">
+      <obj_property name="ElementShortName">read_valid</obj_property>
+      <obj_property name="ObjectShortName">read_valid</obj_property>
+   </wvobject>
+   <wvobject fp_name="/FFT_Method2_TB/FFT_Stream/packetiser_ready" type="logic">
+      <obj_property name="ElementShortName">packetiser_ready</obj_property>
+      <obj_property name="ObjectShortName">packetiser_ready</obj_property>
+   </wvobject>
+   <wvobject fp_name="/FFT_Method2_TB/FFT_Stream/FIFO_read_ready" type="logic">
+      <obj_property name="ElementShortName">FIFO_read_ready</obj_property>
+      <obj_property name="ObjectShortName">FIFO_read_ready</obj_property>
+   </wvobject>
+   <wvobject fp_name="/FFT_Method2_TB/FFT_Stream/packetiser/UART_Inst/ipTxData" type="array">
+      <obj_property name="ElementShortName">ipTxData[7:0]</obj_property>
+      <obj_property name="ObjectShortName">ipTxData[7:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/FFT_Method2_TB/FFT_Stream/FFT/send_count" type="array">
+      <obj_property name="ElementShortName">send_count[7:0]</obj_property>
+      <obj_property name="ObjectShortName">send_count[7:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/FFT_Method2_TB/FFT_Stream/FIFO/wr_addr_ptr" type="array">
+      <obj_property name="ElementShortName">wr_addr_ptr[8:0]</obj_property>
+      <obj_property name="ObjectShortName">wr_addr_ptr[8:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/FFT_Method2_TB/FFT_Stream/FIFO/rd_addr_ptr" type="array">
+      <obj_property name="ElementShortName">rd_addr_ptr[8:0]</obj_property>
+      <obj_property name="ObjectShortName">rd_addr_ptr[8:0]</obj_property>
+   </wvobject>
+</wave_config>

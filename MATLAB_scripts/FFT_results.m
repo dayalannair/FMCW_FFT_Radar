@@ -34,7 +34,8 @@ N = 256;
 f=f_ax(N,fs);
 close all
 
-figure
+fig = figure;
+fig.WindowState = 'maximized';
 tiledlayout(6,1)
 nexttile
 plot(fftshift(Re))

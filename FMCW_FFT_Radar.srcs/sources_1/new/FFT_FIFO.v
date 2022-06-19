@@ -77,7 +77,7 @@ Q_input_data Q_input(
     .ena (Q_en)
 );
 
-reg[8:0] send_count;
+reg[7:0] send_count;
 reg state; 
 always@ (posedge ipClk) begin
     if(ipReset) begin
@@ -129,7 +129,7 @@ always@ (posedge ipClk) begin
                 end
 
                 // Send FFT output to FIFO
-                if (m_axis_data_tvalid && m_axis_data_tready && (send_count<9'd511)) begin
+                if (m_axis_data_tvalid && m_axis_data_tready && (send_count<8'd255)) begin
                     send_count <= send_count + 1'b1;
                 end 
                 // else if (send_count == 9'd511) begin
