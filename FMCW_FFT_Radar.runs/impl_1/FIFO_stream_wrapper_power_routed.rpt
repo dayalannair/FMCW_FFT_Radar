@@ -1,7 +1,7 @@
 Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2021.1 (win64) Build 3247384 Thu Jun 10 19:36:33 MDT 2021
-| Date             : Sun Jun 19 10:36:00 2022
+| Date             : Sun Jun 19 14:36:54 2022
 | Host             : TRISERVERi7 running 64-bit major release  (build 9200)
 | Command          : report_power -file FIFO_stream_wrapper_power_routed.rpt -pb FIFO_stream_wrapper_power_summary_routed.pb -rpx FIFO_stream_wrapper_power_routed.rpx
 | Design           : FIFO_stream_wrapper
@@ -30,7 +30,7 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.157        |
+| Total On-Chip Power (W)  | 0.158        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
 | Dynamic (W)              | 0.060        |
@@ -52,20 +52,20 @@ Table of Contents
 +--------------------------+-----------+----------+-----------+-----------------+
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
-| Clocks                   |     0.011 |        3 |       --- |             --- |
-| Slice Logic              |     0.013 |     7678 |       --- |             --- |
-|   LUT as Logic           |     0.008 |     1483 |     63400 |            2.34 |
-|   Register               |     0.002 |     3633 |    126800 |            2.87 |
-|   LUT as Shift Register  |     0.002 |      584 |     19000 |            3.07 |
-|   CARRY4                 |     0.001 |      279 |     15850 |            1.76 |
+| Clocks                   |     0.012 |        3 |       --- |             --- |
+| Slice Logic              |     0.013 |     7747 |       --- |             --- |
+|   LUT as Logic           |     0.008 |     1495 |     63400 |            2.36 |
+|   Register               |     0.002 |     3665 |    126800 |            2.89 |
+|   LUT as Shift Register  |     0.002 |      585 |     19000 |            3.08 |
+|   CARRY4                 |     0.001 |      291 |     15850 |            1.84 |
 |   Others                 |     0.000 |      736 |       --- |             --- |
 |   LUT as Distributed RAM |     0.000 |       31 |     19000 |            0.16 |
-| Signals                  |     0.015 |     4644 |       --- |             --- |
+| Signals                  |     0.015 |     4694 |       --- |             --- |
 | Block RAM                |     0.013 |      4.5 |       135 |            3.33 |
 | DSPs                     |     0.007 |       12 |       240 |            5.00 |
 | I/O                      |    <0.001 |       20 |       210 |            9.52 |
 | Static Power             |     0.098 |          |           |                 |
-| Total                    |     0.157 |          |           |                 |
+| Total                    |     0.158 |          |           |                 |
 +--------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -75,7 +75,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.074 |       0.059 |      0.015 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.075 |       0.060 |      0.015 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.018 |       0.000 |      0.018 |       NA    | Unspecified | NA         |
 | Vcco33    |       3.300 |     0.004 |       0.000 |      0.004 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |

@@ -2,8 +2,8 @@
 # Vivado v2021.1 (64-bit)
 # SW Build 3247384 on Thu Jun 10 19:36:33 MDT 2021
 # IP Build 3246043 on Fri Jun 11 00:30:35 MDT 2021
-# Start of session at: Sun Jun 19 10:32:39 2022
-# Process ID: 9432
+# Start of session at: Sun Jun 19 14:33:26 2022
+# Process ID: 10208
 # Current directory: C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.runs/synth_1
 # Command line: vivado.exe -log FIFO_stream_wrapper.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source FIFO_stream_wrapper.tcl
 # Log file: C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.runs/synth_1/FIFO_stream_wrapper.vds
@@ -17,15 +17,15 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100
 INFO: [Device 21-403] Loading part xc7a100tcsg324-1
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 9696
+INFO: [Synth 8-7075] Helper process launched with PID 15764
 WARNING: [Synth 8-2507] parameter declaration becomes local in UART with formal parameter declaration list [C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.srcs/sources_1/new/UART.v:59]
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1137.027 ; gain = 0.000
+Starting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1134.281 ; gain = 0.000
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'FIFO_stream_wrapper' [C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.srcs/sources_1/new/FIFO_stream_wrapper.v:23]
 INFO: [Synth 8-6157] synthesizing module 'FFT_FIFO' [C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.srcs/sources_1/new/FFT_FIFO.v:21]
-INFO: [Synth 8-6157] synthesizing module 'xfft_0' [C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.runs/synth_1/.Xil/Vivado-9432-TRISERVERi7/realtime/xfft_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'xfft_0' (1#1) [C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.runs/synth_1/.Xil/Vivado-9432-TRISERVERi7/realtime/xfft_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'xfft_0' [C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.runs/synth_1/.Xil/Vivado-10208-TRISERVERi7/realtime/xfft_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'xfft_0' (1#1) [C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.runs/synth_1/.Xil/Vivado-10208-TRISERVERi7/realtime/xfft_0_stub.v:6]
 WARNING: [Synth 8-7071] port 's_axis_data_tlast' of module 'xfft_0' is unconnected for instance 'FFT' [C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.srcs/sources_1/new/FFT_FIFO.v:41]
 WARNING: [Synth 8-7071] port 'm_axis_data_tlast' of module 'xfft_0' is unconnected for instance 'FFT' [C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.srcs/sources_1/new/FFT_FIFO.v:41]
 WARNING: [Synth 8-7071] port 'event_frame_started' of module 'xfft_0' is unconnected for instance 'FFT' [C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.srcs/sources_1/new/FFT_FIFO.v:41]
@@ -35,20 +35,20 @@ WARNING: [Synth 8-7071] port 'event_status_channel_halt' of module 'xfft_0' is u
 WARNING: [Synth 8-7071] port 'event_data_in_channel_halt' of module 'xfft_0' is unconnected for instance 'FFT' [C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.srcs/sources_1/new/FFT_FIFO.v:41]
 WARNING: [Synth 8-7071] port 'event_data_out_channel_halt' of module 'xfft_0' is unconnected for instance 'FFT' [C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.srcs/sources_1/new/FFT_FIFO.v:41]
 WARNING: [Synth 8-7023] instance 'FFT' of module 'xfft_0' has 19 connections declared, but only 11 given [C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.srcs/sources_1/new/FFT_FIFO.v:41]
-INFO: [Synth 8-6157] synthesizing module 'I_input_data' [C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.runs/synth_1/.Xil/Vivado-9432-TRISERVERi7/realtime/I_input_data_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'I_input_data' (2#1) [C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.runs/synth_1/.Xil/Vivado-9432-TRISERVERi7/realtime/I_input_data_stub.v:6]
-INFO: [Synth 8-6157] synthesizing module 'Q_input_data' [C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.runs/synth_1/.Xil/Vivado-9432-TRISERVERi7/realtime/Q_input_data_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'Q_input_data' (3#1) [C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.runs/synth_1/.Xil/Vivado-9432-TRISERVERi7/realtime/Q_input_data_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'I_input_data' [C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.runs/synth_1/.Xil/Vivado-10208-TRISERVERi7/realtime/I_input_data_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'I_input_data' (2#1) [C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.runs/synth_1/.Xil/Vivado-10208-TRISERVERi7/realtime/I_input_data_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'Q_input_data' [C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.runs/synth_1/.Xil/Vivado-10208-TRISERVERi7/realtime/Q_input_data_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'Q_input_data' (3#1) [C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.runs/synth_1/.Xil/Vivado-10208-TRISERVERi7/realtime/Q_input_data_stub.v:6]
 INFO: [Synth 8-226] default block is never used [C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.srcs/sources_1/new/FFT_FIFO.v:101]
 INFO: [Synth 8-6155] done synthesizing module 'FFT_FIFO' (4#1) [C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.srcs/sources_1/new/FFT_FIFO.v:21]
 INFO: [Synth 8-6157] synthesizing module 'FIFO_custom' [C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.srcs/sources_1/new/FIFO_custom.v:23]
-INFO: [Synth 8-6157] synthesizing module 'FIFO_BRAM_gen' [C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.runs/synth_1/.Xil/Vivado-9432-TRISERVERi7/realtime/FIFO_BRAM_gen_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'FIFO_BRAM_gen' (5#1) [C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.runs/synth_1/.Xil/Vivado-9432-TRISERVERi7/realtime/FIFO_BRAM_gen_stub.v:6]
-WARNING: [Synth 8-689] width (9) of port connection 'addra' does not match port width (8) of module 'FIFO_BRAM_gen' [C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.srcs/sources_1/new/FIFO_custom.v:52]
-WARNING: [Synth 8-689] width (9) of port connection 'addrb' does not match port width (8) of module 'FIFO_BRAM_gen' [C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.srcs/sources_1/new/FIFO_custom.v:58]
-WARNING: [Synth 8-7071] port 'douta' of module 'FIFO_BRAM_gen' is unconnected for instance 'BRAM' [C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.srcs/sources_1/new/FIFO_custom.v:47]
-WARNING: [Synth 8-7071] port 'dinb' of module 'FIFO_BRAM_gen' is unconnected for instance 'BRAM' [C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.srcs/sources_1/new/FIFO_custom.v:47]
-WARNING: [Synth 8-7023] instance 'BRAM' of module 'FIFO_BRAM_gen' has 12 connections declared, but only 10 given [C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.srcs/sources_1/new/FIFO_custom.v:47]
+INFO: [Synth 8-6157] synthesizing module 'FIFO_BRAM_gen' [C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.runs/synth_1/.Xil/Vivado-10208-TRISERVERi7/realtime/FIFO_BRAM_gen_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'FIFO_BRAM_gen' (5#1) [C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.runs/synth_1/.Xil/Vivado-10208-TRISERVERi7/realtime/FIFO_BRAM_gen_stub.v:6]
+WARNING: [Synth 8-689] width (9) of port connection 'addra' does not match port width (8) of module 'FIFO_BRAM_gen' [C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.srcs/sources_1/new/FIFO_custom.v:53]
+WARNING: [Synth 8-689] width (9) of port connection 'addrb' does not match port width (8) of module 'FIFO_BRAM_gen' [C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.srcs/sources_1/new/FIFO_custom.v:59]
+WARNING: [Synth 8-7071] port 'douta' of module 'FIFO_BRAM_gen' is unconnected for instance 'BRAM' [C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.srcs/sources_1/new/FIFO_custom.v:48]
+WARNING: [Synth 8-7071] port 'dinb' of module 'FIFO_BRAM_gen' is unconnected for instance 'BRAM' [C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.srcs/sources_1/new/FIFO_custom.v:48]
+WARNING: [Synth 8-7023] instance 'BRAM' of module 'FIFO_BRAM_gen' has 12 connections declared, but only 10 given [C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.srcs/sources_1/new/FIFO_custom.v:48]
 INFO: [Synth 8-6155] done synthesizing module 'FIFO_custom' (6#1) [C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.srcs/sources_1/new/FIFO_custom.v:23]
 INFO: [Synth 8-6157] synthesizing module 'UART_Packetiser' [C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.srcs/sources_1/new/UART_Packetiser.v:41]
 INFO: [Synth 8-6157] synthesizing module 'UART' [C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.srcs/sources_1/new/UART.v:41]
@@ -56,18 +56,18 @@ INFO: [Synth 8-6155] done synthesizing module 'UART' (7#1) [C:/Users/Dayalan/Des
 INFO: [Synth 8-6155] done synthesizing module 'UART_Packetiser' (8#1) [C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.srcs/sources_1/new/UART_Packetiser.v:41]
 INFO: [Synth 8-6155] done synthesizing module 'FIFO_stream_wrapper' (9#1) [C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.srcs/sources_1/new/FIFO_stream_wrapper.v:23]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 1137.027 ; gain = 0.000
+Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1134.281 ; gain = 0.000
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1137.027 ; gain = 0.000
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 1134.281 ; gain = 0.000
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1137.027 ; gain = 0.000
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 1134.281 ; gain = 0.000
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.034 . Memory (MB): peak = 1137.027 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.030 . Memory (MB): peak = 1134.281 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
@@ -88,23 +88,23 @@ Parsing XDC File [C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.runs/sy
 Finished Parsing XDC File [C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.runs/synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1156.098 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1146.176 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.010 . Memory (MB): peak = 1156.098 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.012 . Memory (MB): peak = 1146.176 ; gain = 0.000
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'FFT/I_input' at clock pin 'clka' is different from the actual clock period '10.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'FFT/Q_input' at clock pin 'clka' is different from the actual clock period '10.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'FIFO/BRAM' at clock pin 'clka' is different from the actual clock period '10.000', this can lead to different synthesis results.
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:19 ; elapsed = 00:00:19 . Memory (MB): peak = 1163.051 ; gain = 26.023
+Finished Constraint Validation : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1153.180 ; gain = 18.898
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a100tcsg324-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:19 ; elapsed = 00:00:19 . Memory (MB): peak = 1163.051 ; gain = 26.023
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:17 ; elapsed = 00:00:19 . Memory (MB): peak = 1153.180 ; gain = 18.898
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
@@ -114,7 +114,7 @@ Applied set_property KEEP_HIERARCHY = SOFT for FFT/I_input. (constraint file  au
 Applied set_property KEEP_HIERARCHY = SOFT for FFT/FFT. (constraint file  auto generated constraint).
 Applied set_property KEEP_HIERARCHY = SOFT for FIFO/BRAM. (constraint file  auto generated constraint).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 1163.051 ; gain = 26.023
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:17 ; elapsed = 00:00:19 . Memory (MB): peak = 1153.180 ; gain = 18.898
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-802] inferred FSM for state register 'rx_state_reg' in module 'UART'
 INFO: [Synth 8-802] inferred FSM for state register 'tx_state_reg' in module 'UART'
@@ -154,7 +154,7 @@ INFO: [Synth 8-3354] encoded FSM with state register 'tx_packet_reg' using encod
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'rx_state_reg' using encoding 'sequential' in module 'UART_Packetiser'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 1163.051 ; gain = 26.023
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1153.180 ; gain = 18.898
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -215,25 +215,25 @@ Finished Part Resource Summary
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:23 ; elapsed = 00:00:23 . Memory (MB): peak = 1163.051 ; gain = 26.023
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 1153.180 ; gain = 18.898
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:31 ; elapsed = 00:00:32 . Memory (MB): peak = 1163.051 ; gain = 26.023
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:29 ; elapsed = 00:00:30 . Memory (MB): peak = 1153.180 ; gain = 18.898
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:31 ; elapsed = 00:00:32 . Memory (MB): peak = 1163.051 ; gain = 26.023
+Finished Timing Optimization : Time (s): cpu = 00:00:29 ; elapsed = 00:00:31 . Memory (MB): peak = 1153.180 ; gain = 18.898
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:31 ; elapsed = 00:00:32 . Memory (MB): peak = 1163.051 ; gain = 26.023
+Finished Technology Mapping : Time (s): cpu = 00:00:29 ; elapsed = 00:00:31 . Memory (MB): peak = 1153.418 ; gain = 19.137
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -316,37 +316,37 @@ CRITICAL WARNING: [Synth 8-4442] BlackBox module \FIFO/BRAM  has unconnected pin
 CRITICAL WARNING: [Synth 8-4442] BlackBox module \FIFO/BRAM  has unconnected pin dinb[1]
 CRITICAL WARNING: [Synth 8-4442] BlackBox module \FIFO/BRAM  has unconnected pin dinb[0]
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:36 ; elapsed = 00:00:37 . Memory (MB): peak = 1163.051 ; gain = 26.023
+Finished IO Insertion : Time (s): cpu = 00:00:34 ; elapsed = 00:00:36 . Memory (MB): peak = 1153.418 ; gain = 19.137
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:36 ; elapsed = 00:00:37 . Memory (MB): peak = 1163.051 ; gain = 26.023
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:34 ; elapsed = 00:00:36 . Memory (MB): peak = 1153.418 ; gain = 19.137
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:36 ; elapsed = 00:00:37 . Memory (MB): peak = 1163.051 ; gain = 26.023
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:34 ; elapsed = 00:00:36 . Memory (MB): peak = 1153.418 ; gain = 19.137
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:36 ; elapsed = 00:00:37 . Memory (MB): peak = 1163.051 ; gain = 26.023
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:34 ; elapsed = 00:00:36 . Memory (MB): peak = 1153.418 ; gain = 19.137
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:36 ; elapsed = 00:00:37 . Memory (MB): peak = 1163.051 ; gain = 26.023
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:34 ; elapsed = 00:00:36 . Memory (MB): peak = 1153.418 ; gain = 19.137
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:36 ; elapsed = 00:00:37 . Memory (MB): peak = 1163.051 ; gain = 26.023
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:34 ; elapsed = 00:00:36 . Memory (MB): peak = 1153.418 ; gain = 19.137
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -371,38 +371,41 @@ Report Cell Usage:
 |3     |Q_input_data  |     1|
 |4     |xfft          |     1|
 |5     |BUFG          |     1|
-|6     |LUT1          |     4|
-|7     |LUT2          |    18|
-|8     |LUT3          |    27|
-|9     |LUT4          |    15|
-|10    |LUT5          |    31|
-|11    |LUT6          |    97|
-|12    |FDRE          |   180|
-|13    |FDSE          |     4|
-|14    |IBUF          |     3|
-|15    |OBUF          |     1|
-|16    |OBUFT         |    16|
+|6     |CARRY4        |    12|
+|7     |LUT1          |     5|
+|8     |LUT2          |    40|
+|9     |LUT3          |    35|
+|10    |LUT4          |    72|
+|11    |LUT5          |    24|
+|12    |LUT6          |    41|
+|13    |FDRE          |   212|
+|14    |FDSE          |     4|
+|15    |IBUF          |     3|
+|16    |OBUF          |     1|
+|17    |OBUFT         |    16|
 +------+--------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:36 ; elapsed = 00:00:37 . Memory (MB): peak = 1163.051 ; gain = 26.023
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:34 ; elapsed = 00:00:36 . Memory (MB): peak = 1153.418 ; gain = 19.137
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 65 critical warnings and 0 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:23 ; elapsed = 00:00:33 . Memory (MB): peak = 1163.051 ; gain = 0.000
-Synthesis Optimization Complete : Time (s): cpu = 00:00:36 ; elapsed = 00:00:37 . Memory (MB): peak = 1163.051 ; gain = 26.023
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:23 ; elapsed = 00:00:32 . Memory (MB): peak = 1153.418 ; gain = 0.238
+Synthesis Optimization Complete : Time (s): cpu = 00:00:34 ; elapsed = 00:00:36 . Memory (MB): peak = 1153.418 ; gain = 19.137
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.013 . Memory (MB): peak = 1163.051 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.013 . Memory (MB): peak = 1159.453 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 12 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1163.051 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1170.410 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Synth Design complete, checksum: b89461e0
+Synth Design complete, checksum: 7660ca96
 INFO: [Common 17-83] Releasing license: Synthesis
-40 Infos, 18 Warnings, 65 Critical Warnings and 0 Errors encountered.
+42 Infos, 18 Warnings, 65 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:41 ; elapsed = 00:00:44 . Memory (MB): peak = 1163.051 ; gain = 26.023
+synth_design: Time (s): cpu = 00:00:39 ; elapsed = 00:00:48 . Memory (MB): peak = 1170.410 ; gain = 36.129
 INFO: [runtcl-6] Synthesis results are not added to the cache due to CRITICAL_WARNING
 INFO: [Common 17-1381] The checkpoint 'C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.runs/synth_1/FIFO_stream_wrapper.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file FIFO_stream_wrapper_utilization_synth.rpt -pb FIFO_stream_wrapper_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Sun Jun 19 10:33:32 2022...
+INFO: [Common 17-206] Exiting Vivado at Sun Jun 19 14:34:26 2022...

@@ -1,7 +1,7 @@
 Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2021.1 (win64) Build 3247384 Thu Jun 10 19:36:33 MDT 2021
-| Date         : Sun Jun 19 10:33:32 2022
+| Date         : Sun Jun 19 14:34:26 2022
 | Host         : TRISERVERi7 running 64-bit major release  (build 9200)
 | Command      : report_utilization -file FIFO_stream_wrapper_utilization_synth.rpt -pb FIFO_stream_wrapper_utilization_synth.pb
 | Design       : FIFO_stream_wrapper
@@ -30,11 +30,11 @@ Table of Contents
 +-------------------------+------+-------+------------+-----------+-------+
 |        Site Type        | Used | Fixed | Prohibited | Available | Util% |
 +-------------------------+------+-------+------------+-----------+-------+
-| Slice LUTs*             |  162 |     0 |          0 |     63400 |  0.26 |
-|   LUT as Logic          |  162 |     0 |          0 |     63400 |  0.26 |
+| Slice LUTs*             |  174 |     0 |          0 |     63400 |  0.27 |
+|   LUT as Logic          |  174 |     0 |          0 |     63400 |  0.27 |
 |   LUT as Memory         |    0 |     0 |          0 |     19000 |  0.00 |
-| Slice Registers         |  184 |     0 |          0 |    126800 |  0.15 |
-|   Register as Flip Flop |  184 |     0 |          0 |    126800 |  0.15 |
+| Slice Registers         |  216 |     0 |          0 |    126800 |  0.17 |
+|   Register as Flip Flop |  216 |     0 |          0 |    126800 |  0.17 |
 |   Register as Latch     |    0 |     0 |          0 |    126800 |  0.00 |
 | F7 Muxes                |    0 |     0 |          0 |     31700 |  0.00 |
 | F8 Muxes                |    0 |     0 |          0 |     15850 |  0.00 |
@@ -57,7 +57,7 @@ Table of Contents
 | 0     |          Yes |           - |          Set |
 | 0     |          Yes |           - |        Reset |
 | 4     |          Yes |         Set |            - |
-| 180   |          Yes |       Reset |            - |
+| 212   |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
 
 
@@ -146,14 +146,15 @@ Table of Contents
 +----------+------+---------------------+
 | Ref Name | Used | Functional Category |
 +----------+------+---------------------+
-| FDRE     |  180 |        Flop & Latch |
-| LUT6     |   97 |                 LUT |
-| LUT5     |   31 |                 LUT |
-| LUT3     |   27 |                 LUT |
-| LUT2     |   18 |                 LUT |
+| FDRE     |  212 |        Flop & Latch |
+| LUT4     |   72 |                 LUT |
+| LUT6     |   41 |                 LUT |
+| LUT2     |   40 |                 LUT |
+| LUT3     |   35 |                 LUT |
+| LUT5     |   24 |                 LUT |
 | OBUFT    |   16 |                  IO |
-| LUT4     |   15 |                 LUT |
-| LUT1     |    4 |                 LUT |
+| CARRY4   |   12 |          CarryLogic |
+| LUT1     |    5 |                 LUT |
 | FDSE     |    4 |        Flop & Latch |
 | IBUF     |    3 |                  IO |
 | OBUF     |    1 |                  IO |
