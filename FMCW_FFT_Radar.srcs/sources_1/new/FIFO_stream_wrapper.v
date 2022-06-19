@@ -26,12 +26,12 @@ module FIFO_stream_wrapper(
   input ipUART_Rx,
   input[4:0] ipButtons,
   output reg opUART_Tx,
-  output reg [15:0] opLED,
-  output reg[63:0] FFT_output_sample
+  output reg [15:0] opLED
+  //output reg[63:0] FFT_output_sample
 );
 
 // FFT master data connected to FIFO slave data
-//reg[63:0] FFT_output_sample;
+reg[63:0] FFT_output_sample;
 // connects FFT master valid to FIFO slave valid
 // FFT tells FIFO data is valid
 wire       FFT_output_valid;
@@ -87,7 +87,7 @@ reg[4:0] wr_byte_cnt;
 // reg[31:0] FFT_Re;
 // reg[31:0] FFT_Im;
 reg[63:0] current_sample;
-// reg one_clk_delay;
+reg one_clk_delay;
 
 always@ (posedge ipClk) begin
     if (~ipnReset) begin
@@ -103,7 +103,7 @@ always@ (posedge ipClk) begin
         FIFO_read_ready <= 1;
         current_sample <= 0;
         wr_byte_cnt <= 0;
-        // one_clk_delay <= 1;
+        one_clk_delay <= 1;
     end
     // one clk delay removes the delay by the packetiser in setting
     // its ready line to low
@@ -117,10 +117,11 @@ always@ (posedge ipClk) begin
         // MS BYTE OUT FIRST
 //            TxPacket.Data <= FIFO_output_data[63:56];
 //            current_sample <= FIFO_output_data<<8;
-        wr_byte_cnt <= wr_byte_cnt + 1'b1;
+        wr_byte_cnt <= 1'b1;
+        one_clk_delay <= 0; // next stage needs 1 clk as packetiser has 1 clk delay
     end
         // Send LAST bytes
-    else if (FIFO_output_valid && packetiser_ready && (wr_byte_cnt > 0) && (wr_byte_cnt < 4'd8)) begin
+    else if (FIFO_output_valid && packetiser_ready && (wr_byte_cnt > 0) && (wr_byte_cnt < 4'd8) && one_clk_delay) begin
         TxPacket.SoP <= 1'b0;
         // LS BYTE FIRST
         TxPacket.Data <= current_sample[7:0];
@@ -138,6 +139,7 @@ always@ (posedge ipClk) begin
         TxPacket.Valid <= 1'b0;
         wr_byte_cnt <= 0;
     end
+    else one_clk_delay <= 1;
 //else if (FIFO_output_valid && packetiser_ready) begin//&& !one_clk_delay
 //        // one_clk_delay <= 1;
 //        //opLED <= 16'h5555;
@@ -177,7 +179,7 @@ always@ (posedge ipClk) begin
 //    end
     // if packetiser was valid for this clock cycle, remove clk delay
     // else if (packetiser_ready) one_clk_delay <= 0;
-    // else one_clk_delay <= 1;
+    
     //else opLED <= 16'hffff;
 end
 

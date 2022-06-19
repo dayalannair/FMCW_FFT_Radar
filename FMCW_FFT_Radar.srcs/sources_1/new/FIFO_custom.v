@@ -84,11 +84,13 @@ always @(posedge ipClk) begin
         end
         
         
-        if (rd_addr_ptr == 8'd255) begin
+        if (rd_addr_ptr > 8'd255) begin
             read_valid <= 0;
             //rd_addr_ptr <= 0;
         end
-        else if ((wr_addr_ptr != 0) && read_ready) begin
+        // experimentally determined from wav that we need to start at
+        // wrptr>1
+        else if ((wr_addr_ptr > 1'b1) && read_ready) begin
             rd_addr_ptr <= rd_addr_ptr + 1'b1;
         end
 

@@ -21,7 +21,8 @@ q_dat(1:200) = table2array(raw_Im_tab(desired_sweep,1:200));
 i_dat_signed = int16(i_dat);
 Re = table2array(FPGA_Re_FFT_tab);
 Im = table2array(FPGA_Im_FFT_tab);
-
+Re(end-1:end) = 0;
+Im(end-1:end) = 0;
 %%
 % NOTE: Last sample is the same as the previous
 FPGA_FFT = Re + 1i*Im;
