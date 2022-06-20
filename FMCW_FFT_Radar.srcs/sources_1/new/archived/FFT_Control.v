@@ -1,16 +1,11 @@
-
+import Structures::*;
 module FFT_Control(
     input ipClk,
-    input ipReset,
-    input ipRunFFT,
-
-    input[31:0] s_axis_data_tdata;
-    output s_axis_data_tready;
-    input s_axis_data_tvalid; 
-
-    input m_axis_data_tready,
-    output wire[63:0] m_axis_data_tdata,
-    output m_axis_data_tvalid
+    input ipnReset,
+    input ipUART_Rx,
+    input[4:0] ipButtons,
+    output reg opUART_Tx,
+    output reg [15:0] opLED
 );
 reg[3:0] PAD = 4'b0000;
 
@@ -18,6 +13,19 @@ reg[3:0] PAD = 4'b0000;
 reg[7:0] s_axis_config_tdata;
 wire s_axis_config_tready;
 reg s_axis_config_tvalid;
+
+UART_PACKET TxPacket;
+UART_PACKET RxPacket;
+
+UART_Packetiser packetiser(
+  .ipClk (ipClk),
+  .ipReset (~ipnReset),
+  .ipTxStream (TxPacket),
+  .opRxStream (RxPacket),
+  .opTxReady(packetiser_ready), 
+  .ipRx (ipUART_Rx),
+  .opTx (opUART_Tx)
+);
 
 xfft_0 FFT(
     .aclk (ipClk),
