@@ -1,6 +1,6 @@
 // Buffer of width 64 and depth 256
 // basic module to abstract incrementing BRAM read and write pointers
-module FIFO_custom(
+module FFT_Buffer(
     input ipClk,
     input ipReset,
     input write_valid,

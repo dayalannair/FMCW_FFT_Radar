@@ -37,27 +37,6 @@ xfft_0 FFT(
     .m_axis_data_tvalid (m_axis_data_tvalid)
 );
 
-reg[7:0] I_addr;
-reg[7:0] Q_addr;
-reg I_en;
-reg Q_en;
-wire[11:0] I_sample;
-wire[11:0] Q_sample;
-
-I_input_data I_input(
-    .clka (ipClk),
-    .addra (I_addr),
-    .douta (I_sample),
-    .ena (I_en)
-);
-
-Q_input_data Q_input(
-    .clka (ipClk),
-    .addra (Q_addr),
-    .douta (Q_sample),
-    .ena (Q_en)
-);
-
 reg[7:0] send_count;
 reg state; 
 always@ (posedge ipClk) begin
