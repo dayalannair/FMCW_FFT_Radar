@@ -202,6 +202,7 @@ always @(posedge ipClk) begin
   case(rx_state)
     idle: begin
             opRxStream.Valid <= 1'b0;
+            opRxStream.SoP <= 1'b0;
             rx_len <= 0;
             if (UART_RxValid && (UART_RxData == 8'h55)) begin
               rx_packet <= dest;
@@ -231,17 +232,20 @@ always @(posedge ipClk) begin
                       if (rx_len > 1) begin
                         opRxStream.Data <= UART_RxData;
                         opRxStream.Valid <= 1'b1;
+                        opRxStream.SoP <= 1'b1;
                         rx_len <= rx_len - 1'b1;
                       end
                       else begin
                         opRxStream.Data <= UART_RxData;
                         opRxStream.Valid <= 1'b1;
+                        opRxStream.SoP <= 1'b1;
                         rx_state <= idle;
                       end
                     end
               default:;
           endcase
       end
+      else opRxStream.Valid <= 1'b0;
     end
 //------------------------------------------------------------------------------
     default:;

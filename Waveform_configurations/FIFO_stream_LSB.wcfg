@@ -13,26 +13,18 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="20.000000 us"></ZoomStartTime>
-      <ZoomEndTime time="58.100001 us"></ZoomEndTime>
-      <Cursor1Time time="38.550000 us"></Cursor1Time>
+      <ZoomStartTime time="0.050000 us"></ZoomStartTime>
+      <ZoomEndTime time="38.150001 us"></ZoomEndTime>
+      <Cursor1Time time="6.800000 us"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="172"></NameColumnWidth>
       <ValueColumnWidth column_width="94"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="15" />
+   <WVObjectSize size="14" />
    <wave_markers>
       <marker time="6295000" label="" />
    </wave_markers>
-   <wvobject fp_name="/FFT_Method2_TB/ipReset" type="logic">
-      <obj_property name="ElementShortName">ipReset</obj_property>
-      <obj_property name="ObjectShortName">ipReset</obj_property>
-   </wvobject>
-   <wvobject fp_name="/FFT_Method2_TB/ipUART_Rx" type="logic">
-      <obj_property name="ElementShortName">ipUART_Rx</obj_property>
-      <obj_property name="ObjectShortName">ipUART_Rx</obj_property>
-   </wvobject>
    <wvobject fp_name="/FFT_Method2_TB/opUART_Tx" type="logic">
       <obj_property name="ElementShortName">opUART_Tx</obj_property>
       <obj_property name="ObjectShortName">opUART_Tx</obj_property>
@@ -53,10 +45,16 @@
    <wvobject fp_name="/FFT_Method2_TB/FFT_Stream/TxPacket" type="array">
       <obj_property name="ElementShortName">TxPacket</obj_property>
       <obj_property name="ObjectShortName">TxPacket</obj_property>
+      <obj_property name="isExpanded"></obj_property>
    </wvobject>
    <wvobject fp_name="/FFT_Method2_TB/FFT_Stream/FIFO/write_data" type="array">
       <obj_property name="ElementShortName">write_data[63:0]</obj_property>
       <obj_property name="ObjectShortName">write_data[63:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/FFT_Method2_TB/FFT_Stream/FIFO/wr_addr_ptr" type="array">
+      <obj_property name="ElementShortName">wr_addr_ptr[8:0]</obj_property>
+      <obj_property name="ObjectShortName">wr_addr_ptr[8:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject fp_name="/FFT_Method2_TB/FFT_Stream/FIFO/BRAM/wea" type="array">
       <obj_property name="ElementShortName">wea[0:0]</obj_property>
@@ -78,6 +76,7 @@
    <wvobject fp_name="/FFT_Method2_TB/FFT_Stream/FIFO/rd_addr_ptr" type="array">
       <obj_property name="ElementShortName">rd_addr_ptr[8:0]</obj_property>
       <obj_property name="ObjectShortName">rd_addr_ptr[8:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject fp_name="/FFT_Method2_TB/FFT_Stream/current_sample" type="array">
       <obj_property name="ElementShortName">current_sample[63:0]</obj_property>

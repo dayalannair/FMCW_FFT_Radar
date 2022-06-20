@@ -68,7 +68,7 @@ reg opFFT_rdy;
 
 xfft_0 FFT(
     .aclk (ipClk),
-    .aresetn (ipnReset),
+    .aresetn (!ipReset),
 
     .s_axis_data_tdata  (ipFFT_dat),
     .s_axis_data_tready (opFFT_rdy),
@@ -99,9 +99,10 @@ reg[8:0] pad_cnt;
 reg[3:0] byte_cnt;
 reg[63:0] tx_smpl;
 reg one_clk;
+reg state; 
 
 always@ (posedge ipClk) begin
-    if(~ipnReset) begin
+    if(ipReset) begin
         ipFFT_vld <= 0;
         ipFFT_dat <= 0;
         ipFFT_rdy <= 0;
@@ -113,7 +114,6 @@ always@ (posedge ipClk) begin
         pad_cnt <= 0;
         state <= idle;
         tx_smpl <= 0;
-        TxPkt.Length <= 8'd8;
     end
 
     else begin
@@ -153,12 +153,11 @@ always@ (posedge ipClk) begin
                     state <= idle;
                 end
             end
-            // NEED TO INCORPORATE PACKET LENGTH - used by packetiser
             send_output_data: begin
                 if (opFFT_vld && UART_rdy && (byte_cnt == 0) && (tx_cnt<9'd255)) begin
                         TxPkt.SoP <= 1'b1;
                         TxPkt.Valid <= 1'b1;
-                        ipFFT_rdy <= 0;
+                        opReady <= 0;
                         TxPkt.Data <= opFFT_dat[7:0];
                         tx_smpl <= opFFT_dat>>8;
                         byte_cnt <= 1'b1;
@@ -171,7 +170,7 @@ always@ (posedge ipClk) begin
                     byte_cnt <= byte_cnt + 1'b1;
                 end
                 else if (opFFT_vld && UART_rdy &&(byte_cnt == 4'd8)) begin
-                    ipFFT_rdy <= 1;
+                    opReady <= 1;
                     TxPkt.Valid <= 1'b0;
                     byte_cnt <= 0;
                     tx_cnt <= tx_cnt + 1;
