@@ -21,8 +21,8 @@ q_dat(1:200) = table2array(raw_Im_tab(desired_sweep,1:200));
 i_dat_signed = int16(i_dat);
 Re = table2array(FPGA_Re_FFT_tab);
 Im = table2array(FPGA_Im_FFT_tab);
-% Re(end-1:end) = 0;
-% Im(end-1:end) = 0;
+Re(end-1:end) = 0;
+Im(end-1:end) = 0;
 %%
 % NOTE: Last sample is the same as the previous
 FPGA_FFT = Re + 1i*Im;
@@ -50,6 +50,7 @@ title("MATLAB FFT Real component (fftshift)")
 nexttile
 plot(fftshift(imag(MATLAB_FFT)))
 title("MATLAB FFT Imaginary component (fftshift)")
+
 % nexttile
 % %plot(FFT_mag(1:end-1));
 % %plot(Im)
@@ -66,13 +67,14 @@ nexttile
 plot(f/1000, fftshift(abs(FPGA_FFT)))
 title("FPGA FFT Magnitude (fftshifted)")
 xlabel("Frequency (kHz)")
+axis([-100 100 0 10e5])
 nexttile
 % plot(angle(FPGA_FFT))
 % title("FFT Phase")
 plot(f/1000,fftshift(abs(MATLAB_FFT)))
 title("MATLAB FFT Magnitude (fftshifted)")
 xlabel("Frequency (kHz)")
-
+axis([-100 100 0 10e5])
 
 %% Does not work in log scale
 % nexttile
