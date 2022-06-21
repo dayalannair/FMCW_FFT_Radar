@@ -47,3 +47,6 @@ The data is packetised into 8 byte packets and sent back to the PC. A python scr
 python script could be adapted to plot data as well.
 
 
+# Using this repo
+
+The Bitstreams directory contains the bitstreams for both the data injection and data streaming configurations. If you would like to edit the source code, see the source directory and load the respected files into Vivado (from the 'archived' subdirectory if you wish to edit the older versions).
