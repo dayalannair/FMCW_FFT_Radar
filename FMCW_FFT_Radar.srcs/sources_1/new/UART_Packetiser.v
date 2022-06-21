@@ -1,26 +1,5 @@
-`timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 15.06.2022 19:20:34
-// Design Name: 
-// Module Name: UART_Packetiser
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
 
 
-import Structures::*;
 /*
 Dayalan Nair
 April 2022
@@ -37,7 +16,7 @@ the byte to this module. This module then stores each byte of metadata and data
 into a structure which is then outputted.
 */
 //------------------------------------------------------------------------------
-
+import Structures::*;
 module UART_Packetiser(
   input ipClk,
   input ipReset,

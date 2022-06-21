@@ -1,3 +1,4 @@
+`timescale 1ns / 1ns
 import Structures::*;
 module UART_AXIS_TB;
 
@@ -52,7 +53,7 @@ initial begin
     PC_TxPacket.Source <= 8'h2C;
     PC_TxPacket.Length <= 8'hff; // not used. interface expects 200x4 bytes
     // Read LED registers - Address 8'h02
-    PC_TxPacket.Data <= 8'h01;
+    PC_TxPacket.Data <= 8'h00;
 
     @(negedge ipReset);
     @(posedge ipClk);
@@ -63,12 +64,16 @@ initial begin
     PC_TxPacket.SoP <= 1'b0;
     @(posedge ipClk);
     if(!opTxReady) @(posedge opTxReady); 
-    for (i = 0; i < 600; i++) begin
+    for (i = 0; i < 800; i++) begin
         //if(!opTxReady) @(posedge opTxReady); 
         PC_TxPacket.Data <= PC_TxPacket.Data + 1'b1;
         PC_TxPacket.Valid <= 1'b1;
         @(negedge opTxReady);//prevents all happening at once 
         PC_TxPacket.Valid <= 1'b0;
+        // new packet once max data length (8 bits) worth of 
+        // bytes have been sent
+        if(PC_TxPacket.Data == 8'd255) PC_TxPacket.SoP <= 1'b1;
+        else PC_TxPacket.SoP <= 1'b1;
     end
 end
 endmodule

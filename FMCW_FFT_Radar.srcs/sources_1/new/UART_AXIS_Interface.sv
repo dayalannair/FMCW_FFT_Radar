@@ -87,14 +87,14 @@ xfft_0 FFT(
 typedef enum {
 	idle,
     receive_input_data,
+    zero_padding,
     send_output_data
 	} STATE;
 
 STATE state;
 reg sweep_received;
-reg[7:0] send_count;
-reg[9:0] rx_cnt; 
-reg[9:0] tx_cnt; 
+reg[7:0] rx_cnt; 
+reg[7:0] tx_cnt; 
 reg[8:0] pad_cnt;
 reg[3:0] byte_cnt;
 reg[63:0] tx_smpl;
@@ -109,6 +109,7 @@ always@ (posedge ipClk) begin
         cfg_dat <= 0;
         sweep_received <= 0;
         rx_cnt <= 0;
+        tx_cnt <= 0;
         byte_cnt <= 0;
         pad_cnt <= 0;
         state <= idle;
@@ -132,30 +133,44 @@ always@ (posedge ipClk) begin
                 end
             end
             receive_input_data: begin
-                if (RxPkt.Valid && byte_cnt < 4'd4) begin
+                // state change must happen first, and gate the
+                // rest of the current state
+                if (rx_cnt == 8'd200) state <= zero_padding;
+                // build FFT input from packets
+                else if (RxPkt.Valid && byte_cnt < 4'd4) begin
                     ipFFT_vld <= 0;
                     ipFFT_dat <= {RxPkt.Data, ipFFT_dat[31:8]};
                     byte_cnt <= byte_cnt + 1'b1;
                 end
-
-                else if (byte_cnt == 4'd4) begin
+                // write to FFT. ensure both input is complete and FFT is ready
+                else if (byte_cnt == 4'd4 && opFFT_rdy) begin
                     ipFFT_vld <= 1;
                     rx_cnt <= rx_cnt + 1'b1;
                     byte_cnt <= 0;
                 end
-                if ((rx_cnt == 8'd200) && (pad_cnt<9'd56)) begin
+                // ensure valid for only one clock cycle
+                else ipFFT_vld <= 0;
+               
+            end
+
+            zero_padding: begin
+                //if (pad_cnt<9'd56) begin
+                // pad until FFT no longer accepts data
+                if (opFFT_rdy) begin
                     ipFFT_dat <= 0;
+                    ipFFT_vld <= 1; 
                     pad_cnt <= pad_cnt + 1'b1;
                 end
 
-                else if (pad_cnt == 9'd56) begin
+                else begin
                     sweep_received <= 1'b1;
+                    ipFFT_vld <= 0;
                     state <= idle;
                 end
+                
             end
-            // NEED TO INCORPORATE PACKET LENGTH - used by packetiser
             send_output_data: begin
-                if (opFFT_vld && UART_rdy && (byte_cnt == 0) && (tx_cnt<9'd255)) begin
+                if (opFFT_vld && UART_rdy && (byte_cnt == 0) && (tx_cnt<8'd255)) begin
                         TxPkt.SoP <= 1'b1;
                         TxPkt.Valid <= 1'b1;
                         ipFFT_rdy <= 0;
@@ -177,7 +192,7 @@ always@ (posedge ipClk) begin
                     tx_cnt <= tx_cnt + 1;
                 end
                 else one_clk <= 1;
-                if (tx_cnt == 9'd255) state <= idle;
+                if (tx_cnt == 8'd255) state <= idle;
             end
             default:;
         endcase  

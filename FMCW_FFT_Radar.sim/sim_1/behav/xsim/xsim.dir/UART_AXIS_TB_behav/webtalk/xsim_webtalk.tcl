@@ -1,6 +1,6 @@
 webtalk_init -webtalk_dir C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.sim/sim_1/behav/xsim/xsim.dir/UART_AXIS_TB_behav/webtalk/
 webtalk_register_client -client project
-webtalk_add_data -client project -key date_generated -value "Mon Jun 20 20:23:43 2022" -context "software_version_and_target_device"
+webtalk_add_data -client project -key date_generated -value "Tue Jun 21 08:00:41 2022" -context "software_version_and_target_device"
 webtalk_add_data -client project -key product_version -value "XSIM v2021.1 (64-bit)" -context "software_version_and_target_device"
 webtalk_add_data -client project -key build_version -value "3247384" -context "software_version_and_target_device"
 webtalk_add_data -client project -key os_platform -value "WIN64" -context "software_version_and_target_device"
@@ -14,7 +14,7 @@ webtalk_add_data -client project -key target_package -value "not_applicable" -co
 webtalk_add_data -client project -key target_speed -value "not_applicable" -context "software_version_and_target_device"
 webtalk_add_data -client project -key random_id -value "face15de-8092-46ba-82bd-c0d9392305c5" -context "software_version_and_target_device"
 webtalk_add_data -client project -key project_id -value "40ea869cb84f43c99ffda96ef2c064b3" -context "software_version_and_target_device"
-webtalk_add_data -client project -key project_iteration -value "7" -context "software_version_and_target_device"
+webtalk_add_data -client project -key project_iteration -value "19" -context "software_version_and_target_device"
 webtalk_add_data -client project -key os_name -value "Windows Server 2016 or Windows 10" -context "user_environment"
 webtalk_add_data -client project -key os_release -value "major release  (build 9200)" -context "user_environment"
 webtalk_add_data -client project -key cpu_name -value "Intel(R) Core(TM) i7-2600 CPU @ 3.40GHz" -context "user_environment"
@@ -37,7 +37,7 @@ webtalk_add_data -client xsim -key Total_Nets -value "0" -context "xsim\\usage"
 webtalk_add_data -client xsim -key Total_Processes -value "16523" -context "xsim\\usage"
 webtalk_add_data -client xsim -key Total_Instances -value "5706" -context "xsim\\usage"
 webtalk_add_data -client xsim -key Xilinx_HDL_Libraries_Used -value "secureip unimacro_ver unisims_ver " -context "xsim\\usage"
-webtalk_add_data -client xsim -key Compiler_Time -value "84.48_sec" -context "xsim\\usage"
-webtalk_add_data -client xsim -key Compiler_Memory -value "668336_KB" -context "xsim\\usage"
-webtalk_transmit -clientid 2523295908 -regid "" -xml C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.sim/sim_1/behav/xsim/xsim.dir/UART_AXIS_TB_behav/webtalk/usage_statistics_ext_xsim.xml -html C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.sim/sim_1/behav/xsim/xsim.dir/UART_AXIS_TB_behav/webtalk/usage_statistics_ext_xsim.html -wdm C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.sim/sim_1/behav/xsim/xsim.dir/UART_AXIS_TB_behav/webtalk/usage_statistics_ext_xsim.wdm -intro "<H3>XSIM Usage Report</H3><BR>"
+webtalk_add_data -client xsim -key Compiler_Time -value "68.25_sec" -context "xsim\\usage"
+webtalk_add_data -client xsim -key Compiler_Memory -value "666300_KB" -context "xsim\\usage"
+webtalk_transmit -clientid 2637731151 -regid "" -xml C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.sim/sim_1/behav/xsim/xsim.dir/UART_AXIS_TB_behav/webtalk/usage_statistics_ext_xsim.xml -html C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.sim/sim_1/behav/xsim/xsim.dir/UART_AXIS_TB_behav/webtalk/usage_statistics_ext_xsim.html -wdm C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.sim/sim_1/behav/xsim/xsim.dir/UART_AXIS_TB_behav/webtalk/usage_statistics_ext_xsim.wdm -intro "<H3>XSIM Usage Report</H3><BR>"
 webtalk_terminate
