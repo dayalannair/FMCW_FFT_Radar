@@ -1,0 +1,6 @@
+verilog xil_defaultlib  \
+"../../../../FMCW_FFT_Radar.gen/sources_1/ip/output_buffer_gen/sim/output_buffer_gen.v" \
+
+verilog xil_defaultlib "glbl.v"
+
+nosort

@@ -54,6 +54,21 @@ UART_Packetiser packetiser(
   .opTx (opUART_Tx)
 );
 
+reg[8:0] ipBuff_addr;
+reg[31:0] ipBuff_dat;
+reg[31:0] opBuff_dat;
+reg ipBuff_wren;
+reg ipBuff_enable;
+
+input_buffer_gen input_buff(
+    .clka (ipClk),
+    .addra (ipBuff_addr),
+    .dina (ipBuff_dat),
+    .douta (opBuff_dat),
+    .ena (ipBuff_enable),
+    .wea(ipBuff_wren)
+);
+
 reg[7:0] cfg_dat;
 wire cfg_rdy;
 reg cfg_vld;
@@ -62,9 +77,12 @@ reg[31:0] ipFFT_dat;
 reg ipFFT_vld;
 reg ipFFT_rdy;
 
-reg[63:0] opFFT_dat;
+wire[63:0] opFFT_dat;
 wire opFFT_vld;
 reg opFFT_rdy;
+
+wire FFT_input_halt;
+wire FFT_output_halt;
 
 xfft_0 FFT(
     .aclk (ipClk),
@@ -81,20 +99,47 @@ xfft_0 FFT(
 
     .m_axis_data_tdata  (opFFT_dat),
     .m_axis_data_tready (ipFFT_rdy),
-    .m_axis_data_tvalid (opFFT_vld)
+    .m_axis_data_tvalid (opFFT_vld),
+
+    .event_data_in_channel_halt(FFT_input_halt),
+    .event_data_out_channel_halt(FFT_output_halt)
+);
+
+reg[8:0] opBuff_wr_addr;
+reg[8:0] opBuff_rd_addr;
+reg opBuff_wr_en;
+reg opBuff_en;
+//reg opBuff_wr_disable = 0;
+reg web;
+wire[63:0] opBuff_rd_dat;
+
+output_buffer_gen output_buff(
+    .clka(ipClk),  
+    .ena(opBuff_en),    
+    //either high
+    .wea(opBuff_wr_en),
+    //.wea(write_valid^opBuff_wr_disable),    
+    .addra(opBuff_wr_addr),  
+    .dina(opFFT_dat),  
+
+    .clkb(ipClk),
+    .enb(opBuff_en), 
+    .web(web),
+    .addrb(opBuff_rd_addr),
+    .doutb(opBuff_rd_dat)
 );
 
 typedef enum {
 	idle,
     receive_input_data,
-    zero_padding,
+    //zero_padding,
+    feed_input_data,
+    store_output_data,
     send_output_data
 	} STATE;
 
 STATE state;
 reg sweep_received;
-reg[7:0] rx_cnt; 
-reg[7:0] tx_cnt; 
 reg[8:0] pad_cnt;
 reg[3:0] byte_cnt;
 reg[63:0] tx_smpl;
@@ -102,97 +147,129 @@ reg one_clk;
 
 always@ (posedge ipClk) begin
     if(~ipnReset) begin
+        web <= 0; // op buff port B for read only
         ipFFT_vld <= 0;
         ipFFT_dat <= 0;
         ipFFT_rdy <= 0;
         cfg_vld <= 0;
         cfg_dat <= 0;
         sweep_received <= 0;
-        rx_cnt <= 0;
-        tx_cnt <= 0;
         byte_cnt <= 0;
-        pad_cnt <= 0;
         state <= idle;
         tx_smpl <= 0;
         TxPkt.Length <= 8'd8;
+        // Buffers
+        ipBuff_addr <= 0;
+        ipBuff_dat <= 0;
+        ipBuff_wren <= 0;
+        ipBuff_enable <= 1;
+        opBuff_wr_addr <= 0;
+        opBuff_rd_addr <= 0;
+        opBuff_en <= 1;
+        opBuff_wr_en <= 0;
     end
 
     else begin
         case(state)
             idle: begin
                 if(RxPkt.Valid && RxPkt.SoP && opFFT_rdy) begin
-                    ipFFT_dat <= {RxPkt.Data, ipFFT_dat[31:8]};
+                    ipBuff_dat <= {RxPkt.Data, ipBuff_dat[31:8]};
                     byte_cnt <= byte_cnt + 1'b1;
                     state <= receive_input_data;
                 end
-                else if (sweep_received && opFFT_vld) state <= send_output_data;
+                // FFT output valid
+                else if (sweep_received && opFFT_vld) begin
+                    opBuff_wr_en <= 1;
+                    state <= store_output_data;
+                end
                 else begin
-                    ipFFT_vld <= 0;
+                    ipBuff_wren <= 0;
                     byte_cnt <= 0;
-                    rx_cnt <= 0;
+                    opBuff_wr_addr <= 0;
+                    opBuff_rd_addr <= 0;
+                    opBuff_wr_en <= 0;
+                    ipBuff_addr <= 0;
+                    ipFFT_vld <= 0;
                 end
             end
             receive_input_data: begin
                 // state change must happen first, and gate the
                 // rest of the current state
-                if (rx_cnt == 8'd200) state <= zero_padding;
+                if (ipBuff_addr == 8'd200) begin
+                    ipBuff_wren <= 0;
+                    ipBuff_addr <= 0;
+                    state <= feed_input_data;
+                end
                 // build FFT input from packets
                 else if (RxPkt.Valid && byte_cnt < 4'd4) begin
-                    ipFFT_vld <= 0;
-                    ipFFT_dat <= {RxPkt.Data, ipFFT_dat[31:8]};
+                    ipBuff_wren <= 0;
+                    ipBuff_dat <= {RxPkt.Data, ipBuff_dat[31:8]};
                     byte_cnt <= byte_cnt + 1'b1;
                 end
                 // write to FFT. ensure both input is complete and FFT is ready
-                else if (byte_cnt == 4'd4 && opFFT_rdy) begin
-                    ipFFT_vld <= 1;
-                    rx_cnt <= rx_cnt + 1'b1;
+                else if (byte_cnt == 4'd4) begin
+                    // *** check that data is written to the current addr
+                    // when wren high ***
+                    ipBuff_wren <= 1;
+                    ipBuff_addr <= ipBuff_addr + 1'b1;
+                    //rx_cnt <= rx_cnt + 1'b1;
                     byte_cnt <= 0;
                 end
                 // ensure valid for only one clock cycle
-                else ipFFT_vld <= 0;
+                else ipBuff_wren <= 0;
                
             end
-
-            zero_padding: begin
-                //if (pad_cnt<9'd56) begin
-                // pad until FFT no longer accepts data
+            feed_input_data: begin
+                // if (ipBuff_addr == 8'd255) begin
+                //     sweep_received <= 1'b1;
+                //     // change to idle while waiting for FFT
+                //     state <= idle;
+                // end
                 if (opFFT_rdy) begin
-                    ipFFT_dat <= 0;
-                    ipFFT_vld <= 1; 
-                    pad_cnt <= pad_cnt + 1'b1;
+                    ipFFT_vld <= 1;
+                    ipFFT_dat <= opBuff_dat;
+                    ipBuff_addr <= ipBuff_addr + 1'b1;
                 end
-
+                // once fft no longer ready to rcv
                 else begin
-                    sweep_received <= 1'b1;
                     ipFFT_vld <= 0;
+                    sweep_received <= 1'b1;
+                    // change to idle while waiting for FFT to process
                     state <= idle;
                 end
-                
+            end
+            store_output_data: begin
+                //store samples 0 to 255
+                if (opFFT_vld && opBuff_wr_addr < 8'd255) opBuff_wr_addr <= opBuff_wr_addr + 1'b1;
+                else begin
+                    opBuff_rd_addr <= 0;
+                    state <= send_output_data;
+                end
             end
             send_output_data: begin
-                if (opFFT_vld && UART_rdy && (byte_cnt == 0) && (tx_cnt<8'd255)) begin
-                        TxPkt.SoP <= 1'b1;
-                        TxPkt.Valid <= 1'b1;
-                        ipFFT_rdy <= 0;
-                        TxPkt.Data <= opFFT_dat[7:0];
-                        tx_smpl <= opFFT_dat>>8;
-                        byte_cnt <= 1'b1;
-                        one_clk <= 0; // next stage needs 1 clk as packetiser has 1 clk delay
-                    end
+                if (opFFT_vld && UART_rdy && (byte_cnt == 0) && (opBuff_rd_addr<8'd255)) begin
+                    TxPkt.SoP <= 1'b1;
+                    TxPkt.Valid <= 1'b1;
+                    TxPkt.Data <= opBuff_rd_dat[7:0];
+                    tx_smpl <= opBuff_rd_dat>>8;
+                    byte_cnt <= 1'b1;
+                    one_clk <= 0; // next stage needs 1 clk as packetiser has 1 clk delay
+                end
                 else if (opFFT_vld && UART_rdy && (byte_cnt > 0) && (byte_cnt < 4'd8) && one_clk) begin
                     TxPkt.SoP <= 1'b0;
                     TxPkt.Data <= tx_smpl[7:0];
                     tx_smpl <= tx_smpl>>8;
                     byte_cnt <= byte_cnt + 1'b1;
                 end
-                else if (opFFT_vld && UART_rdy &&(byte_cnt == 4'd8)) begin
-                    ipFFT_rdy <= 1;
+                else if (opFFT_vld && UART_rdy && (byte_cnt == 4'd8)) begin
                     TxPkt.Valid <= 1'b0;
+                    opBuff_rd_addr <= opBuff_rd_addr + 1'b1;
                     byte_cnt <= 0;
-                    tx_cnt <= tx_cnt + 1;
                 end
-                else one_clk <= 1;
-                if (tx_cnt == 8'd255) state <= idle;
+                else begin
+                    one_clk <= 1;           
+                end
+                if (opBuff_rd_addr == 8'd255) state <= idle;
             end
             default:;
         endcase  
