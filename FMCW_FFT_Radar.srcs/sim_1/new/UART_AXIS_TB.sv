@@ -41,12 +41,13 @@ UART_Packetiser PC(
 );
 parameter SIZE = 200; 
 reg [31:0] IQ_data [SIZE-1:0];
+reg [7:0] sample_bytes [3:0];
 //reg [7:0] IQ_bytes [800-1:0]; 
 integer j; 
 reg[15:0] I_data;
 reg[15:0] Q_data;
 integer mem_ptr;
-reg[31:0] data_hold1;
+// reg[31:0] data_hold1;
 reg[31:0] data_hold;
 initial begin
     $readmemh("IQ_hex32.mem", IQ_data);  
@@ -60,26 +61,86 @@ initial begin
     // Source address - PC
     PC_TxPacket.Source <= 8'h2C;
     PC_TxPacket.Length <= 8'd200; // not used. interface expects 200x4 bytes
-
-    @(posedge ipClk);
     PC_TxPacket.SoP <= 1'b1;
     if(!opTxReady) @(posedge opTxReady); 
-    for (mem_ptr = 0; mem_ptr < 800; mem_ptr++) begin
-        data_hold1 = IQ_data[mem_ptr];
+    for (mem_ptr = 0; mem_ptr < 50; mem_ptr++) begin
+        // shifting does not work well in sim
+        // better to store separately
+        @(posedge ipClk);
+        // sample_bytes[0] = IQ_data[mem_ptr][7:0];
+        // sample_bytes[1] = IQ_data[mem_ptr][15:8];
+        // sample_bytes[2] = IQ_data[mem_ptr][23:16];
+        // sample_bytes[3] = IQ_data[mem_ptr][31:24];
+        data_hold = IQ_data[mem_ptr];
         I_data = IQ_data[mem_ptr][15:0];
         Q_data = IQ_data[mem_ptr][31:16];
-        data_hold = {Q_data,I_data};
+        
+        //data_hold = {Q_data,I_data};
+        @(posedge ipClk);
         for (j = 0; j < 4; j++) begin
-            PC_TxPacket.Data <= data_hold[7:0];
-            data_hold <= data_hold>>8;
+            @(posedge ipClk);
+            // next packet. must happen in inner loop
+            // damages loop somehow
+            // if((mem_ptr == 50) || (mem_ptr == 100) || (mem_ptr == 150)) PC_TxPacket.SoP <= 1'b1;
+            // else PC_TxPacket.SoP <= 1'b0;
+            PC_TxPacket.Data <= data_hold[7:0];//sample_bytes[j];
             PC_TxPacket.Valid <= 1'b1;
             @(negedge opTxReady);//prevents all happening at once 
             PC_TxPacket.Valid <= 1'b0;
+            data_hold = data_hold>>8;
         end
-        // next packet
-        if(mem_ptr == 200 || mem_ptr == 400 || mem_ptr == 600 ) PC_TxPacket.SoP <= 1'b1;
-        else PC_TxPacket.SoP <= 1'b0;
-        
+        PC_TxPacket.SoP <= 1'b0;
     end
+    PC_TxPacket.SoP <= 1'b1;
+     for (mem_ptr = 50; mem_ptr < 100; mem_ptr++) begin
+        @(posedge ipClk);
+        data_hold = IQ_data[mem_ptr];
+        I_data = IQ_data[mem_ptr][15:0];
+        Q_data = IQ_data[mem_ptr][31:16];
+        @(posedge ipClk);
+        for (j = 0; j < 4; j++) begin
+            @(posedge ipClk);
+            PC_TxPacket.Data <= data_hold[7:0];
+            PC_TxPacket.Valid <= 1'b1;
+            @(negedge opTxReady);
+            PC_TxPacket.Valid <= 1'b0;
+            data_hold = data_hold>>8;
+        end
+        PC_TxPacket.SoP <= 1'b0;
+     end
+     PC_TxPacket.SoP <= 1'b1;
+     for (mem_ptr = 100; mem_ptr < 150; mem_ptr++) begin
+        @(posedge ipClk);
+        data_hold = IQ_data[mem_ptr];
+        I_data = IQ_data[mem_ptr][15:0];
+        Q_data = IQ_data[mem_ptr][31:16];
+        @(posedge ipClk);
+        for (j = 0; j < 4; j++) begin
+            @(posedge ipClk);
+            PC_TxPacket.Data <= data_hold[7:0];
+            PC_TxPacket.Valid <= 1'b1;
+            @(negedge opTxReady);
+            PC_TxPacket.Valid <= 1'b0;
+            data_hold = data_hold>>8;
+        end
+        PC_TxPacket.SoP <= 1'b0;
+     end
+     PC_TxPacket.SoP <= 1'b1;
+     for (mem_ptr = 150; mem_ptr < 200; mem_ptr++) begin
+        @(posedge ipClk);
+        data_hold = IQ_data[mem_ptr];
+        I_data = IQ_data[mem_ptr][15:0];
+        Q_data = IQ_data[mem_ptr][31:16];
+        @(posedge ipClk);
+        for (j = 0; j < 4; j++) begin
+            @(posedge ipClk);
+            PC_TxPacket.Data <= data_hold[7:0];
+            PC_TxPacket.Valid <= 1'b1;
+            @(negedge opTxReady);
+            PC_TxPacket.Valid <= 1'b0;
+            data_hold = data_hold>>8;
+        end
+        PC_TxPacket.SoP <= 1'b0;
+     end
 end
 endmodule

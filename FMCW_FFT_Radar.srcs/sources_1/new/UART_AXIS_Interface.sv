@@ -244,8 +244,12 @@ always@ (posedge ipClk) begin
             end
             store_output_data: begin
                 //store samples 0 to 255
-                if (opFFT_vld && opBuff_wr_addr < 8'd255) opBuff_wr_addr <= opBuff_wr_addr + 1'b1;
+                if (opFFT_vld && opBuff_wr_addr < 8'd255) begin
+                    ipFFT_rdy <= 1'b1;
+                    opBuff_wr_addr <= opBuff_wr_addr + 1'b1;
+                end
                 else begin
+                    ipFFT_rdy <= 1'b0;
                     opBuff_rd_addr <= 0;
                     state <= send_output_data;
                 end

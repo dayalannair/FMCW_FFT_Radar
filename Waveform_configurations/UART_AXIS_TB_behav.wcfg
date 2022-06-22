@@ -13,15 +13,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0.000000 us"></ZoomStartTime>
-      <ZoomEndTime time="74.700001 us"></ZoomEndTime>
-      <Cursor1Time time="57.700000 us"></Cursor1Time>
+      <ZoomStartTime time="26.590000 us"></ZoomStartTime>
+      <ZoomEndTime time="101.690001 us"></ZoomEndTime>
+      <Cursor1Time time="52.990000 us"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="206"></NameColumnWidth>
-      <ValueColumnWidth column_width="78"></ValueColumnWidth>
+      <ValueColumnWidth column_width="74"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="12" />
+   <WVObjectSize size="14" />
    <wave_markers>
       <marker time="5493506667" label="" />
    </wave_markers>
@@ -29,10 +29,47 @@
       <obj_property name="ElementShortName">PC_TxPacket</obj_property>
       <obj_property name="ObjectShortName">PC_TxPacket</obj_property>
       <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/UART_AXIS_TB/PC_TxPacket.Source" type="array">
+         <obj_property name="ElementShortName">.Source[7:0]</obj_property>
+         <obj_property name="ObjectShortName">.Source[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/UART_AXIS_TB/PC_TxPacket.Destination" type="array">
+         <obj_property name="ElementShortName">.Destination[7:0]</obj_property>
+         <obj_property name="ObjectShortName">.Destination[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/UART_AXIS_TB/PC_TxPacket.Length" type="array">
+         <obj_property name="ElementShortName">.Length[7:0]</obj_property>
+         <obj_property name="ObjectShortName">.Length[7:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/UART_AXIS_TB/PC_TxPacket.SoP" type="logic">
+         <obj_property name="ElementShortName">.SoP</obj_property>
+         <obj_property name="ObjectShortName">.SoP</obj_property>
+      </wvobject>
+      <wvobject fp_name="/UART_AXIS_TB/PC_TxPacket.EoP" type="logic">
+         <obj_property name="ElementShortName">.EoP</obj_property>
+         <obj_property name="ObjectShortName">.EoP</obj_property>
+      </wvobject>
+      <wvobject fp_name="/UART_AXIS_TB/PC_TxPacket.Data" type="array">
+         <obj_property name="ElementShortName">.Data[7:0]</obj_property>
+         <obj_property name="ObjectShortName">.Data[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/UART_AXIS_TB/PC_TxPacket.Valid" type="logic">
+         <obj_property name="ElementShortName">.Valid</obj_property>
+         <obj_property name="ObjectShortName">.Valid</obj_property>
+      </wvobject>
    </wvobject>
    <wvobject fp_name="/UART_AXIS_TB/PC_RxPacket" type="array">
       <obj_property name="ElementShortName">PC_RxPacket</obj_property>
       <obj_property name="ObjectShortName">PC_RxPacket</obj_property>
+   </wvobject>
+   <wvobject fp_name="/UART_AXIS_TB/DUT/input_buff/dina" type="array">
+      <obj_property name="ElementShortName">dina[31:0]</obj_property>
+      <obj_property name="ObjectShortName">dina[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/UART_AXIS_TB/DUT/input_buff/wea" type="array">
+      <obj_property name="ElementShortName">wea[0:0]</obj_property>
+      <obj_property name="ObjectShortName">wea[0:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/UART_AXIS_TB/DUT/state" type="array">
       <obj_property name="ElementShortName">state[31:0]</obj_property>
@@ -116,6 +153,7 @@
    <wvobject fp_name="/UART_AXIS_TB/mem_ptr" type="array">
       <obj_property name="ElementShortName">mem_ptr[31:0]</obj_property>
       <obj_property name="ObjectShortName">mem_ptr[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject fp_name="/UART_AXIS_TB/data_hold" type="array">
       <obj_property name="ElementShortName">data_hold[31:0]</obj_property>
