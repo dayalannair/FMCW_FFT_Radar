@@ -39,41 +39,45 @@ UART_Packetiser PC(
   .opTx (DUT_ipRx), 
   .ipRx (DUT_opTx)
 );
-
-
-integer i; 
+parameter SIZE = 200; 
+reg [31:0] IQ_data [SIZE-1:0];
+//reg [7:0] IQ_bytes [800-1:0]; 
+integer j; 
+reg[15:0] I_data;
+reg[15:0] Q_data;
+integer mem_ptr;
+reg[31:0] data_hold;
 initial begin
-
+    $readmemh("IQ_hex32.mem", IQ_data);  
+    //for (k = 0; k)
+    mem_ptr = 0;
 //------------------- READ REGISTERS ----------------------------------  
-    opTxReady <= 1;
+    opTxReady = 1;
     PC_TxPacket.Valid <= 1'b0;
     // Destination = read
     PC_TxPacket.Destination <= 8'h00;
     // Source address - PC
     PC_TxPacket.Source <= 8'h2C;
-    PC_TxPacket.Length <= 8'hff; // not used. interface expects 200x4 bytes
-    // Read LED registers - Address 8'h02
-    PC_TxPacket.Data <= 8'h00;
+    PC_TxPacket.Length <= 8'd200; // not used. interface expects 200x4 bytes
 
-    @(negedge ipReset);
     @(posedge ipClk);
-    PC_TxPacket.Valid <= 1'b1;
     PC_TxPacket.SoP <= 1'b1;
-    @(posedge ipClk);
-    PC_TxPacket.Valid <= 1'b0;
-    PC_TxPacket.SoP <= 1'b0;
-    @(posedge ipClk);
     if(!opTxReady) @(posedge opTxReady); 
-    for (i = 0; i < 800; i++) begin
-        //if(!opTxReady) @(posedge opTxReady); 
-        PC_TxPacket.Data <= PC_TxPacket.Data + 1'b1;
-        PC_TxPacket.Valid <= 1'b1;
-        @(negedge opTxReady);//prevents all happening at once 
-        PC_TxPacket.Valid <= 1'b0;
-        // new packet once max data length (8 bits) worth of 
-        // bytes have been sent
-        if(PC_TxPacket.Data == 8'd255) PC_TxPacket.SoP <= 1'b1;
-        else PC_TxPacket.SoP <= 1'b1;
+    for (mem_ptr = 0; mem_ptr < 800; mem_ptr++) begin
+        data_hold = IQ_data[mem_ptr][31:0];
+        I_data = IQ_data[mem_ptr][15:0];
+        Q_data = IQ_data[mem_ptr][31:16];
+        for (j = 0; j < 4; j++) begin
+            PC_TxPacket.Data <= data_hold[7:0];
+            data_hold <= data_hold>>8;
+            PC_TxPacket.Valid <= 1'b1;
+            @(negedge opTxReady);//prevents all happening at once 
+            PC_TxPacket.Valid <= 1'b0;
+        end
+        // next packet
+        if(mem_ptr == 200 || mem_ptr == 400 || mem_ptr == 600 ) PC_TxPacket.SoP <= 1'b1;
+        else PC_TxPacket.SoP <= 1'b0;
+        
     end
 end
 endmodule
