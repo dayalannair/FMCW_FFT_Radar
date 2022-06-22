@@ -46,6 +46,7 @@ integer j;
 reg[15:0] I_data;
 reg[15:0] Q_data;
 integer mem_ptr;
+reg[31:0] data_hold1;
 reg[31:0] data_hold;
 initial begin
     $readmemh("IQ_hex32.mem", IQ_data);  
@@ -64,9 +65,10 @@ initial begin
     PC_TxPacket.SoP <= 1'b1;
     if(!opTxReady) @(posedge opTxReady); 
     for (mem_ptr = 0; mem_ptr < 800; mem_ptr++) begin
-        data_hold = IQ_data[mem_ptr][31:0];
+        data_hold1 = IQ_data[mem_ptr];
         I_data = IQ_data[mem_ptr][15:0];
         Q_data = IQ_data[mem_ptr][31:16];
+        data_hold = {Q_data,I_data};
         for (j = 0; j < 4; j++) begin
             PC_TxPacket.Data <= data_hold[7:0];
             data_hold <= data_hold>>8;

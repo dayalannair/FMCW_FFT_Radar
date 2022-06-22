@@ -15,7 +15,7 @@
    <zoom_setting>
       <ZoomStartTime time="0.000000 us"></ZoomStartTime>
       <ZoomEndTime time="74.700001 us"></ZoomEndTime>
-      <Cursor1Time time="11.800000 us"></Cursor1Time>
+      <Cursor1Time time="57.700000 us"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="206"></NameColumnWidth>
@@ -111,6 +111,7 @@
    <wvobject fp_name="/UART_AXIS_TB/IQ_data" type="array">
       <obj_property name="ElementShortName">IQ_data[199:0][31:0]</obj_property>
       <obj_property name="ObjectShortName">IQ_data[199:0][31:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
    </wvobject>
    <wvobject fp_name="/UART_AXIS_TB/mem_ptr" type="array">
       <obj_property name="ElementShortName">mem_ptr[31:0]</obj_property>
@@ -119,6 +120,7 @@
    <wvobject fp_name="/UART_AXIS_TB/data_hold" type="array">
       <obj_property name="ElementShortName">data_hold[31:0]</obj_property>
       <obj_property name="ObjectShortName">data_hold[31:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
    </wvobject>
    <wvobject fp_name="/UART_AXIS_TB/j" type="array">
       <obj_property name="ElementShortName">j[31:0]</obj_property>
@@ -137,11 +139,23 @@
       <obj_property name="ObjectShortName">I_data[15:0]</obj_property>
       <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
       <obj_property name="CellHeight">100</obj_property>
+      <obj_property name="AnalogYRangeType">ANALOG_YRANGETYPE_AUTO</obj_property>
+      <obj_property name="AnalogYRangeMin">0.000000</obj_property>
+      <obj_property name="AnalogYRRangeMax">0.000000</obj_property>
+      <obj_property name="AnalogInterpolation">ANALOG_INTERPOLATION_HOLD</obj_property>
+      <obj_property name="AnalogOffscale">ANALOG_OFFSCALE_HIDE</obj_property>
+      <obj_property name="AnalogHorizLine">0.000000</obj_property>
    </wvobject>
    <wvobject fp_name="/UART_AXIS_TB/Q_data" type="array">
       <obj_property name="ElementShortName">Q_data[15:0]</obj_property>
       <obj_property name="ObjectShortName">Q_data[15:0]</obj_property>
       <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
       <obj_property name="CellHeight">100</obj_property>
+      <obj_property name="AnalogYRangeType">ANALOG_YRANGETYPE_AUTO</obj_property>
+      <obj_property name="AnalogYRangeMin">0.000000</obj_property>
+      <obj_property name="AnalogYRRangeMax">0.000000</obj_property>
+      <obj_property name="AnalogInterpolation">ANALOG_INTERPOLATION_HOLD</obj_property>
+      <obj_property name="AnalogOffscale">ANALOG_OFFSCALE_HIDE</obj_property>
+      <obj_property name="AnalogHorizLine">0.000000</obj_property>
    </wvobject>
 </wave_config>
