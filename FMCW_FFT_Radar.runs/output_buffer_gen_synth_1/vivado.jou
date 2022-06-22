@@ -1,0 +1,13 @@
+#-----------------------------------------------------------
+# Vivado v2022.1 (64-bit)
+# SW Build 3526262 on Mon Apr 18 15:48:16 MDT 2022
+# IP Build 3524634 on Mon Apr 18 20:55:01 MDT 2022
+# Start of session at: Wed Jun 22 06:43:39 2022
+# Process ID: 8956
+# Current directory: C:/Users/naird/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.runs/output_buffer_gen_synth_1
+# Command line: vivado.exe -log output_buffer_gen.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source output_buffer_gen.tcl
+# Log file: C:/Users/naird/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.runs/output_buffer_gen_synth_1/output_buffer_gen.vds
+# Journal file: C:/Users/naird/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.runs/output_buffer_gen_synth_1\vivado.jou
+# Running On: DESKTOP-QFVTB2Q, OS: Windows, CPU Frequency: 3392 MHz, CPU Physical cores: 4, Host memory: 12787 MB
+#-----------------------------------------------------------
+source output_buffer_gen.tcl -notrace

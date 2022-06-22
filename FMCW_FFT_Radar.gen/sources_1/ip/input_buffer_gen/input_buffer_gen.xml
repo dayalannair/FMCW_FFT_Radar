@@ -68,6 +68,15 @@
           </spirit:vendorExtensions>
         </spirit:parameter>
         <spirit:parameter>
+          <spirit:name>ASSOCIATED_PORT</spirit:name>
+          <spirit:value spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.CLK.ACLK.ASSOCIATED_PORT"/>
+          <spirit:vendorExtensions>
+            <xilinx:parameterInfo>
+              <xilinx:parameterUsage>none</xilinx:parameterUsage>
+            </xilinx:parameterInfo>
+          </spirit:vendorExtensions>
+        </spirit:parameter>
+        <spirit:parameter>
           <spirit:name>INSERT_VIP</spirit:name>
           <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="BUSIFPARAM_VALUE.CLK.ACLK.INSERT_VIP">0</spirit:value>
           <spirit:vendorExtensions>
@@ -1466,11 +1475,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Tue Jun 21 07:37:07 UTC 2022</spirit:value>
+            <spirit:value>Wed Jun 22 04:39:30 UTC 2022</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:81a4bc01</spirit:value>
+            <spirit:value>9:5ea231c3</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1479,18 +1488,18 @@
         <spirit:displayName>VHDL Synthesis</spirit:displayName>
         <spirit:envIdentifier>vhdlSource:vivado.xilinx.com:synthesis</spirit:envIdentifier>
         <spirit:language>vhdl</spirit:language>
-        <spirit:modelName>blk_mem_gen_v8_4_4</spirit:modelName>
+        <spirit:modelName>blk_mem_gen_v8_4_5</spirit:modelName>
         <spirit:fileSetRef>
           <spirit:localName>xilinx_vhdlsynthesis_view_fileset</spirit:localName>
         </spirit:fileSetRef>
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Tue Jun 21 07:37:09 UTC 2022</spirit:value>
+            <spirit:value>Wed Jun 22 04:43:29 UTC 2022</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:81a4bc01</spirit:value>
+            <spirit:value>9:5ea231c3</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1501,7 +1510,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:81a4bc01</spirit:value>
+            <spirit:value>9:5ea231c3</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1517,11 +1526,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Tue Jun 21 07:37:09 UTC 2022</spirit:value>
+            <spirit:value>Wed Jun 22 04:43:29 UTC 2022</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:81a4bc01</spirit:value>
+            <spirit:value>9:5ea231c3</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1529,18 +1538,18 @@
         <spirit:name>xilinx_anylanguagebehavioralsimulation</spirit:name>
         <spirit:displayName>Simulation</spirit:displayName>
         <spirit:envIdentifier>:vivado.xilinx.com:simulation</spirit:envIdentifier>
-        <spirit:modelName>blk_mem_gen_v8_4_4</spirit:modelName>
+        <spirit:modelName>blk_mem_gen_v8_4_5</spirit:modelName>
         <spirit:fileSetRef>
           <spirit:localName>xilinx_anylanguagebehavioralsimulation_view_fileset</spirit:localName>
         </spirit:fileSetRef>
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Tue Jun 21 07:37:09 UTC 2022</spirit:value>
+            <spirit:value>Wed Jun 22 04:43:29 UTC 2022</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:da217819</spirit:value>
+            <spirit:value>9:0527f5db</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1556,11 +1565,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Tue Jun 21 07:37:09 UTC 2022</spirit:value>
+            <spirit:value>Wed Jun 22 04:43:29 UTC 2022</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:da217819</spirit:value>
+            <spirit:value>9:0527f5db</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1574,11 +1583,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Tue Jun 21 07:37:09 UTC 2022</spirit:value>
+            <spirit:value>Wed Jun 22 04:43:30 UTC 2022</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:81a4bc01</spirit:value>
+            <spirit:value>9:5ea231c3</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1592,11 +1601,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Tue Jun 21 07:37:09 UTC 2022</spirit:value>
+            <spirit:value>Wed Jun 22 04:43:30 UTC 2022</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:81a4bc01</spirit:value>
+            <spirit:value>9:5ea231c3</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1610,11 +1619,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Tue Jun 21 07:38:47 UTC 2022</spirit:value>
+            <spirit:value>Wed Jun 22 04:50:36 UTC 2022</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:81a4bc01</spirit:value>
+            <spirit:value>9:5ea231c3</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -3574,7 +3583,7 @@
       <spirit:file>
         <spirit:name>hdl/blk_mem_gen_v8_4_vhsyn_rfs.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>blk_mem_gen_v8_4_4</spirit:logicalName>
+        <spirit:logicalName>blk_mem_gen_v8_4_5</spirit:logicalName>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -3591,8 +3600,8 @@
         <spirit:name>simulation/blk_mem_gen_v8_4.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-        <spirit:logicalName>blk_mem_gen_v8_4_4</spirit:logicalName>
-        <spirit:exportedName>blk_mem_gen_v8_4_4</spirit:exportedName>
+        <spirit:logicalName>blk_mem_gen_v8_4_5</spirit:logicalName>
+        <spirit:exportedName>blk_mem_gen_v8_4_5</spirit:exportedName>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -3743,7 +3752,7 @@
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="PARAM_ENABLEMENT.PRIM_type_to_Implement">false</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="PARAM_ENABLEMENT.PRIM_type_to_Implement">true</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:parameterInfo>
       </spirit:vendorExtensions>
@@ -4459,7 +4468,7 @@
       <xilinx:xpmLibraries>
         <xilinx:xpmLibrary>XPM_MEMORY</xilinx:xpmLibrary>
       </xilinx:xpmLibraries>
-      <xilinx:coreRevision>4</xilinx:coreRevision>
+      <xilinx:coreRevision>5</xilinx:coreRevision>
       <xilinx:configElementInfos>
         <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.AXILITE_SLAVE_S_AXI.ADDR_WIDTH" xilinx:valueSource="auto"/>
         <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.AXILITE_SLAVE_S_AXI.ARUSER_WIDTH" xilinx:valueSource="constant"/>
@@ -4520,10 +4529,10 @@
       </xilinx:configElementInfos>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
-      <xilinx:xilinxVersion>2021.1</xilinx:xilinxVersion>
+      <xilinx:xilinxVersion>2022.1</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="52ed1045"/>
       <xilinx:checksum xilinx:scope="memoryMaps" xilinx:value="a1d35893"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="4ba6d99f"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="f11765aa"/>
       <xilinx:checksum xilinx:scope="ports" xilinx:value="3031f2fd"/>
       <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="9c3516e3"/>
       <xilinx:checksum xilinx:scope="parameters" xilinx:value="e6bad347"/>

@@ -167,18 +167,21 @@ always@ (posedge ipClk) begin
         opBuff_rd_addr <= 0;
         opBuff_en <= 1;
         opBuff_wr_en <= 0;
+        opLED <= 0;
     end
 
     else begin
         case(state)
             idle: begin
                 if(RxPkt.Valid && RxPkt.SoP && opFFT_rdy) begin
+                    opLED <= 16'b1000000000000000;
                     ipBuff_dat <= {RxPkt.Data, ipBuff_dat[31:8]};
                     byte_cnt <= byte_cnt + 1'b1;
                     state <= receive_input_data;
                 end
                 // FFT output valid
                 else if (sweep_received && opFFT_vld) begin
+                    opLED <= 16'b0000000000000001;
                     opBuff_wr_en <= 1;
                     state <= store_output_data;
                 end
@@ -208,6 +211,7 @@ always@ (posedge ipClk) begin
                 end
                 // write to FFT. ensure both input is complete and FFT is ready
                 else if (byte_cnt == 4'd4) begin
+                    opLED <= opLED>>1;
                     // *** check that data is written to the current addr
                     // when wren high ***
                     ipBuff_wren <= 1;
@@ -262,6 +266,7 @@ always@ (posedge ipClk) begin
                     byte_cnt <= byte_cnt + 1'b1;
                 end
                 else if (opFFT_vld && UART_rdy && (byte_cnt == 4'd8)) begin
+                    opLED <= opLED<<1;
                     TxPkt.Valid <= 1'b0;
                     opBuff_rd_addr <= opBuff_rd_addr + 1'b1;
                     byte_cnt <= 0;

@@ -1,12 +1,13 @@
 #-----------------------------------------------------------
-# Vivado v2021.1 (64-bit)
-# SW Build 3247384 on Thu Jun 10 19:36:33 MDT 2021
-# IP Build 3246043 on Fri Jun 11 00:30:35 MDT 2021
-# Start of session at: Tue Jun 21 09:37:18 2022
-# Process ID: 4908
-# Current directory: C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.runs/input_buffer_gen_synth_1
+# Vivado v2022.1 (64-bit)
+# SW Build 3526262 on Mon Apr 18 15:48:16 MDT 2022
+# IP Build 3524634 on Mon Apr 18 20:55:01 MDT 2022
+# Start of session at: Wed Jun 22 06:49:07 2022
+# Process ID: 3924
+# Current directory: C:/Users/naird/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.runs/input_buffer_gen_synth_1
 # Command line: vivado.exe -log input_buffer_gen.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source input_buffer_gen.tcl
-# Log file: C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.runs/input_buffer_gen_synth_1/input_buffer_gen.vds
-# Journal file: C:/Users/Dayalan/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.runs/input_buffer_gen_synth_1\vivado.jou
+# Log file: C:/Users/naird/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.runs/input_buffer_gen_synth_1/input_buffer_gen.vds
+# Journal file: C:/Users/naird/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.runs/input_buffer_gen_synth_1\vivado.jou
+# Running On: DESKTOP-QFVTB2Q, OS: Windows, CPU Frequency: 3392 MHz, CPU Physical cores: 4, Host memory: 12787 MB
 #-----------------------------------------------------------
 source input_buffer_gen.tcl -notrace

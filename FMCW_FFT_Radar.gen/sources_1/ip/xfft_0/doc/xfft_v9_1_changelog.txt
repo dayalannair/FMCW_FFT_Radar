@@ -1,3 +1,25 @@
+2022.1:
+ * Version 9.1 (Rev. 8)
+ * General: Matlab demonstration smoke test updated. No change to core functionality.
+ * General: Bugfix to handling of varying cyclic prefix lengths when intermediate cyclic prefix length is zero in Pipelined, Streaming I/O FFT
+ * Revision change in one or more subcores
+
+2021.2.2:
+ * Version 9.1 (Rev. 7)
+ * No changes
+
+2021.2.1:
+ * Version 9.1 (Rev. 7)
+ * No changes
+
+2021.2:
+ * Version 9.1 (Rev. 7)
+ * Bug Fix: RTL bugfix in Pipelined, Streaming I/O FFT where flushing did not occur following a point size change during backpressure.
+
+2021.1.1:
+ * Version 9.1 (Rev. 6)
+ * No changes
+
 2021.1:
  * Version 9.1 (Rev. 6)
  * Revision change in one or more subcores
@@ -208,7 +230,7 @@
  * Native Vivado Release
  * There have been no functional or interface changes to this IP.  The version number has changed to support unique versioning in Vivado starting with 2013.1.
 
-(c) Copyright 2000 - 2021 Xilinx, Inc. All rights reserved.
+(c) Copyright 2000 - 2022 Xilinx, Inc. All rights reserved.
 
 This file contains confidential and proprietary information
 of Xilinx, Inc. and is protected under U.S. and

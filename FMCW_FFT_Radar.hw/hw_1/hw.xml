@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Product Version: Vivado v2021.1 (64-bit)                     -->
+<!-- Product Version: Vivado v2022.1 (64-bit)                     -->
 <!--                                                              -->
-<!-- Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.        -->
+<!-- Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.        -->
 
 <hwsession version="1" minor="2">
   <device name="xc7a100t_0" gui_info=""/>
@@ -9,7 +9,7 @@
     <Object name="xc7a100t_0" gui_info="">
       <Properties Property="FULL_PROBES.FILE" value=""/>
       <Properties Property="PROBES.FILE" value=""/>
-      <Properties Property="PROGRAM.HW_BITSTREAM" value="$_project_name_.runs/impl_1/FIFO_stream_wrapper.bit"/>
+      <Properties Property="PROGRAM.HW_BITSTREAM" value="$_project_name_.runs/impl_1/UART_AXIS_Interface.bit"/>
       <Properties Property="SLR.COUNT" value="1"/>
     </Object>
   </ObjectList>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="input_buffer_gen_synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1655797031">
+<GenRun Id="input_buffer_gen_synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1655873014">
   <File Type="PA-TCL" Name="input_buffer_gen.tcl"/>
   <File Type="RDS-PROPCONSTRS" Name="input_buffer_gen_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="input_buffer_gen_reports.tcl"/>
@@ -42,7 +42,7 @@
     </Config>
   </FileSet>
   <Strategy Version="1" Minor="2">
-    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2021">
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2022">
       <Desc>Vivado Synthesis Defaults</Desc>
     </StratHandle>
     <Step Id="synth_design"/>
