@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1655874239">
+<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1655977739">
   <File Type="PA-TCL" Name="UART_AXIS_Interface.tcl"/>
+  <File Type="RDS-PROPCONSTRS" Name="UART_AXIS_Interface_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="UART_AXIS_Interface_reports.tcl"/>
   <File Type="RDS-RDS" Name="UART_AXIS_Interface.vds"/>
   <File Type="RDS-UTIL" Name="UART_AXIS_Interface_utilization_synth.rpt"/>
   <File Type="RDS-UTIL-PB" Name="UART_AXIS_Interface_utilization_synth.pb"/>
   <File Type="RDS-DCP" Name="UART_AXIS_Interface.dcp"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="UART_AXIS_Interface_timing_summary_synth.rpt"/>
+  <File Type="VDS-TIMING-PB" Name="UART_AXIS_Interface_timing_summary_synth.pb"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/new/Structures.v">
@@ -104,7 +107,9 @@
     </Config>
   </FileSet>
   <Strategy Version="1" Minor="2">
-    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2021"/>
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2021">
+      <Desc>Vivado Synthesis Defaults</Desc>
+    </StratHandle>
     <Step Id="synth_design"/>
   </Strategy>
   <BlockFileSet Type="BlockSrcs" Name="output_buffer_gen"/>

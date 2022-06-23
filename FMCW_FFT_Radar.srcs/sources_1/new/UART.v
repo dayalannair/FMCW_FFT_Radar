@@ -39,7 +39,7 @@ To receive data:
 ------------------------------------------------------------------------------*/
 
 module UART #(
-	parameter BAUD_COUNT = 10'd1//10'd32
+	parameter BAUD_COUNT = 10'd32//10'd1//10'd32
 )
 (
   input           ipClk,

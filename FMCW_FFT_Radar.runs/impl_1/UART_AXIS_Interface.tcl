@@ -123,8 +123,11 @@ set ACTIVE_STEP init_design
 set rc [catch {
   create_msg_db init_design.pb
   set_param chipscope.maxJobs 2
+  set_param xicom.use_bs_reader 1
 OPTRACE "create in-memory project" START { }
   create_project -in_memory -part xc7a100tcsg324-1
+  set_property board_part_repo_paths {C:/Users/naird/Desktop/FMCW_FFT_Radar/board_files} [current_project]
+  set_property board_part digilentinc.com:nexys-a7-100t:part0:1.2 [current_project]
   set_property design_mode GateLvl [current_fileset]
   set_param project.singleFileAddWarning.threshold 0
 OPTRACE "create in-memory project" END { }

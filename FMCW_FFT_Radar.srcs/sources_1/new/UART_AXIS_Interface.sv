@@ -174,14 +174,16 @@ always@ (posedge ipClk) begin
         case(state)
             idle: begin
                 if(RxPkt.Valid && RxPkt.SoP && opFFT_rdy) begin
-                    opLED <= 16'b1000000000000000;
+                    //opLED <= 16'b1000000000000000;
+                    opLED[3] <= 1'b1;
                     ipBuff_dat <= {RxPkt.Data, ipBuff_dat[31:8]};
                     byte_cnt <= byte_cnt + 1'b1;
                     state <= receive_input_data;
                 end
                 // FFT output valid
                 else if (sweep_received && opFFT_vld) begin
-                    opLED <= 16'b0000000000000001;
+                    //opLED <= 16'b0000000000000001;
+                    opLED[4] <= 1'b1;
                     opBuff_wr_en <= 1;
                     state <= store_output_data;
                 end
@@ -193,9 +195,15 @@ always@ (posedge ipClk) begin
                     opBuff_wr_en <= 0;
                     ipBuff_addr <= 0;
                     ipFFT_vld <= 0;
+                    opLED[15:12] <= 4'h5;
+                    opLED[0] <= opFFT_vld;
+                    opLED[1] <= opFFT_rdy;
+                    opLED[2] <= UART_rdy;
                 end
             end
             receive_input_data: begin
+                // opLED[15:8] <= 8'hff;
+                // opLED[7:0] <= ipBuff_addr;
                 // state change must happen first, and gate the
                 // rest of the current state
                 if (ipBuff_addr == 8'd200) begin
@@ -211,7 +219,6 @@ always@ (posedge ipClk) begin
                 end
                 // write to FFT. ensure both input is complete and FFT is ready
                 else if (byte_cnt == 4'd4) begin
-                    opLED <= opLED>>1;
                     // *** check that data is written to the current addr
                     // when wren high ***
                     ipBuff_wren <= 1;
@@ -229,6 +236,7 @@ always@ (posedge ipClk) begin
                 //     // change to idle while waiting for FFT
                 //     state <= idle;
                 // end
+                opLED <= 16'h5555;
                 if (opFFT_rdy) begin
                     ipFFT_vld <= 1;
                     ipFFT_dat <= opBuff_dat;
@@ -270,7 +278,7 @@ always@ (posedge ipClk) begin
                     byte_cnt <= byte_cnt + 1'b1;
                 end
                 else if (opFFT_vld && UART_rdy && (byte_cnt == 4'd8)) begin
-                    opLED <= opLED<<1;
+                    //opLED <= opLED<<1;
                     TxPkt.Valid <= 1'b0;
                     opBuff_rd_addr <= opBuff_rd_addr + 1'b1;
                     byte_cnt <= 0;
