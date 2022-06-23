@@ -3,11 +3,11 @@ format longg
 % FPGA_Im_FFT_tab = readtable('..\FMCW_FFT_Radar.sim\sim_1\behav\xsim\FFT_out_Im.txt','Delimiter' ,'\n');
 
 % OUTPUT FROM NEXYS A7
-FPGA_Re_FFT_tab = readtable('..\Python_scripts\FFT_Re.txt','Delimiter' ,'\n');
-FPGA_Im_FFT_tab = readtable('..\Python_scripts\FFT_Im.txt','Delimiter' ,'\n');
+FPGA_Re_FFT_tab = readtable('FFT_Re.txt','Delimiter' ,'\n');
+FPGA_Im_FFT_tab = readtable('FFT_Im.txt','Delimiter' ,'\n');
 
-raw_Re_tab = readtable('IQ_data_previous/I_trolley_test.txt','Delimiter' ,' ');
-raw_Im_tab = readtable('IQ_data_previous/Q_trolley_test.txt','Delimiter' ,' ');
+raw_Re_tab = readtable('IQ_data/I_trolley_test.txt','Delimiter' ,' ');
+raw_Im_tab = readtable('IQ_data/Q_trolley_test.txt','Delimiter' ,' ');
 
 i_dat = zeros(1, 256);
 q_dat = zeros(1, 256);
@@ -38,19 +38,19 @@ close all
 
 fig = figure;
 fig.WindowState = 'maximized';
-tiledlayout(6,1)
-nexttile
-plot(fftshift(Re))
-title("FPGA FFT Real component (fftshift)")
-nexttile
-plot(fftshift(Im))
-title("FPGA FFT Imaginary component (fftshift)")
-nexttile
-plot(fftshift(real(MATLAB_FFT)))
-title("MATLAB FFT Real component (fftshift)")
-nexttile
-plot(fftshift(imag(MATLAB_FFT)))
-title("MATLAB FFT Imaginary component (fftshift)")
+% tiledlayout(6,1)
+% nexttile
+% plot(fftshift(Re))
+% title("FPGA FFT Real component (fftshift)")
+% nexttile
+% plot(fftshift(Im))
+% title("FPGA FFT Imaginary component (fftshift)")
+% nexttile
+% plot(fftshift(real(MATLAB_FFT)))
+% title("MATLAB FFT Real component (fftshift)")
+% nexttile
+% plot(fftshift(imag(MATLAB_FFT)))
+% title("MATLAB FFT Imaginary component (fftshift)")
 
 % nexttile
 % %plot(FFT_mag(1:end-1));
@@ -64,12 +64,13 @@ title("MATLAB FFT Imaginary component (fftshift)")
 % plot(f/1000, 20*log10(fftshift(abs(MATLAB_FFT)))-115)
 % title("MATLAB FFT Magnitude (fftshifted)")
 % xlabel("Frequency (kHz)")
-nexttile
+%nexttile
 plot(f/1000, fftshift(abs(FPGA_FFT)))
 title("FPGA FFT Magnitude (fftshifted)")
 xlabel("Frequency (kHz)")
 axis([-100 100 0 10e5])
-nexttile
+%nexttile
+hold on
 % plot(angle(FPGA_FFT))
 % title("FFT Phase")
 plot(f/1000,fftshift(abs(MATLAB_FFT)))
