@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2022.1 (win64) Build 3526262 Mon Apr 18 15:48:16 MDT 2022
-| Date         : Thu Jun 23 11:52:07 2022
+| Date         : Fri Jun 24 09:14:05 2022
 | Host         : DESKTOP-QFVTB2Q running 64-bit major release  (build 9200)
 | Command      : report_drc -file UART_AXIS_Interface_drc_routed.rpt -pb UART_AXIS_Interface_drc_routed.pb -rpx UART_AXIS_Interface_drc_routed.rpx
 | Design       : UART_AXIS_Interface

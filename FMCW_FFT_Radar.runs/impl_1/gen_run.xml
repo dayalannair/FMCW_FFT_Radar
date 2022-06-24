@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="impl_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1655977739">
+<GenRun Id="impl_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1656054663">
   <File Type="ROUTE-PWR" Name="UART_AXIS_Interface_power_routed.rpt"/>
   <File Type="PA-TCL" Name="UART_AXIS_Interface.tcl"/>
   <File Type="BITSTR-MMI" Name="UART_AXIS_Interface.mmi"/>
@@ -177,9 +177,7 @@
     </Config>
   </FileSet>
   <Strategy Version="1" Minor="2">
-    <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2021">
-      <Desc>Default settings for Implementation.</Desc>
-    </StratHandle>
+    <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2021"/>
     <Step Id="init_design"/>
     <Step Id="opt_design"/>
     <Step Id="power_opt_design"/>

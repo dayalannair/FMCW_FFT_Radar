@@ -2,8 +2,8 @@
 # Vivado v2022.1 (64-bit)
 # SW Build 3526262 on Mon Apr 18 15:48:16 MDT 2022
 # IP Build 3524634 on Mon Apr 18 20:55:01 MDT 2022
-# Start of session at: Fri Jun 24 09:12:16 2022
-# Process ID: 11400
+# Start of session at: Fri Jun 24 07:52:16 2022
+# Process ID: 15532
 # Current directory: C:/Users/naird/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.runs/impl_1
 # Command line: vivado.exe -log UART_AXIS_Interface.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source UART_AXIS_Interface.tcl -notrace
 # Log file: C:/Users/naird/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.runs/impl_1/UART_AXIS_Interface.vdi

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1655977739">
+<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1656054663">
   <File Type="PA-TCL" Name="UART_AXIS_Interface.tcl"/>
   <File Type="RDS-PROPCONSTRS" Name="UART_AXIS_Interface_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="UART_AXIS_Interface_reports.tcl"/>
@@ -107,9 +107,7 @@
     </Config>
   </FileSet>
   <Strategy Version="1" Minor="2">
-    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2021">
-      <Desc>Vivado Synthesis Defaults</Desc>
-    </StratHandle>
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2021"/>
     <Step Id="synth_design"/>
   </Strategy>
   <BlockFileSet Type="BlockSrcs" Name="output_buffer_gen"/>

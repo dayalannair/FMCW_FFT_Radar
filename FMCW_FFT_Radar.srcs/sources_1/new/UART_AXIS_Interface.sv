@@ -83,10 +83,12 @@ reg opFFT_rdy;
 
 wire FFT_input_halt;
 wire FFT_output_halt;
-
+reg FFTresetn;
 xfft_0 FFT(
     .aclk (ipClk),
-    .aresetn (ipnReset),
+    // allows for seperate reset of FFT
+    // if one goes low, resets
+    .aresetn (FFTresetn&&ipnReset),
 
     .s_axis_data_tdata  (ipFFT_dat),
     .s_axis_data_tready (opFFT_rdy),
@@ -147,6 +149,7 @@ reg one_clk;
 
 always@ (posedge ipClk) begin
     if(~ipnReset) begin
+        FFTresetn <= 1;
         web <= 0; // op buff port B for read only
         ipFFT_vld <= 0;
         ipFFT_dat <= 0;
@@ -158,7 +161,6 @@ always@ (posedge ipClk) begin
         state <= idle;
         tx_smpl <= 0;
         TxPkt.Length <= 8'd8;
-        // Buffers
         ipBuff_addr <= 0;
         ipBuff_dat <= 0;
         ipBuff_wren <= 0;
@@ -168,42 +170,48 @@ always@ (posedge ipClk) begin
         opBuff_en <= 1;
         opBuff_wr_en <= 0;
         opLED <= 0;
+        one_clk <= 0;
     end
 
     else begin
         case(state)
             idle: begin
                 if(RxPkt.Valid && RxPkt.SoP && opFFT_rdy) begin
-                    //opLED <= 16'b1000000000000000;
                     opLED[3] <= 1'b1;
+                    opLED[15] <= 1'b0;
                     ipBuff_dat <= {RxPkt.Data, ipBuff_dat[31:8]};
                     byte_cnt <= byte_cnt + 1'b1;
                     state <= receive_input_data;
                 end
                 // FFT output valid
                 else if (sweep_received && opFFT_vld) begin
-                    //opLED <= 16'b0000000000000001;
+                    opLED[15] <= 1'b0;
                     opLED[4] <= 1'b1;
                     opBuff_wr_en <= 1;
-                    state <= store_output_data;
                 end
                 else begin
-                    ipBuff_wren <= 0;
+                    ipFFT_vld <= 0;
+                    ipFFT_dat <= 0;
+                    ipFFT_rdy <= 0;
                     byte_cnt <= 0;
+                    tx_smpl <= 0;
+                    TxPkt.Length <= 8'd8;
+                    ipBuff_addr <= 0;
+                    ipBuff_dat <= 0;
+                    ipBuff_wren <= 0;
                     opBuff_wr_addr <= 0;
                     opBuff_rd_addr <= 0;
                     opBuff_wr_en <= 0;
-                    ipBuff_addr <= 0;
-                    ipFFT_vld <= 0;
-                    opLED[15:12] <= 4'h5;
+                    opLED[15] <= 1'b1;
                     opLED[0] <= opFFT_vld;
                     opLED[1] <= opFFT_rdy;
                     opLED[2] <= UART_rdy;
+                    opLED[6] <= FFTresetn;
+                    opLED[7] <= ipnReset;
+                    opLED[8] <= sweep_received;
                 end
             end
             receive_input_data: begin
-                // opLED[15:8] <= 8'hff;
-                // opLED[7:0] <= ipBuff_addr;
                 // state change must happen first, and gate the
                 // rest of the current state
                 if (ipBuff_addr == 8'd200) begin
@@ -231,12 +239,15 @@ always@ (posedge ipClk) begin
                
             end
             feed_input_data: begin
+                // TEST to see if can control
+                // FFT 'hunger' by limiting samples
+                // NOTE: tlast not used by fft
                 // if (ipBuff_addr == 8'd255) begin
                 //     sweep_received <= 1'b1;
                 //     // change to idle while waiting for FFT
                 //     state <= idle;
                 // end
-                opLED <= 16'h5555;
+                opLED[5] <= 1'b1;
                 if (opFFT_rdy) begin
                     ipFFT_vld <= 1;
                     ipFFT_dat <= opBuff_dat;
@@ -247,12 +258,13 @@ always@ (posedge ipClk) begin
                     ipFFT_vld <= 0;
                     sweep_received <= 1'b1;
                     // change to idle while waiting for FFT to process
+                    // or if FFT out ready did not go high
                     state <= idle;
                 end
             end
             store_output_data: begin
                 //store samples 0 to 255
-                if (opFFT_vld && opBuff_wr_addr < 8'd255) begin
+                if (opFFT_vld && opBuff_wr_addr < 9'd256) begin
                     ipFFT_rdy <= 1'b1;
                     opBuff_wr_addr <= opBuff_wr_addr + 1'b1;
                 end
@@ -260,10 +272,13 @@ always@ (posedge ipClk) begin
                     ipFFT_rdy <= 1'b0;
                     opBuff_rd_addr <= 0;
                     state <= send_output_data;
+                    FFTresetn <= 0;
+                    //Reset FFT for next run
                 end
             end
             send_output_data: begin
-                if (opFFT_vld && UART_rdy && (byte_cnt == 0) && (opBuff_rd_addr<8'd255)) begin
+                opLED[9] <= 1'b1;
+                if (UART_rdy && (byte_cnt == 0) && (opBuff_rd_addr<9'd256)) begin
                     TxPkt.SoP <= 1'b1;
                     TxPkt.Valid <= 1'b1;
                     TxPkt.Data <= opBuff_rd_dat[7:0];
@@ -271,22 +286,29 @@ always@ (posedge ipClk) begin
                     byte_cnt <= 1'b1;
                     one_clk <= 0; // next stage needs 1 clk as packetiser has 1 clk delay
                 end
-                else if (opFFT_vld && UART_rdy && (byte_cnt > 0) && (byte_cnt < 4'd8) && one_clk) begin
+                else if (UART_rdy && (byte_cnt > 0) && (byte_cnt < 4'd8) && one_clk) begin
                     TxPkt.SoP <= 1'b0;
                     TxPkt.Data <= tx_smpl[7:0];
                     tx_smpl <= tx_smpl>>8;
                     byte_cnt <= byte_cnt + 1'b1;
                 end
-                else if (opFFT_vld && UART_rdy && (byte_cnt == 4'd8)) begin
-                    //opLED <= opLED<<1;
+                else if (UART_rdy && (byte_cnt == 4'd8)) begin
                     TxPkt.Valid <= 1'b0;
                     opBuff_rd_addr <= opBuff_rd_addr + 1'b1;
                     byte_cnt <= 0;
+                    // Remove nReset of FFT. Placed
+                    // here as it ensures FFT had enough time to reset
+                    FFTresetn <= 1;
                 end
                 else begin
                     one_clk <= 1;           
                 end
-                if (opBuff_rd_addr == 8'd255) state <= idle;
+                if (opBuff_rd_addr == 9'd256) begin
+                    state <= idle;
+                    opLED[10] <= 1'b1;
+                    // sweep received must be reset here
+                    sweep_received <= 0;
+                end
             end
             default:;
         endcase  

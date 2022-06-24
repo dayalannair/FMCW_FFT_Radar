@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2022.1 (win64) Build 3526262 Mon Apr 18 15:48:16 MDT 2022
-| Date         : Thu Jun 23 11:50:03 2022
+| Date         : Fri Jun 24 09:12:07 2022
 | Host         : DESKTOP-QFVTB2Q running 64-bit major release  (build 9200)
 | Command      : report_utilization -file UART_AXIS_Interface_utilization_synth.rpt -pb UART_AXIS_Interface_utilization_synth.pb
 | Design       : UART_AXIS_Interface
@@ -31,11 +31,11 @@ Table of Contents
 +-------------------------+------+-------+------------+-----------+-------+
 |        Site Type        | Used | Fixed | Prohibited | Available | Util% |
 +-------------------------+------+-------+------------+-----------+-------+
-| Slice LUTs*             |  198 |     0 |          0 |     63400 |  0.31 |
-|   LUT as Logic          |  198 |     0 |          0 |     63400 |  0.31 |
+| Slice LUTs*             |  291 |     0 |          0 |     63400 |  0.46 |
+|   LUT as Logic          |  291 |     0 |          0 |     63400 |  0.46 |
 |   LUT as Memory         |    0 |     0 |          0 |     19000 |  0.00 |
-| Slice Registers         |  283 |     0 |          0 |    126800 |  0.22 |
-|   Register as Flip Flop |  283 |     0 |          0 |    126800 |  0.22 |
+| Slice Registers         |  287 |     0 |          0 |    126800 |  0.23 |
+|   Register as Flip Flop |  287 |     0 |          0 |    126800 |  0.23 |
 |   Register as Latch     |    0 |     0 |          0 |    126800 |  0.00 |
 | F7 Muxes                |    0 |     0 |          0 |     31700 |  0.00 |
 | F8 Muxes                |    0 |     0 |          0 |     15850 |  0.00 |
@@ -57,7 +57,7 @@ Table of Contents
 | 0     |          Yes |           - |            - |
 | 0     |          Yes |           - |          Set |
 | 0     |          Yes |           - |        Reset |
-| 3     |          Yes |         Set |            - |
+| 7     |          Yes |         Set |            - |
 | 280   |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
 
@@ -148,15 +148,15 @@ Table of Contents
 | Ref Name | Used | Functional Category |
 +----------+------+---------------------+
 | FDRE     |  280 |        Flop & Latch |
-| LUT3     |   92 |                 LUT |
-| LUT6     |   68 |                 LUT |
-| LUT5     |   52 |                 LUT |
-| LUT4     |   38 |                 LUT |
-| LUT2     |   28 |                 LUT |
+| LUT6     |  167 |                 LUT |
+| LUT5     |   66 |                 LUT |
+| LUT2     |   51 |                 LUT |
+| LUT3     |   41 |                 LUT |
+| LUT4     |   32 |                 LUT |
 | OBUF     |   17 |                  IO |
-| LUT1     |    3 |                 LUT |
+| FDSE     |    7 |        Flop & Latch |
 | IBUF     |    3 |                  IO |
-| FDSE     |    3 |        Flop & Latch |
+| LUT1     |    1 |                 LUT |
 | BUFG     |    1 |               Clock |
 +----------+------+---------------------+
 
