@@ -6,4 +6,4 @@ REM          to be invoked for Vivado to track run status.
 REM Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 REM
 
-vivado -log UART_AXIS_Interface.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source UART_AXIS_Interface.tcl
+vivado -log UART_FFT_Control.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source UART_FFT_Control.tcl

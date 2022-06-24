@@ -2,12 +2,12 @@
 # Vivado v2022.1 (64-bit)
 # SW Build 3526262 on Mon Apr 18 15:48:16 MDT 2022
 # IP Build 3524634 on Mon Apr 18 20:55:01 MDT 2022
-# Start of session at: Fri Jun 24 09:12:16 2022
-# Process ID: 11400
+# Start of session at: Fri Jun 24 18:31:13 2022
+# Process ID: 17464
 # Current directory: C:/Users/naird/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.runs/impl_1
-# Command line: vivado.exe -log UART_AXIS_Interface.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source UART_AXIS_Interface.tcl -notrace
-# Log file: C:/Users/naird/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.runs/impl_1/UART_AXIS_Interface.vdi
+# Command line: vivado.exe -log UART_FFT_Control.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source UART_FFT_Control.tcl -notrace
+# Log file: C:/Users/naird/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.runs/impl_1/UART_FFT_Control.vdi
 # Journal file: C:/Users/naird/Desktop/FMCW_FFT_Radar/FMCW_FFT_Radar.runs/impl_1\vivado.jou
 # Running On: DESKTOP-QFVTB2Q, OS: Windows, CPU Frequency: 3392 MHz, CPU Physical cores: 4, Host memory: 12787 MB
 #-----------------------------------------------------------
-source UART_AXIS_Interface.tcl -notrace
+source UART_FFT_Control.tcl -notrace

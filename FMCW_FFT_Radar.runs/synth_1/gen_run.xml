@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1656054663">
-  <File Type="PA-TCL" Name="UART_AXIS_Interface.tcl"/>
-  <File Type="RDS-PROPCONSTRS" Name="UART_AXIS_Interface_drc_synth.rpt"/>
-  <File Type="REPORTS-TCL" Name="UART_AXIS_Interface_reports.tcl"/>
-  <File Type="RDS-RDS" Name="UART_AXIS_Interface.vds"/>
-  <File Type="RDS-UTIL" Name="UART_AXIS_Interface_utilization_synth.rpt"/>
-  <File Type="RDS-UTIL-PB" Name="UART_AXIS_Interface_utilization_synth.pb"/>
-  <File Type="RDS-DCP" Name="UART_AXIS_Interface.dcp"/>
-  <File Type="VDS-TIMINGSUMMARY" Name="UART_AXIS_Interface_timing_summary_synth.rpt"/>
-  <File Type="VDS-TIMING-PB" Name="UART_AXIS_Interface_timing_summary_synth.pb"/>
+<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1656088202">
+  <File Type="PA-TCL" Name="UART_FFT_Control.tcl"/>
+  <File Type="RDS-PROPCONSTRS" Name="UART_FFT_Control_drc_synth.rpt"/>
+  <File Type="REPORTS-TCL" Name="UART_FFT_Control_reports.tcl"/>
+  <File Type="RDS-RDS" Name="UART_FFT_Control.vds"/>
+  <File Type="RDS-UTIL" Name="UART_FFT_Control_utilization_synth.rpt"/>
+  <File Type="RDS-UTIL-PB" Name="UART_FFT_Control_utilization_synth.pb"/>
+  <File Type="RDS-DCP" Name="UART_FFT_Control.dcp"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="UART_FFT_Control_timing_summary_synth.rpt"/>
+  <File Type="VDS-TIMING-PB" Name="UART_FFT_Control_timing_summary_synth.pb"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/new/Structures.v">
@@ -32,7 +32,7 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/new/UART_AXIS_Interface.sv">
+    <File Path="$PSRCDIR/sources_1/new/UART_FFT_Control.sv">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
@@ -67,25 +67,9 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/new/FIFO_stream_wrapper.v">
-      <FileInfo SFType="SVerilog">
-        <Attr Name="UserDisabled" Val="1"/>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/new/FIFO_custom.v">
-      <FileInfo>
-        <Attr Name="UserDisabled" Val="1"/>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
     <Config>
       <Option Name="DesignMode" Val="RTL"/>
-      <Option Name="TopModule" Val="UART_AXIS_Interface"/>
+      <Option Name="TopModule" Val="UART_FFT_Control"/>
     </Config>
   </FileSet>
   <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
