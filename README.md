@@ -53,4 +53,11 @@ The Bitstreams directory contains the bitstreams for both the data injection and
 
 # Running this program
 
-Enter the FINAL_PROGRAM_FILES directory for more information.
+
+1. Open the FINAL_PROGRAM_FILES directory
+2. Open vivado Harware manager, connect to Nexys A7 (auto connect) and program with the .bit file in the directory mentioned in 1.
+3. Open the MATLAB script and load in your own data or proceed to step 4.
+4. Open the Python script and run it to begin sending sweeps and receiving FFT outputs
+5. Run the MATLAB script to plot the data as needed
+
+
