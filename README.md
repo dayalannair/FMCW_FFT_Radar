@@ -50,3 +50,7 @@ python script could be adapted to plot data as well.
 # Using this repo
 
 The Bitstreams directory contains the bitstreams for both the data injection and data streaming configurations. If you would like to edit the source code, see the source directory and load the respected files into Vivado (from the 'archived' subdirectory if you wish to edit the older versions).
+
+# Running this program
+
+Enter the FINAL_PROGRAM_FILES directory for more information.
