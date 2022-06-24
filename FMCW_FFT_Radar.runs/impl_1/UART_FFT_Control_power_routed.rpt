@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2022.1 (win64) Build 3526262 Mon Apr 18 15:48:16 MDT 2022
-| Date             : Fri Jun 24 18:33:09 2022
+| Date             : Fri Jun 24 19:19:18 2022
 | Host             : DESKTOP-QFVTB2Q running 64-bit major release  (build 9200)
 | Command          : report_power -file UART_FFT_Control_power_routed.rpt -pb UART_FFT_Control_power_summary_routed.pb -rpx UART_FFT_Control_power_routed.rpx
 | Design           : UART_FFT_Control
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.114        |
+| Total On-Chip Power (W)  | 0.112        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.016        |
+| Dynamic (W)              | 0.015        |
 | Device Static (W)        | 0.097        |
 | Effective TJA (C/W)      | 4.6          |
 | Max Ambient (C)          | 84.5         |
@@ -53,7 +53,7 @@ Table of Contents
 | On-Chip                 | Power (W) | Used     | Available | Utilization (%) |
 +-------------------------+-----------+----------+-----------+-----------------+
 | Clocks                  |     0.004 |        3 |       --- |             --- |
-| Slice Logic             |     0.001 |     2742 |       --- |             --- |
+| Slice Logic             |    <0.001 |     2741 |       --- |             --- |
 |   LUT as Logic          |    <0.001 |      613 |     63400 |            0.97 |
 |   Register              |    <0.001 |     1451 |    126800 |            1.14 |
 |   CARRY4                |    <0.001 |       47 |     15850 |            0.30 |
@@ -63,9 +63,9 @@ Table of Contents
 | Signals                 |     0.001 |     1908 |       --- |             --- |
 | Block RAM               |     0.007 |        4 |       135 |            2.96 |
 | DSPs                    |     0.002 |        2 |       240 |            0.83 |
-| I/O                     |     0.001 |       20 |       210 |            9.52 |
+| I/O                     |    <0.001 |       20 |       210 |            9.52 |
 | Static Power            |     0.097 |          |           |                 |
-| Total                   |     0.114 |          |           |                 |
+| Total                   |     0.112 |          |           |                 |
 +-------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -75,7 +75,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.030 |       0.015 |      0.015 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.029 |       0.014 |      0.015 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.018 |       0.000 |      0.018 |       NA    | Unspecified | NA         |
 | Vcco33    |       3.300 |     0.004 |       0.000 |      0.004 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -144,14 +144,13 @@ Table of Contents
 +------------------------+-----------+
 | Name                   | Power (W) |
 +------------------------+-----------+
-| UART_FFT_Control       |     0.016 |
+| UART_FFT_Control       |     0.015 |
 |   FFT                  |     0.007 |
 |     U0                 |     0.007 |
 |       i_synth          |     0.007 |
 |   output_buff          |     0.006 |
 |     U0                 |     0.006 |
 |       inst_blk_mem_gen |     0.006 |
-|   packetiser           |     0.001 |
 +------------------------+-----------+
 
 

@@ -18,16 +18,14 @@ FPGA_Re_FFT_tab = readtable('FFT_Re.txt','Delimiter' ,' ');
 FPGA_Im_FFT_tab = readtable('FFT_Im.txt','Delimiter' ,' '); 
 Re = table2array(FPGA_Re_FFT_tab);
 Im = table2array(FPGA_Im_FFT_tab);
+%%
 % Correction of current error:
 % 1. reverse right shift
 % 2. remove incorrect sample
-%%
-Re(:,1) = Re(:,end);
-Im(:,1) = Im(:,end);
-%%
-Re = circshift(Re,-1);
-Im = circshift(Im,-1);
-%%
+% Re(:,1) = Re(:,end);
+% Im(:,1) = Im(:,end);
+% Re = circshift(Re,-1);
+% Im = circshift(Im,-1);
 FPGA_FFT = Re + 1i*Im;
 % Matlab FFT for comparison
 iq = i_dat + 1i*q_dat;
@@ -40,17 +38,27 @@ close all
 
 fig = figure;
 fig.WindowState = 'maximized';
-tiledlayout(2,1)
-nexttile
-plot(f/1000, 20*log10(fftshift(abs(FPGA_FFT))))
+% tiledlayout(2,1)
+% nexttile
+% plot(f/1000, 20*log10(fftshift(abs(FPGA_FFT))))
+% title("FPGA FFT Magnitude (fftshifted)")
+% xlabel("Frequency (kHz)")
+% ylabel("Magnitude (dB)")
+% nexttile
+% plot(f/1000,20*log10(fftshift(abs(MATLAB_FFT))))
+% title("MATLAB FFT Magnitude (fftshifted)")
+% xlabel("Frequency (kHz)")
+% ylabel("Magnitude (dB)")
+
+plot(f/1000, fftshift(abs(FPGA_FFT(120,:))))
 title("FPGA FFT Magnitude (fftshifted)")
 xlabel("Frequency (kHz)")
-ylabel("Magnitude (dB)")
-%axis([-100 100 0 10e5])
-nexttile
-plot(f/1000,20*log10(fftshift(abs(MATLAB_FFT))))
+axis([-100 100 0 10e5])
+%nexttile
+hold on
+% plot(angle(FPGA_FFT))
+% title("FFT Phase")
+plot(f/1000,fftshift(abs(MATLAB_FFT(120,:))))
 title("MATLAB FFT Magnitude (fftshifted)")
 xlabel("Frequency (kHz)")
-ylabel("Magnitude (dB)")
-%axis([-100 100 0 10e5])
-
+axis([-100 100 0 10e5])

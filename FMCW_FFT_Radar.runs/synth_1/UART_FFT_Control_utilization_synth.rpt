@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2022.1 (win64) Build 3526262 Mon Apr 18 15:48:16 MDT 2022
-| Date         : Fri Jun 24 18:31:05 2022
+| Date         : Fri Jun 24 19:17:21 2022
 | Host         : DESKTOP-QFVTB2Q running 64-bit major release  (build 9200)
 | Command      : report_utilization -file UART_FFT_Control_utilization_synth.rpt -pb UART_FFT_Control_utilization_synth.pb
 | Design       : UART_FFT_Control
@@ -31,8 +31,8 @@ Table of Contents
 +-------------------------+------+-------+------------+-----------+-------+
 |        Site Type        | Used | Fixed | Prohibited | Available | Util% |
 +-------------------------+------+-------+------------+-----------+-------+
-| Slice LUTs*             |  293 |     0 |          0 |     63400 |  0.46 |
-|   LUT as Logic          |  293 |     0 |          0 |     63400 |  0.46 |
+| Slice LUTs*             |  291 |     0 |          0 |     63400 |  0.46 |
+|   LUT as Logic          |  291 |     0 |          0 |     63400 |  0.46 |
 |   LUT as Memory         |    0 |     0 |          0 |     19000 |  0.00 |
 | Slice Registers         |  287 |     0 |          0 |    126800 |  0.23 |
 |   Register as Flip Flop |  287 |     0 |          0 |    126800 |  0.23 |
@@ -148,11 +148,11 @@ Table of Contents
 | Ref Name | Used | Functional Category |
 +----------+------+---------------------+
 | FDRE     |  280 |        Flop & Latch |
-| LUT6     |  163 |                 LUT |
-| LUT5     |   70 |                 LUT |
-| LUT2     |   50 |                 LUT |
-| LUT3     |   39 |                 LUT |
-| LUT4     |   38 |                 LUT |
+| LUT6     |  161 |                 LUT |
+| LUT5     |   72 |                 LUT |
+| LUT2     |   47 |                 LUT |
+| LUT3     |   40 |                 LUT |
+| LUT4     |   39 |                 LUT |
 | OBUF     |   17 |                  IO |
 | FDSE     |    7 |        Flop & Latch |
 | IBUF     |    3 |                  IO |

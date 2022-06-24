@@ -188,6 +188,7 @@ always@ (posedge ipClk) begin
                     opLED[15] <= 1'b0;
                     opLED[4] <= 1'b1;
                     opBuff_wr_en <= 1;
+                    ipFFT_rdy <= 1'b1;
                     state <= store_output_data;
                 end
                 else begin
@@ -266,7 +267,6 @@ always@ (posedge ipClk) begin
             store_output_data: begin
                 //store samples 0 to 255
                 if (opFFT_vld && opBuff_wr_addr < 9'd256) begin
-                    ipFFT_rdy <= 1'b1;
                     opBuff_wr_addr <= opBuff_wr_addr + 1'b1;
                 end
                 else begin
