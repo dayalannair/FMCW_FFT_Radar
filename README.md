@@ -50,3 +50,14 @@ python script could be adapted to plot data as well.
 # Using this repo
 
 The Bitstreams directory contains the bitstreams for both the data injection and data streaming configurations. If you would like to edit the source code, see the source directory and load the respected files into Vivado (from the 'archived' subdirectory if you wish to edit the older versions).
+
+# Running this program
+
+
+1. Open the FINAL_PROGRAM_FILES directory
+2. Open vivado Harware manager, connect to Nexys A7 (auto connect) and program with the .bit file in the directory mentioned in 1.
+3. Open the MATLAB script and load in your own data or proceed to step 4.
+4. Open the Python script and run it to begin sending sweeps and receiving FFT outputs
+5. Run the MATLAB script to plot the data as needed
+
+
