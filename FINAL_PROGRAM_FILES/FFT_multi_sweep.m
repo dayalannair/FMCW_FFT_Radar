@@ -21,11 +21,13 @@ Im = table2array(FPGA_Im_FFT_tab);
 % Correction of current error:
 % 1. reverse right shift
 % 2. remove incorrect sample
+%%
 Re(:,1) = Re(:,end);
 Im(:,1) = Im(:,end);
+%%
 Re = circshift(Re,-1);
 Im = circshift(Im,-1);
-
+%%
 FPGA_FFT = Re + 1i*Im;
 % Matlab FFT for comparison
 iq = i_dat + 1i*q_dat;
