@@ -38,8 +38,8 @@ close all
 
 fig = figure;
 fig.WindowState = 'maximized';
-% tiledlayout(2,1)
-% nexttile
+tiledlayout(1,2)
+nexttile
 % plot(f/1000, 20*log10(fftshift(abs(FPGA_FFT))))
 % title("FPGA FFT Magnitude (fftshifted)")
 % xlabel("Frequency (kHz)")
@@ -50,15 +50,36 @@ fig.WindowState = 'maximized';
 % xlabel("Frequency (kHz)")
 % ylabel("Magnitude (dB)")
 
-plot(f/1000, fftshift(abs(FPGA_FFT(120,:))))
-title("FPGA FFT Magnitude (fftshifted)")
-xlabel("Frequency (kHz)")
-axis([-100 100 0 10e5])
-%nexttile
+p1 = plot(f/1000, 10*log10(fftshift(abs(FPGA_FFT(90,:)))));
 hold on
-% plot(angle(FPGA_FFT))
-% title("FFT Phase")
-plot(f/1000,fftshift(abs(MATLAB_FFT(120,:))))
-title("MATLAB FFT Magnitude (fftshifted)")
+p2 = plot(f/1000,10*log10(fftshift(abs(MATLAB_FFT(90,:)))));
+title("MATLAB vs. FPGA FFT Magnitude Response for sweep 90")
 xlabel("Frequency (kHz)")
-axis([-100 100 0 10e5])
+ylabel("Magnitude (dB)")
+
+legend([p1 p2],{'FPGA', 'MATLAB'})
+
+
+nexttile
+
+p1 = plot(f/1000, 10*log10(fftshift(abs(FPGA_FFT(90,:)))));
+hold on
+p2 = plot(f/1000,10*log10(fftshift(abs(MATLAB_FFT(90,:)))));
+title("Magnified MATLAB vs. FPGA FFT Magnitude Response for sweep 90")
+xlabel("Frequency (kHz)")
+ylabel("Magnitude (dB)")
+axis([-100 100 45 65])
+legend([p1 p2],{'FPGA', 'MATLAB'})
+
+
+
+% p1 = plot(f/1000, 10*log10(fftshift(abs(FPGA_FFT(80,:)))));
+% hold on
+% p2 = plot(f/1000,10*log10(fftshift(abs(MATLAB_FFT(80,:)))));
+% title("MATLAB vs FPGA FFT Magnitude (dB)")
+% xlabel("Frequency (kHz)")
+% ylabel("Magnitude (dB)")
+% 
+% legend([p1 p2],{'FPGA', 'MATLAB'})
+
+
