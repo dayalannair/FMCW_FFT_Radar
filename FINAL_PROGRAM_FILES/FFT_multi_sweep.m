@@ -27,9 +27,17 @@ Im = table2array(FPGA_Im_FFT_tab);
 % Re = circshift(Re,-1);
 % Im = circshift(Im,-1);
 FPGA_FFT = Re + 1i*Im;
+
+%%
 % Matlab FFT for comparison
+tic
 iq = i_dat + 1i*q_dat;
 MATLAB_FFT = fft(iq, [], 2);
+toc
+%%
+tic
+MATLAB_FFT = fft(iq, [], 2);
+toc
 %% Plots
 fs = 200e3;
 N = 256;

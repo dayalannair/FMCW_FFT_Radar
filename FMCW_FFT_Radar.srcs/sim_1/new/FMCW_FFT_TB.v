@@ -1,4 +1,4 @@
-`timescale 1ns / 1ps
+`timescale 1ns / 1ns
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
 // Engineer: 
@@ -40,20 +40,20 @@ initial begin
   ipReset <= 0;
 end
 
-reg ipEnable;
+reg ipRunFFT;
 reg ipReady;
 wire opValid;
 wire[63:0] opData;
 // reg[11:0] Re_out;
 // reg[11:0] Im_out;
-reg[23:0] Re_out;
-reg[23:0] Im_out;
+reg[31:0] Re_out;
+reg[31:0] Im_out;
 reg[3:0] pad_upper;
 reg[3:0] pad_lower;
 FMCW_FFT DUT(
     .ipClk (ipClk),
     .ipReset (ipReset),
-    .ipEnable (ipEnable),
+    .ipRunFFT (ipRunFFT),
     .ipReady (ipReady),
     .opData (opData),
     .opValid (opValid)
@@ -70,10 +70,10 @@ initial begin
   fd_Re = $fopen("FFT_out_Re.txt", "w");  
   fd_Im = $fopen("FFT_out_Im.txt", "w");  
   #100
-  ipEnable <= 1;
+  ipRunFFT <= 1;
   ipReady <= 1;
   #50
-   ipEnable = 0;
+   ipRunFFT = 0;
 end
 
 always@(posedge ipClk) begin
@@ -95,8 +95,8 @@ always@(posedge ipClk) begin
     $fwrite(fd_Re, "\n");
     $fwrite(fd_Im, "\n");
     // For testbench viewing
-    // Re_out <= opData[27:16];
-    // Im_out <= opData[11:0];
+    Re_out <= opData[31:0];
+    Im_out <= opData[63:32];
     // Re_out <= opData[23:0];
     // Im_out <= opData[47:24];
     // confirm padding is all same value

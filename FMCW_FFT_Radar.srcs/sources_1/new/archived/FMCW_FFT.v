@@ -1,23 +1,4 @@
-`timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: UCT - FPGA Course
-// Engineer: Dayalan Nair
-// 
-// Create Date: 22.05.2022 15:22:25
-// Design Name: Radar FMCW FFT processing
-// Module Name: FMCW_FFT
-// Project Name: 
-// Target Devices: Nexys A7 A100T
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments: Brilliant piece of code
-// 
-//////////////////////////////////////////////////////////////////////////////////
+
 module FMCW_FFT(
     input ipClk,
     input ipReset,
@@ -171,18 +152,18 @@ always@ (posedge ipClk) begin
                 end
 
                 // Send FFT output
-                if (m_axis_data_tvalid && (send_count<9'd512)) begin
+                if (m_axis_data_tvalid && (send_count<10'd512)) begin
                     opValid <= 1;
                     opData <= m_axis_data_tdata;
                     send_count <= send_count + 1'b1;
                 end 
-                else if (send_count == 9'd512) begin
+                else if (send_count == 10'd512) begin
                     state <= 0;
                     opValid <= 0;
                 end
 
             end
-        default: state <= 0;
+        default:;
 
         endcase  
     end
