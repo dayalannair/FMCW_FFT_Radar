@@ -6,26 +6,32 @@ format longg
 FPGA_Re_FFT_tab = readtable('../FFT_Re.txt','Delimiter' ,' ');
 FPGA_Im_FFT_tab = readtable('../FFT_Im.txt','Delimiter' ,' ');
 
-raw_Re_tab = readtable('../IQ_data/I_trolley_test.txt','Delimiter' ,' ');
-raw_Im_tab = readtable('../IQ_data/Q_trolley_test.txt','Delimiter' ,' ');
+% raw_Re_tab = readtable('../IQ_data/I_trolley_test.txt','Delimiter' ,' ');
+% raw_Im_tab = readtable('../IQ_data/Q_trolley_test.txt','Delimiter' ,' ');
+
+iq_tbl=readtable('../IQ_data/IQ_0_1024_sweeps.txt','Delimiter' ,' ');
+%i_up = table2array(iq_tbl(sweeps,1:200));
+%i_down = table2array(iq_tbl(sweeps,201:400));
+%q_up = table2array(iq_tbl(sweeps,401:600));
+%q_down = table2array(iq_tbl(sweeps,601:800));
 %%
 
 % PADDING ONLY NEEDED FOR MATLAB
-% FPGA has pre-padded buffers
-i_dat = zeros(1, 256);
-q_dat = zeros(1, 256);
+% FPGA has pre-padded buffers. Number of sweeps is 344
+i_dat = zeros(1024, 256);
+q_dat = zeros(1024, 256);
 
 % sweep to be analysed
-desired_sweep = 50; 
+%desired_sweep = ; 
 
 % only up sweep is taken
-i_dat(1:200) = table2array(raw_Re_tab(desired_sweep,1:200));
-q_dat(1:200) = table2array(raw_Im_tab(desired_sweep,1:200));
+i_dat(:,1:200) = table2array(iq_tbl(:,1:200));
+q_dat(:,1:200) = table2array(iq_tbl(:,401:600));
 
 % format data for FFT. must re-run this program
 % on received data
 % if desired sweep is changed
-sweep_to_hex(i_dat, q_dat);
+%sweep_to_hex(i_dat, q_dat);
 
 % FPGA FFT. Uses desired sweep as FPGA FFT data is from
 % multiple sweeps (same data set)
@@ -36,23 +42,27 @@ FPGA_FFT = Re + 1i*Im;
 %%
 % Matlab FFT
 % get runtime
-format compact
-format short eng
+% format compact
+% format short eng
 
 Time = [];
-
-for m = 1000
-  start = tic();
-  iq = i_dat + 1i*q_dat;
-  MATLAB_FFT = fft(iq, [], 2);
-  Time = [Time (toc(start) / m)];
+for M = 1:1000
+    start = tic();
+    for m = 1:1024
+      iq = i_dat(m,:) + 1i*q_dat(m,:);
+      MATLAB_FFT = fft(iq, [], 2);
+    end
+    % average time for 256 point fft over 1024 sweeps
+    Time = [Time (toc(start) / m)];
 end
+% average of the average times
+mean(Time)
 %%
-start = tic();
-iq = i_dat + 1i*q_dat;
-MATLAB_FFT = fft(iq, [], 2);
-toc(start)
-Time = (toc(start) / 1);
+% start = tic();
+% iq = i_dat + 1i*q_dat;
+% MATLAB_FFT = fft(iq, [], 2);
+% toc(start)
+% Time = (toc(start) / 1);
 
 
 
