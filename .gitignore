@@ -19,6 +19,12 @@
 !*.v
 !*.bd
 !*.edif
+!*.sv
+!*.py
+!*.md
+!*.txt
+!*.bit
+!*.zip
 # do not ignore matlab
 !*.m
 #########
